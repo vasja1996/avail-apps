@@ -1,9 +1,9 @@
 // Copyright 2017-2021 @polkadot/app-parachains authors & contributors
 // SPDX-License-Identifier: Apache-2.0
 
-import type { Option, Vec } from '@polkadot/types';
-import type { AccountId, BlockNumber, HeadData, Header, ParaId } from '@polkadot/types/interfaces';
-import type { Codec } from '@polkadot/types/types';
+import type { Option, Vec } from '@maticnetwork/da-types';
+import type { AccountId, BlockNumber, HeadData, Header, ParaId } from '@maticnetwork/da-types/interfaces';
+import type { Codec } from '@maticnetwork/da-types/types';
 
 import BN from 'bn.js';
 import React, { useCallback, useMemo } from 'react';

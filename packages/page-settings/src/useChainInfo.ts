@@ -9,7 +9,7 @@ import { useMemo } from 'react';
 import { getSystemChainColor, getSystemIcon } from '@polkadot/apps-config';
 import { DEFAULT_DECIMALS, DEFAULT_SS58 } from '@polkadot/react-api';
 import { useApi } from '@polkadot/react-hooks';
-import { getSpecTypes } from '@polkadot/types-known';
+import { getSpecTypes } from '@maticnetwork/da-types-known';
 import { formatBalance, isNumber } from '@polkadot/util';
 
 function createInfo (api: ApiPromise, systemChain: string, systemName: string): ChainInfo {

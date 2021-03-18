@@ -1,8 +1,8 @@
 // Copyright 2017-2021 @polkadot/app-accounts authors & contributors
 // SPDX-License-Identifier: Apache-2.0
 
-import type { Data, Option } from '@polkadot/types';
-import type { Registration } from '@polkadot/types/interfaces';
+import type { Data, Option } from '@maticnetwork/da-types';
+import type { Registration } from '@maticnetwork/da-types/interfaces';
 
 import React, { useEffect, useState } from 'react';
 import styled from 'styled-components';

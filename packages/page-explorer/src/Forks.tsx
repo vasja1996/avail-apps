@@ -3,7 +3,7 @@
 
 import type { ApiProps } from '@polkadot/react-api/types';
 import type { ThemeProps } from '@polkadot/react-components/types';
-import type { Header } from '@polkadot/types/interfaces';
+import type { Header } from '@maticnetwork/da-types/interfaces';
 
 import React, { useCallback, useEffect, useRef, useState } from 'react';
 import styled from 'styled-components';

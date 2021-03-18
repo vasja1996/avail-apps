@@ -2,7 +2,7 @@
 // SPDX-License-Identifier: Apache-2.0
 
 import type { DeriveStakerReward } from '@polkadot/api-derive/types';
-import type { Balance, EraIndex } from '@polkadot/types/interfaces';
+import type { Balance, EraIndex } from '@maticnetwork/da-types/interfaces';
 
 import BN from 'bn.js';
 

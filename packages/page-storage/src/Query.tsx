@@ -4,7 +4,7 @@
 import type { QueryableStorageEntry } from '@polkadot/api/types';
 import type { ComponentRenderer, DefaultProps, RenderFn } from '@polkadot/react-api/hoc/types';
 import type { ConstValue } from '@polkadot/react-components/InputConsts/types';
-import type { Option, Raw } from '@polkadot/types';
+import type { Option, Raw } from '@maticnetwork/da-types';
 import type { QueryTypes, StorageModuleQuery } from './types';
 
 import React, { useCallback, useMemo } from 'react';
@@ -13,7 +13,7 @@ import styled from 'styled-components';
 import { withCallDiv } from '@polkadot/react-api/hoc';
 import { Button, Labelled } from '@polkadot/react-components';
 import valueToText from '@polkadot/react-params/valueToText';
-import { unwrapStorageType } from '@polkadot/types/primitive/StorageKey';
+import { unwrapStorageType } from '@maticnetwork/da-types/primitive/StorageKey';
 import { compactStripLength, isU8a, u8aToHex, u8aToString } from '@polkadot/util';
 
 interface Props {

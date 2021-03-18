@@ -1,7 +1,7 @@
 // Copyright 2017-2021 @polkadot/app-bounties authors & contributors
 // SPDX-License-Identifier: Apache-2.0
 
-import type { Codec } from '@polkadot/types/types';
+import type { Codec } from '@maticnetwork/da-types/types';
 
 import React from 'react';
 

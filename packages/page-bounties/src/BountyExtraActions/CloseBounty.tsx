@@ -1,7 +1,7 @@
 // Copyright 2017-2021 @polkadot/app-treasury authors & contributors
 // SPDX-License-Identifier: Apache-2.0
 
-import type { BountyIndex } from '@polkadot/types/interfaces';
+import type { BountyIndex } from '@maticnetwork/da-types/interfaces';
 
 import BN from 'bn.js';
 import React, { useEffect, useRef, useState } from 'react';

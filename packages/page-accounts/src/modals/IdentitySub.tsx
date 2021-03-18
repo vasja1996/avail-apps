@@ -2,9 +2,9 @@
 // SPDX-License-Identifier: Apache-2.0
 
 import type { TFunction } from 'i18next';
-import type { Data, Option, Vec } from '@polkadot/types';
-import type { AccountId, Balance } from '@polkadot/types/interfaces';
-import type { ITuple } from '@polkadot/types/types';
+import type { Data, Option, Vec } from '@maticnetwork/da-types';
+import type { AccountId, Balance } from '@maticnetwork/da-types/interfaces';
+import type { ITuple } from '@maticnetwork/da-types/types';
 
 import React, { useCallback, useEffect, useState } from 'react';
 

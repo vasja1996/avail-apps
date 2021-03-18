@@ -1,7 +1,7 @@
 // Copyright 2017-2021 @polkadot/app-staking authors & contributors
 // SPDX-License-Identifier: Apache-2.0
 
-import type { AccountId, AccountIndex, Address } from '@polkadot/types/interfaces';
+import type { AccountId, AccountIndex, Address } from '@maticnetwork/da-types/interfaces';
 import type { KeyringItemType } from '@polkadot/ui-keyring/types';
 
 import BN from 'bn.js';

@@ -2,7 +2,7 @@
 // SPDX-License-Identifier: Apache-2.0
 
 import type { RawParams } from '@polkadot/react-params/types';
-import type { Registry, TypeDef } from '@polkadot/types/types';
+import type { Registry, TypeDef } from '@maticnetwork/da-types/types';
 
 import React, { useCallback, useEffect, useState } from 'react';
 

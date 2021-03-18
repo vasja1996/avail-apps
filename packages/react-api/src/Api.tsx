@@ -3,7 +3,7 @@
 
 import type BN from 'bn.js';
 import type { InjectedExtension } from '@polkadot/extension-inject/types';
-import type { ChainProperties, ChainType } from '@polkadot/types/interfaces';
+import type { ChainProperties, ChainType } from '@maticnetwork/da-types/interfaces';
 import type { KeyringStore } from '@polkadot/ui-keyring/types';
 import type { ApiProps, ApiState } from './types';
 

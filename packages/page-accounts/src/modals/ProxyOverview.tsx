@@ -3,7 +3,7 @@
 
 import type { ApiPromise } from '@polkadot/api';
 import type { SubmittableExtrinsic } from '@polkadot/api/types';
-import type { AccountId, ProxyDefinition, ProxyType } from '@polkadot/types/interfaces';
+import type { AccountId, ProxyDefinition, ProxyType } from '@maticnetwork/da-types/interfaces';
 
 import BN from 'bn.js';
 import React, { useCallback, useEffect, useRef, useState } from 'react';

@@ -2,8 +2,8 @@
 // SPDX-License-Identifier: Apache-2.0
 
 import type { DeriveAccountInfo, DeriveHeartbeatAuthor } from '@polkadot/api-derive/types';
-import type { Option } from '@polkadot/types';
-import type { SlashingSpans, ValidatorPrefs } from '@polkadot/types/interfaces';
+import type { Option } from '@maticnetwork/da-types';
+import type { SlashingSpans, ValidatorPrefs } from '@maticnetwork/da-types/interfaces';
 import type { NominatedBy as NominatedByType, ValidatorInfo } from '../../types';
 import type { NominatorValue } from './types';
 

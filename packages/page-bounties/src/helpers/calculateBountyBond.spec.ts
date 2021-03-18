@@ -4,7 +4,7 @@
 import BN from 'bn.js';
 
 import { calculateBountyBond } from '@polkadot/app-bounties/helpers/calculateBountyBond';
-import { TypeRegistry } from '@polkadot/types/create';
+import { TypeRegistry } from '@maticnetwork/da-types/create';
 
 describe('Calculate bounty bond', () => {
   it('sums deposit base and deposit for each byte of description', () => {

@@ -2,7 +2,7 @@
 // SPDX-License-Identifier: Apache-2.0
 
 import type { QueueTx } from '@polkadot/react-components/Status/types';
-import type { Codec } from '@polkadot/types/types';
+import type { Codec } from '@maticnetwork/da-types/types';
 
 import React from 'react';
 

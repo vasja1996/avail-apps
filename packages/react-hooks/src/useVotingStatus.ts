@@ -1,7 +1,7 @@
 // Copyright 2017-2021 @polkadot/react-hooks authors & contributors
 // SPDX-License-Identifier: Apache-2.0
 
-import type { BlockNumber, Votes } from '@polkadot/types/interfaces';
+import type { BlockNumber, Votes } from '@maticnetwork/da-types/interfaces';
 
 import BN from 'bn.js';
 import { useMemo } from 'react';

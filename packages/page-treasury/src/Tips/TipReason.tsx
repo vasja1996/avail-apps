@@ -1,8 +1,8 @@
 // Copyright 2017-2021 @polkadot/app-treasury authors & contributors
 // SPDX-License-Identifier: Apache-2.0
 
-import type { Bytes, Option } from '@polkadot/types';
-import type { Hash } from '@polkadot/types/interfaces';
+import type { Bytes, Option } from '@maticnetwork/da-types';
+import type { Hash } from '@maticnetwork/da-types/interfaces';
 
 import React from 'react';
 

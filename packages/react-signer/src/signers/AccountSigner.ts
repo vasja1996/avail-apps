@@ -3,7 +3,7 @@
 
 import type { Signer, SignerResult } from '@polkadot/api/types';
 import type { KeyringPair } from '@polkadot/keyring/types';
-import type { Registry, SignerPayloadJSON } from '@polkadot/types/types';
+import type { Registry, SignerPayloadJSON } from '@maticnetwork/da-types/types';
 
 import { lockAccount } from '../util';
 

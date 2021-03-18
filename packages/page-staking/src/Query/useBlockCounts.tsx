@@ -2,7 +2,7 @@
 // SPDX-License-Identifier: Apache-2.0
 
 import type { DeriveSessionIndexes } from '@polkadot/api-derive/types';
-import type { u32 } from '@polkadot/types';
+import type { u32 } from '@maticnetwork/da-types';
 import type { SessionRewards } from '../types';
 
 import { useEffect, useState } from 'react';

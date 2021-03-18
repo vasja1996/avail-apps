@@ -1,7 +1,7 @@
 // Copyright 2017-2021 @polkadot/apps-config authors & contributors
 // SPDX-License-Identifier: Apache-2.0
 
-import type { OverrideBundleType } from '@polkadot/types/types';
+import type { OverrideBundleType } from '@maticnetwork/da-types/types';
 
 import typesChain from './chain';
 import spec from './spec';

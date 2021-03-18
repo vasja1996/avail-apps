@@ -1,7 +1,7 @@
 // Copyright 2017-2021 @polkadot/react-hooks authors & contributors
 // SPDX-License-Identifier: Apache-2.0
 
-import type { AccountId } from '@polkadot/types/interfaces';
+import type { AccountId } from '@maticnetwork/da-types/interfaces';
 import type { UseSudo } from './types';
 
 import { useEffect, useState } from 'react';

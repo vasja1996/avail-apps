@@ -3,8 +3,8 @@
 
 import type { AbiMessage, ContractCallOutcome } from '@polkadot/api-contract/types';
 import type { ThemeProps } from '@polkadot/react-components/types';
-import type { Option } from '@polkadot/types';
-import type { ContractInfo } from '@polkadot/types/interfaces';
+import type { Option } from '@maticnetwork/da-types';
+import type { ContractInfo } from '@maticnetwork/da-types/interfaces';
 
 import React, { useCallback, useEffect, useState } from 'react';
 import styled from 'styled-components';

@@ -1,7 +1,7 @@
 // Copyright 2017-2021 @polkadot/app-explorer authors & contributors
 // SPDX-License-Identifier: Apache-2.0
 
-import type { EventRecord } from '@polkadot/types/interfaces';
+import type { EventRecord } from '@maticnetwork/da-types/interfaces';
 
 import React from 'react';
 

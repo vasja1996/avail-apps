@@ -1,8 +1,8 @@
 // Copyright 2017-2021 @polkadot/react-query authors & contributors
 // SPDX-License-Identifier: Apache-2.0
 
-import type { Option } from '@polkadot/types';
-import type { AccountId, AccountIndex, Address, StakingLedger } from '@polkadot/types/interfaces';
+import type { Option } from '@maticnetwork/da-types';
+import type { AccountId, AccountIndex, Address, StakingLedger } from '@maticnetwork/da-types/interfaces';
 
 import React from 'react';
 

@@ -1,7 +1,7 @@
 // Copyright 2017-2021 @polkadot/app-crowdloan authors & contributors
 // SPDX-License-Identifier: Apache-2.0
 
-import type { FundIndex } from '@polkadot/types/interfaces';
+import type { FundIndex } from '@maticnetwork/da-types/interfaces';
 
 import { useEffect, useState } from 'react';
 

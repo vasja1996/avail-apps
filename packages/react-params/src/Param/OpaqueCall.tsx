@@ -1,7 +1,7 @@
 // Copyright 2017-2021 @polkadot/react-params authors & contributors
 // SPDX-License-Identifier: Apache-2.0
 
-import type { Bytes } from '@polkadot/types';
+import type { Bytes } from '@maticnetwork/da-types';
 import type { Props } from '../types';
 
 import React from 'react';

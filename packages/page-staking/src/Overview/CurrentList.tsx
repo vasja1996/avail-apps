@@ -3,7 +3,7 @@
 
 import type { DeriveHeartbeats, DeriveStakingOverview } from '@polkadot/api-derive/types';
 import type { Authors } from '@polkadot/react-query/BlockAuthors';
-import type { AccountId } from '@polkadot/types/interfaces';
+import type { AccountId } from '@maticnetwork/da-types/interfaces';
 import type { SortedTargets, ValidatorInfo } from '../types';
 
 import React, { useCallback, useContext, useMemo, useRef, useState } from 'react';

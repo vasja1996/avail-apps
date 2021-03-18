@@ -6,8 +6,8 @@ import type { DeriveBalancesAll, DeriveDemocracyLock } from '@polkadot/api-deriv
 import type { Ledger } from '@polkadot/hw-ledger';
 import type { ActionStatus } from '@polkadot/react-components/Status/types';
 import type { ThemeDef } from '@polkadot/react-components/types';
-import type { Option } from '@polkadot/types';
-import type { ProxyDefinition, RecoveryConfig } from '@polkadot/types/interfaces';
+import type { Option } from '@maticnetwork/da-types';
+import type { ProxyDefinition, RecoveryConfig } from '@maticnetwork/da-types/interfaces';
 import type { KeyringAddress, KeyringJson$Meta } from '@polkadot/ui-keyring/types';
 import type { Delegation } from '../types';
 

@@ -2,8 +2,8 @@
 // SPDX-License-Identifier: Apache-2.0
 
 import type { DeriveSessionIndexes } from '@polkadot/api-derive/types';
-import type { Option } from '@polkadot/types';
-import type { EraIndex, Exposure, Nominations, SlashingSpans } from '@polkadot/types/interfaces';
+import type { Option } from '@maticnetwork/da-types';
+import type { EraIndex, Exposure, Nominations, SlashingSpans } from '@maticnetwork/da-types/interfaces';
 
 import { useEffect, useState } from 'react';
 

@@ -1,7 +1,7 @@
 // Copyright 2017-2021 @polkadot/app-bounties authors & contributors
 // SPDX-License-Identifier: Apache-2.0
 
-import type { BountyStatus } from '@polkadot/types/interfaces';
+import type { BountyStatus } from '@maticnetwork/da-types/interfaces';
 
 import { BountyStatusType, StatusName } from '../types';
 

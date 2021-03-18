@@ -3,7 +3,7 @@
 
 // TODO: We have a lot shared between this and InputExtrinsic & InputStorage
 
-import type { DefinitionRpcExt } from '@polkadot/types/types';
+import type { DefinitionRpcExt } from '@maticnetwork/da-types/types';
 import type { DropdownOptions } from '../util/types';
 
 import React, { useCallback, useEffect, useState } from 'react';

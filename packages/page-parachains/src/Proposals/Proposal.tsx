@@ -1,7 +1,7 @@
 // Copyright 2017-2021 @polkadot/app-parachains authors & contributors
 // SPDX-License-Identifier: Apache-2.0
 
-import type { ParaId } from '@polkadot/types/interfaces';
+import type { ParaId } from '@maticnetwork/da-types/interfaces';
 import type { ScheduledProposals } from '../types';
 
 import React, { useMemo } from 'react';

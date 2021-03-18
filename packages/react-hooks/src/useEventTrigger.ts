@@ -2,7 +2,7 @@
 // SPDX-License-Identifier: Apache-2.0
 
 import type { AugmentedEvent } from '@polkadot/api/types';
-import type { EventRecord } from '@polkadot/types/interfaces';
+import type { EventRecord } from '@maticnetwork/da-types/interfaces';
 
 import { useEffect, useState } from 'react';
 

@@ -3,7 +3,7 @@
 
 import type { TFunction } from 'i18next';
 import type { DeriveBalancesAccountData, DeriveBalancesAll, DeriveDemocracyLock, DeriveStakingAccount } from '@polkadot/api-derive/types';
-import type { BlockNumber, LockIdentifier, ValidatorPrefsTo145 } from '@polkadot/types/interfaces';
+import type { BlockNumber, LockIdentifier, ValidatorPrefsTo145 } from '@maticnetwork/da-types/interfaces';
 
 import BN from 'bn.js';
 import React, { useRef } from 'react';

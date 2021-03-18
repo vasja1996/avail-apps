@@ -1,7 +1,7 @@
 // Copyright 2017-2021 @polkadot/app-bounties authors & contributors
 // SPDX-License-Identifier: Apache-2.0
 
-import type { Balance } from '@polkadot/types/interfaces';
+import type { Balance } from '@maticnetwork/da-types/interfaces';
 
 import { DeriveBalancesAll } from '@polkadot/api-derive/types';
 import { useApi, useCall } from '@polkadot/react-hooks';

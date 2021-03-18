@@ -1,8 +1,8 @@
 // Copyright 2017-2021 @polkadot/app-parachains authors & contributors
 // SPDX-License-Identifier: Apache-2.0
 
-import type { Option } from '@polkadot/types';
-import type { ParaGenesisArgs, ParaId } from '@polkadot/types/interfaces';
+import type { Option } from '@maticnetwork/da-types';
+import type { ParaGenesisArgs, ParaId } from '@maticnetwork/da-types/interfaces';
 
 import React from 'react';
 

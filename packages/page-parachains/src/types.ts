@@ -1,7 +1,7 @@
 // Copyright 2017-2021 @polkadot/app-parachains authors & contributors
 // SPDX-License-Identifier: Apache-2.0
 
-import type { ParachainProposal, ParaId, SessionIndex } from '@polkadot/types/interfaces';
+import type { ParachainProposal, ParaId, SessionIndex } from '@maticnetwork/da-types/interfaces';
 
 export interface ProposalExt {
   id: ParaId;

@@ -5,7 +5,7 @@ import type { Props } from '../types';
 
 import React, { useMemo } from 'react';
 
-import { encodeTypeDef } from '@polkadot/types/create';
+import { encodeTypeDef } from '@maticnetwork/da-types/create';
 import { isUndefined } from '@polkadot/util';
 
 import findComponent from './findComponent';

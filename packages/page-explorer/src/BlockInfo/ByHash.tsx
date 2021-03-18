@@ -2,7 +2,7 @@
 // SPDX-License-Identifier: Apache-2.0
 
 import type { KeyedEvent } from '@polkadot/react-query/types';
-import type { EventRecord, SignedBlock } from '@polkadot/types/interfaces';
+import type { EventRecord, SignedBlock } from '@maticnetwork/da-types/interfaces';
 
 import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';

@@ -1,7 +1,7 @@
 // Copyright 2017-2021 @polkadot/app-tech-comm authors & contributors
 // SPDX-License-Identifier: Apache-2.0
 
-import type { u32 } from '@polkadot/types';
+import type { u32 } from '@maticnetwork/da-types';
 import type { ComponentProps as Props } from '../types';
 
 import React from 'react';

@@ -2,7 +2,7 @@
 // SPDX-License-Identifier: Apache-2.0
 
 import type { DeriveAccountFlags, DeriveAccountInfo } from '@polkadot/api-derive/types';
-import type { Nominations, ValidatorPrefs } from '@polkadot/types/interfaces';
+import type { Nominations, ValidatorPrefs } from '@maticnetwork/da-types/interfaces';
 import type { KeyringJson$Meta } from '@polkadot/ui-keyring/types';
 import type { AddressFlags, AddressIdentity, UseAccountInfo } from './types';
 

@@ -3,13 +3,13 @@
 
 import type { SubmittableExtrinsic, SubmittableExtrinsicFunction } from '@polkadot/api/types';
 import type { RawParam } from '@polkadot/react-params/types';
-import type { TypeDef } from '@polkadot/types/types';
+import type { TypeDef } from '@maticnetwork/da-types/types';
 
 import React, { useCallback, useEffect, useState } from 'react';
 
 import Params from '@polkadot/react-params';
-import { GenericCall } from '@polkadot/types';
-import { getTypeDef } from '@polkadot/types/create';
+import { GenericCall } from '@maticnetwork/da-types';
+import { getTypeDef } from '@maticnetwork/da-types/create';
 import { isUndefined } from '@polkadot/util';
 
 import InputExtrinsic from './InputExtrinsic';

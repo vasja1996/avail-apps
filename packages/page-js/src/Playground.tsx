@@ -12,7 +12,7 @@ import styled from 'styled-components';
 
 import { Button, Dropdown, Editor, Tabs } from '@polkadot/react-components';
 import { useApi, useToggle } from '@polkadot/react-hooks';
-import * as types from '@polkadot/types';
+import * as types from '@maticnetwork/da-types';
 import uiKeyring from '@polkadot/ui-keyring';
 import * as util from '@polkadot/util';
 import * as hashing from '@polkadot/util-crypto';

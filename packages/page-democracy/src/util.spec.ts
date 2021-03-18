@@ -4,7 +4,7 @@
 import BN from 'bn.js';
 
 import { calcPassing } from '@polkadot/api-derive/democracy/util';
-import { TypeRegistry } from '@polkadot/types/create';
+import { TypeRegistry } from '@maticnetwork/da-types/create';
 
 import { approxChanges } from './util';
 

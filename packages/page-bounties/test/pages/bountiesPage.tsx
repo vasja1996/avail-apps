@@ -18,8 +18,8 @@ import { QueueProvider } from '@polkadot/react-components/Status/Context';
 import { PartialQueueTxExtrinsic, QueueProps, QueueTxExtrinsicAdd } from '@polkadot/react-components/Status/types';
 import { balanceOf } from '@polkadot/test-support/creation/balance';
 import { BountyFactory } from '@polkadot/test-support/creation/bounties/bountyFactory';
-import { TypeRegistry } from '@polkadot/types/create';
-import { Bounty, BountyIndex, BountyStatus } from '@polkadot/types/interfaces';
+import { TypeRegistry } from '@maticnetwork/da-types/create';
+import { Bounty, BountyIndex, BountyStatus } from '@maticnetwork/da-types/interfaces';
 
 import { mockBountyHooks } from '../hooks/defaults';
 import { clickButtonWithName } from '../utils/clickButtonWithName';

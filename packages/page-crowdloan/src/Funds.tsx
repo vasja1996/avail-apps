@@ -2,8 +2,8 @@
 // SPDX-License-Identifier: Apache-2.0
 
 import type BN from 'bn.js';
-import type { Option } from '@polkadot/types';
-import type { FundIndex, FundInfo } from '@polkadot/types/interfaces';
+import type { Option } from '@maticnetwork/da-types';
+import type { FundIndex, FundInfo } from '@maticnetwork/da-types/interfaces';
 
 import React, { useEffect, useRef, useState } from 'react';
 

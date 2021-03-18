@@ -1,7 +1,7 @@
 // Copyright 2017-2021 @polkadot/app-tech-comm authors & contributors
 // SPDX-License-Identifier: Apache-2.0
 
-import type { Hash } from '@polkadot/types/interfaces';
+import type { Hash } from '@maticnetwork/da-types/interfaces';
 import type { ComponentProps as Props } from '../types';
 
 import React, { useRef } from 'react';

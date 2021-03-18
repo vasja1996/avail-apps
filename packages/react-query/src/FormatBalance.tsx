@@ -2,8 +2,8 @@
 // SPDX-License-Identifier: Apache-2.0
 
 import type { ThemeProps } from '@polkadot/react-components/types';
-import type { Compact } from '@polkadot/types';
-import type { Registry } from '@polkadot/types/types';
+import type { Compact } from '@maticnetwork/da-types';
+import type { Registry } from '@maticnetwork/da-types/types';
 
 import BN from 'bn.js';
 import React, { useMemo } from 'react';

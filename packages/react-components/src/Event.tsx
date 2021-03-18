@@ -2,15 +2,15 @@
 // SPDX-License-Identifier: Apache-2.0
 
 import type { DecodedEvent } from '@polkadot/api-contract/types';
-import type { Bytes } from '@polkadot/types';
-import type { Event } from '@polkadot/types/interfaces';
-import type { Codec } from '@polkadot/types/types';
+import type { Bytes } from '@maticnetwork/da-types';
+import type { Event } from '@maticnetwork/da-types/interfaces';
+import type { Codec } from '@maticnetwork/da-types/types';
 
 import React, { useMemo } from 'react';
 
 import { Input } from '@polkadot/react-components';
 import Params from '@polkadot/react-params';
-import { getTypeDef } from '@polkadot/types';
+import { getTypeDef } from '@maticnetwork/da-types';
 
 import { useTranslation } from './translate';
 import { getContractAbi } from './util';

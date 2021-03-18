@@ -2,7 +2,7 @@
 // SPDX-License-Identifier: Apache-2.0
 
 import type { StakerState } from '@polkadot/react-hooks/types';
-import type { UnappliedSlash } from '@polkadot/types/interfaces';
+import type { UnappliedSlash } from '@maticnetwork/da-types/interfaces';
 import type { Slash, SlashEra } from './types';
 
 import BN from 'bn.js';

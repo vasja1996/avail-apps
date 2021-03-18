@@ -1,7 +1,7 @@
 // Copyright 2017-2021 @polkadot/app-democracy authors & contributors
 // SPDX-License-Identifier: Apache-2.0
 
-import type { Proposal } from '@polkadot/types/interfaces';
+import type { Proposal } from '@maticnetwork/da-types/interfaces';
 
 import BN from 'bn.js';
 import React from 'react';

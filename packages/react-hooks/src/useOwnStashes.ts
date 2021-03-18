@@ -1,8 +1,8 @@
 // Copyright 2017-2021 @polkadot/react-hooks authors & contributors
 // SPDX-License-Identifier: Apache-2.0
 
-import type { Option } from '@polkadot/types';
-import type { AccountId, StakingLedger } from '@polkadot/types/interfaces';
+import type { Option } from '@maticnetwork/da-types';
+import type { AccountId, StakingLedger } from '@maticnetwork/da-types/interfaces';
 
 import { useMemo } from 'react';
 

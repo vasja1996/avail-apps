@@ -1,7 +1,7 @@
 // Copyright 2017-2021 @polkadot/react-params authors & contributors
 // SPDX-License-Identifier: Apache-2.0
 
-import type { Registry, TypeDef } from '@polkadot/types/types';
+import type { Registry, TypeDef } from '@maticnetwork/da-types/types';
 import type { ComponentMap, RawParam, RawParamOnChangeValue, RawParams } from './types';
 
 import React, { useCallback } from 'react';

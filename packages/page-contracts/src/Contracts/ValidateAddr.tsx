@@ -1,8 +1,8 @@
 // Copyright 2017-2021 @polkadot/app-contracts authors & contributors
 // SPDX-License-Identifier: Apache-2.0
 
-import type { Option } from '@polkadot/types';
-import type { ContractInfo } from '@polkadot/types/interfaces';
+import type { Option } from '@maticnetwork/da-types';
+import type { ContractInfo } from '@maticnetwork/da-types/interfaces';
 
 import React, { useEffect, useState } from 'react';
 

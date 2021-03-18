@@ -2,7 +2,7 @@
 // SPDX-License-Identifier: Apache-2.0
 
 import type { DeriveCouncilVotes, DeriveElectionsInfo } from '@polkadot/api-derive/types';
-import type { AccountId, BlockNumber } from '@polkadot/types/interfaces';
+import type { AccountId, BlockNumber } from '@maticnetwork/da-types/interfaces';
 
 import React from 'react';
 

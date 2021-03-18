@@ -1,7 +1,7 @@
 // Copyright 2017-2021 @polkadot/react-components authors & contributors
 // SPDX-License-Identifier: Apache-2.0
 
-import type { UInt } from '@polkadot/types';
+import type { UInt } from '@maticnetwork/da-types';
 import type { ThemeProps } from './types';
 
 import BN from 'bn.js';

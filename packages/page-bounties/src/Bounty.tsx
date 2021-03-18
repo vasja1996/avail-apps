@@ -2,7 +2,7 @@
 // SPDX-License-Identifier: Apache-2.0
 
 import type { DeriveCollectiveProposal } from '@polkadot/api-derive/types';
-import type { BlockNumber, Bounty as BountyType, BountyIndex } from '@polkadot/types/interfaces';
+import type { BlockNumber, Bounty as BountyType, BountyIndex } from '@maticnetwork/da-types/interfaces';
 
 import React, { useCallback, useMemo, useState } from 'react';
 import styled from 'styled-components';

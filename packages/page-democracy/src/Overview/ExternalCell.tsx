@@ -2,7 +2,7 @@
 // SPDX-License-Identifier: Apache-2.0
 
 import type { DeriveProposalImage } from '@polkadot/api-derive/types';
-import type { Hash } from '@polkadot/types/interfaces';
+import type { Hash } from '@maticnetwork/da-types/interfaces';
 
 import React from 'react';
 

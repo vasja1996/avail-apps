@@ -2,7 +2,7 @@
 // SPDX-License-Identifier: Apache-2.0
 
 import type { DeriveCollectiveProposal } from '@polkadot/api-derive/types';
-import type { BountyStatus } from '@polkadot/types/interfaces';
+import type { BountyStatus } from '@maticnetwork/da-types/interfaces';
 
 import { BountyVotingStatuses, StatusName } from '../types';
 

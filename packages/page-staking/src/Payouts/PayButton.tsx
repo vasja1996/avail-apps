@@ -2,7 +2,7 @@
 // SPDX-License-Identifier: Apache-2.0
 
 import type { SubmittableExtrinsic } from '@polkadot/api/types';
-import type { EraIndex, Weight } from '@polkadot/types/interfaces';
+import type { EraIndex, Weight } from '@maticnetwork/da-types/interfaces';
 import type { PayoutValidator } from './types';
 
 import React, { useEffect, useState } from 'react';

@@ -6,7 +6,7 @@ import React, { useMemo, useRef, useState } from 'react';
 import { DeriveCollectiveProposal } from '@polkadot/api-derive/types';
 import { Button, Menu, Popup } from '@polkadot/react-components';
 import { useMembers, useToggle } from '@polkadot/react-hooks';
-import { BlockNumber, BountyIndex, BountyStatus } from '@polkadot/types/interfaces';
+import { BlockNumber, BountyIndex, BountyStatus } from '@maticnetwork/da-types/interfaces';
 
 import { determineUnassignCuratorAction } from '../helpers';
 import { useBountyStatus, useUserRole } from '../hooks';

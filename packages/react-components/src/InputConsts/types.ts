@@ -2,8 +2,8 @@
 // SPDX-License-Identifier: Apache-2.0
 
 import type { StorageEntryBase } from '@polkadot/api/types';
-import type { ModuleConstantMetadataLatest } from '@polkadot/types/interfaces';
-import type { AnyTuple } from '@polkadot/types/types';
+import type { ModuleConstantMetadataLatest } from '@maticnetwork/da-types/interfaces';
+import type { AnyTuple } from '@maticnetwork/da-types/types';
 
 export type StorageEntryPromise = StorageEntryBase<'promise', any, AnyTuple>;
 

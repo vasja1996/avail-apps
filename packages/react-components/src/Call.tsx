@@ -1,8 +1,8 @@
 // Copyright 2017-2021 @polkadot/react-components authors & contributors
 // SPDX-License-Identifier: Apache-2.0
 
-import type { ExtrinsicSignature } from '@polkadot/types/interfaces';
-import type { Codec, IExtrinsic, IMethod, TypeDef } from '@polkadot/types/types';
+import type { ExtrinsicSignature } from '@maticnetwork/da-types/interfaces';
+import type { Codec, IExtrinsic, IMethod, TypeDef } from '@maticnetwork/da-types/types';
 
 import BN from 'bn.js';
 import React, { useEffect, useState } from 'react';
@@ -10,7 +10,7 @@ import styled from 'styled-components';
 
 import Params from '@polkadot/react-params';
 import { FormatBalance } from '@polkadot/react-query';
-import { Enum, GenericCall, getTypeDef } from '@polkadot/types';
+import { Enum, GenericCall, getTypeDef } from '@maticnetwork/da-types';
 
 import Static from './Static';
 import { useTranslation } from './translate';

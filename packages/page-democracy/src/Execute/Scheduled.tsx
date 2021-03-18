@@ -1,7 +1,7 @@
 // Copyright 2017-2021 @polkadot/app-democracy authors & contributors
 // SPDX-License-Identifier: Apache-2.0
 
-import type { BlockNumber } from '@polkadot/types/interfaces';
+import type { BlockNumber } from '@maticnetwork/da-types/interfaces';
 import type { ScheduledExt } from './types';
 
 import React from 'react';

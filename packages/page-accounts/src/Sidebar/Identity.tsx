@@ -2,7 +2,7 @@
 // SPDX-License-Identifier: Apache-2.0
 
 import type { AddressIdentity } from '@polkadot/react-hooks/types';
-import type { AccountId, BalanceOf } from '@polkadot/types/interfaces';
+import type { AccountId, BalanceOf } from '@maticnetwork/da-types/interfaces';
 
 import React from 'react';
 

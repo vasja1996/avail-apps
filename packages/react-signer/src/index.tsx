@@ -3,7 +3,7 @@
 
 import type { QueueTx, QueueTxMessageSetStatus, QueueTxResult } from '@polkadot/react-components/Status/types';
 import type { BareProps as Props } from '@polkadot/react-components/types';
-import type { DefinitionRpcExt } from '@polkadot/types/types';
+import type { DefinitionRpcExt } from '@maticnetwork/da-types/types';
 
 import React, { useContext, useEffect, useMemo } from 'react';
 import styled from 'styled-components';

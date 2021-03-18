@@ -2,7 +2,7 @@
 // SPDX-License-Identifier: Apache-2.0
 
 import type { SubmittableExtrinsic } from '@polkadot/api/types';
-import type { Hash, VoteThreshold } from '@polkadot/types/interfaces';
+import type { Hash, VoteThreshold } from '@maticnetwork/da-types/interfaces';
 
 import BN from 'bn.js';
 import React, { useEffect, useMemo, useState } from 'react';

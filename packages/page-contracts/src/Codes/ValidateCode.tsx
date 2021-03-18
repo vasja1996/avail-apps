@@ -3,8 +3,8 @@
 
 /* eslint-disable camelcase */
 
-import type { Option } from '@polkadot/types';
-import type { PrefabWasmModule } from '@polkadot/types/interfaces';
+import type { Option } from '@maticnetwork/da-types';
+import type { PrefabWasmModule } from '@maticnetwork/da-types/interfaces';
 
 import React, { useMemo } from 'react';
 

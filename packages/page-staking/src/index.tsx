@@ -3,7 +3,7 @@
 
 import type { DeriveStakingOverview } from '@polkadot/api-derive/types';
 import type { AppProps as Props, ThemeProps } from '@polkadot/react-components/types';
-import type { ElectionStatus } from '@polkadot/types/interfaces';
+import type { ElectionStatus } from '@maticnetwork/da-types/interfaces';
 
 import React, { useCallback, useMemo, useState } from 'react';
 import { Route, Switch } from 'react-router';

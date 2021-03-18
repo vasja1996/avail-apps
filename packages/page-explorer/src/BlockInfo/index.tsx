@@ -1,7 +1,7 @@
 // Copyright 2017-2021 @polkadot/app-explorer authors & contributors
 // SPDX-License-Identifier: Apache-2.0
 
-import type { BlockNumber } from '@polkadot/types/interfaces';
+import type { BlockNumber } from '@maticnetwork/da-types/interfaces';
 
 import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';

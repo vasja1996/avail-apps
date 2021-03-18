@@ -2,8 +2,8 @@
 // SPDX-License-Identifier: Apache-2.0
 
 import type { DeriveCollectiveProposal, DeriveDispatch, DeriveReferendumExt, DeriveSessionProgress } from '@polkadot/api-derive/types';
-import type { Option } from '@polkadot/types';
-import type { BlockNumber, EraIndex, Scheduled, UnappliedSlash } from '@polkadot/types/interfaces';
+import type { Option } from '@maticnetwork/da-types';
+import type { BlockNumber, EraIndex, Scheduled, UnappliedSlash } from '@maticnetwork/da-types/interfaces';
 import type { EntryInfo, EntryInfoTyped, EntryType } from './types';
 
 import BN from 'bn.js';

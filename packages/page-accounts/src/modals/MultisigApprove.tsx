@@ -2,7 +2,7 @@
 // SPDX-License-Identifier: Apache-2.0
 
 import type { SubmittableExtrinsic } from '@polkadot/api/types';
-import type { AccountId, Call, H256, Multisig } from '@polkadot/types/interfaces';
+import type { AccountId, Call, H256, Multisig } from '@maticnetwork/da-types/interfaces';
 
 import React, { useCallback, useEffect, useMemo, useState } from 'react';
 import styled from 'styled-components';

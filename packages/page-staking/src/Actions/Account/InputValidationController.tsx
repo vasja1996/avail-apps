@@ -2,8 +2,8 @@
 // SPDX-License-Identifier: Apache-2.0
 
 import type { DeriveBalancesAll } from '@polkadot/api-derive/types';
-import type { Option } from '@polkadot/types';
-import type { AccountId, StakingLedger } from '@polkadot/types/interfaces';
+import type { Option } from '@maticnetwork/da-types';
+import type { AccountId, StakingLedger } from '@maticnetwork/da-types/interfaces';
 
 import React, { useEffect, useState } from 'react';
 

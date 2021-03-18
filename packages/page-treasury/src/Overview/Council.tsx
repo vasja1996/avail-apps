@@ -2,7 +2,7 @@
 // SPDX-License-Identifier: Apache-2.0
 
 import type { SubmittableExtrinsic } from '@polkadot/api/types';
-import type { ProposalIndex } from '@polkadot/types/interfaces';
+import type { ProposalIndex } from '@maticnetwork/da-types/interfaces';
 
 import React, { useEffect, useRef, useState } from 'react';
 

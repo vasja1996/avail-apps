@@ -2,8 +2,8 @@
 // SPDX-License-Identifier: Apache-2.0
 
 import type { DeriveSessionIndexes } from '@polkadot/api-derive/types';
-import type { Option } from '@polkadot/types';
-import type { Balance } from '@polkadot/types/interfaces';
+import type { Option } from '@maticnetwork/da-types';
+import type { Balance } from '@maticnetwork/da-types/interfaces';
 
 import BN from 'bn.js';
 import React, { useMemo } from 'react';

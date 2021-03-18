@@ -2,7 +2,7 @@
 // SPDX-License-Identifier: Apache-2.0
 
 import type { ThemeProps } from '@polkadot/react-components/types';
-import type { StatementKind } from '@polkadot/types/interfaces';
+import type { StatementKind } from '@maticnetwork/da-types/interfaces';
 
 import React from 'react';
 import styled from 'styled-components';

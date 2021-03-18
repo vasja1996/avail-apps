@@ -2,7 +2,7 @@
 // SPDX-License-Identifier: Apache-2.0
 
 import type { DeriveBalancesAll } from '@polkadot/api-derive/types';
-import type { AccountInfoWithProviders, AccountInfoWithRefCount } from '@polkadot/types/interfaces';
+import type { AccountInfoWithProviders, AccountInfoWithRefCount } from '@maticnetwork/da-types/interfaces';
 
 import BN from 'bn.js';
 import React, { useEffect, useState } from 'react';

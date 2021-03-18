@@ -8,7 +8,7 @@ import React from 'react';
 import styled from 'styled-components';
 
 import { Icon, Tooltip } from '@polkadot/react-components';
-import { encodeTypeDef } from '@polkadot/types/create';
+import { encodeTypeDef } from '@maticnetwork/da-types/create';
 import { stringCamelCase } from '@polkadot/util';
 
 import { useTranslation } from '../translate';

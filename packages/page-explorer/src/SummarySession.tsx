@@ -2,7 +2,7 @@
 // SPDX-License-Identifier: Apache-2.0
 
 import type { DeriveSessionProgress } from '@polkadot/api-derive/types';
-import type { Forcing } from '@polkadot/types/interfaces';
+import type { Forcing } from '@maticnetwork/da-types/interfaces';
 
 import React from 'react';
 

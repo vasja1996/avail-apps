@@ -3,8 +3,8 @@
 
 import type { DeriveBalancesAll, DeriveStakingAccount } from '@polkadot/api-derive/types';
 import type { StakerState } from '@polkadot/react-hooks/types';
-import type { Option } from '@polkadot/types';
-import type { SlashingSpans, UnappliedSlash } from '@polkadot/types/interfaces';
+import type { Option } from '@maticnetwork/da-types';
+import type { SlashingSpans, UnappliedSlash } from '@maticnetwork/da-types/interfaces';
 import type { SortedTargets } from '../../types';
 import type { Slash } from '../types';
 

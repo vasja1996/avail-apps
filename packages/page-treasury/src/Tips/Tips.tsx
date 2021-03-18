@@ -1,8 +1,8 @@
 // Copyright 2017-2021 @polkadot/app-treasury authors & contributors
 // SPDX-License-Identifier: Apache-2.0
 
-import type { Option } from '@polkadot/types';
-import type { BlockNumber, OpenTip, OpenTipTo225 } from '@polkadot/types/interfaces';
+import type { Option } from '@maticnetwork/da-types';
+import type { BlockNumber, OpenTip, OpenTipTo225 } from '@maticnetwork/da-types/interfaces';
 
 import BN from 'bn.js';
 import React, { useMemo, useRef, useState } from 'react';

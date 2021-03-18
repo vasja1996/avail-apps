@@ -1,8 +1,8 @@
 // Copyright 2017-2021 @polkadot/app-democracy authors & contributors
 // SPDX-License-Identifier: Apache-2.0
 
-import type { Compact } from '@polkadot/types';
-import type { Hash, Proposal, ProposalIndex } from '@polkadot/types/interfaces';
+import type { Compact } from '@maticnetwork/da-types';
+import type { Hash, Proposal, ProposalIndex } from '@maticnetwork/da-types/interfaces';
 
 import React from 'react';
 

@@ -7,7 +7,7 @@ import BN from 'bn.js';
 import React, { useRef } from 'react';
 
 import { Dropdown } from '@polkadot/react-components';
-import { GenericVote } from '@polkadot/types';
+import { GenericVote } from '@maticnetwork/da-types';
 
 import { useTranslation } from '../translate';
 import Bare from './Bare';

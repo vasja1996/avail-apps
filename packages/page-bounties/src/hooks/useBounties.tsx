@@ -7,7 +7,7 @@ import BN from 'bn.js';
 
 import { DeriveBounties } from '@polkadot/api-derive/types';
 import { useApi, useCall } from '@polkadot/react-hooks';
-import { BalanceOf, BlockNumber, BountyIndex } from '@polkadot/types/interfaces';
+import { BalanceOf, BlockNumber, BountyIndex } from '@maticnetwork/da-types/interfaces';
 
 export type BountyApi = {
   acceptCurator: ((...args: any[]) => SubmittableExtrinsic<'promise'>);

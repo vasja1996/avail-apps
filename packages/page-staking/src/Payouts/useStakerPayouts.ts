@@ -1,8 +1,8 @@
 // Copyright 2017-2021 @polkadot/app-staking authors & contributors
 // SPDX-License-Identifier: Apache-2.0
 
-import type { Option } from '@polkadot/types';
-import type { EraIndex } from '@polkadot/types/interfaces';
+import type { Option } from '@maticnetwork/da-types';
+import type { EraIndex } from '@maticnetwork/da-types/interfaces';
 
 import BN from 'bn.js';
 import { useMemo } from 'react';

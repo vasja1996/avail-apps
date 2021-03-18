@@ -1,7 +1,7 @@
 // Copyright 2017-2021 @polkadot/react-components authors & contributors
 // SPDX-License-Identifier: Apache-2.0
 
-import type { DefinitionRpcExt } from '@polkadot/types/types';
+import type { DefinitionRpcExt } from '@maticnetwork/da-types/types';
 import type { DropdownOption } from '../util/types';
 
 import React, { useCallback } from 'react';

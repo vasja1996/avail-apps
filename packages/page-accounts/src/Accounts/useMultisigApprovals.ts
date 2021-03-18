@@ -1,8 +1,8 @@
 // Copyright 2017-2021 @polkadot/app-accounts authors & contributors
 // SPDX-License-Identifier: Apache-2.0
 
-import type { Option, StorageKey } from '@polkadot/types';
-import type { H256, Multisig } from '@polkadot/types/interfaces';
+import type { Option, StorageKey } from '@maticnetwork/da-types';
+import type { H256, Multisig } from '@maticnetwork/da-types/interfaces';
 
 import { useContext, useEffect, useState } from 'react';
 

@@ -2,7 +2,7 @@
 // SPDX-License-Identifier: Apache-2.0
 
 import type { I18nProps } from '@polkadot/react-components/types';
-import type { Registry } from '@polkadot/types/types';
+import type { Registry } from '@maticnetwork/da-types/types';
 import type { ComponentMap, ParamDef, RawParam, RawParamOnChangeValue, RawParams } from './types';
 
 import React from 'react';

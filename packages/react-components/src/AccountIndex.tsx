@@ -2,7 +2,7 @@
 // SPDX-License-Identifier: Apache-2.0
 
 import type { DeriveAccountInfo } from '@polkadot/api-derive/types';
-import type { AccountId, Address } from '@polkadot/types/interfaces';
+import type { AccountId, Address } from '@maticnetwork/da-types/interfaces';
 import type { ThemeProps } from './types';
 
 import React, { useMemo } from 'react';

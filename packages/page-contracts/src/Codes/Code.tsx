@@ -1,8 +1,8 @@
 // Copyright 2017-2021 @polkadot/app-staking authors & contributors
 // SPDX-License-Identifier: Apache-2.0
 
-import type { Option } from '@polkadot/types';
-import type { Codec } from '@polkadot/types/types';
+import type { Option } from '@maticnetwork/da-types';
+import type { Codec } from '@maticnetwork/da-types/types';
 import type { CodeStored } from '../types';
 
 import React, { useCallback } from 'react';

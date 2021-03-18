@@ -3,7 +3,7 @@
 
 import type { ThemeProps } from '@polkadot/react-components/types';
 import type { KeyedEvent } from '@polkadot/react-query/types';
-import type { BlockNumber, Extrinsic } from '@polkadot/types/interfaces';
+import type { BlockNumber, Extrinsic } from '@maticnetwork/da-types/interfaces';
 
 import React, { useMemo } from 'react';
 import styled from 'styled-components';

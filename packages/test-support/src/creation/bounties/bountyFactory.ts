@@ -3,8 +3,8 @@
 
 import { ApiPromise } from '@polkadot/api';
 import { balanceOf } from '@polkadot/test-support/creation/balance';
-import { Bounty, BountyIndex, BountyStatus } from '@polkadot/types/interfaces';
-import { Registry } from '@polkadot/types/types';
+import { Bounty, BountyIndex, BountyStatus } from '@maticnetwork/da-types/interfaces';
+import { Registry } from '@maticnetwork/da-types/types';
 
 export class BountyFactory {
   readonly #api: ApiPromise;

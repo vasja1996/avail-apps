@@ -2,8 +2,8 @@
 // SPDX-License-Identifier: Apache-2.0
 
 import type { ThemeProps } from '@polkadot/react-components/types';
-import type { Approvals, Balance, BlockNumber } from '@polkadot/types/interfaces';
-import type { ITuple } from '@polkadot/types/types';
+import type { Approvals, Balance, BlockNumber } from '@maticnetwork/da-types/interfaces';
+import type { ITuple } from '@maticnetwork/da-types/types';
 
 import BN from 'bn.js';
 import React, { useEffect, useRef, useState } from 'react';

@@ -2,7 +2,7 @@
 // SPDX-License-Identifier: Apache-2.0
 
 import type { DeriveDispatch } from '@polkadot/api-derive/types';
-import type { BlockNumber } from '@polkadot/types/interfaces';
+import type { BlockNumber } from '@maticnetwork/da-types/interfaces';
 
 import React from 'react';
 

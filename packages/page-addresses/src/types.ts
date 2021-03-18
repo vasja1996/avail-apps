@@ -2,7 +2,7 @@
 // SPDX-License-Identifier: Apache-2.0
 
 import type { ActionStatus } from '@polkadot/react-components/Status/types';
-import type { Balance, Conviction } from '@polkadot/types/interfaces';
+import type { Balance, Conviction } from '@maticnetwork/da-types/interfaces';
 import type { KeyringAddress } from '@polkadot/ui-keyring/types';
 
 import { WithTranslation } from 'react-i18next';

@@ -2,7 +2,7 @@
 // SPDX-License-Identifier: Apache-2.0
 
 import type { IdentityProps } from '@polkadot/react-identicon/types';
-import type { AccountId, AccountIndex, Address } from '@polkadot/types/interfaces';
+import type { AccountId, AccountIndex, Address } from '@maticnetwork/da-types/interfaces';
 
 import React, { useCallback, useContext } from 'react';
 import styled from 'styled-components';

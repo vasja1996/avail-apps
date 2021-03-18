@@ -3,7 +3,7 @@
 
 import type { SubmittableExtrinsic } from '@polkadot/api/promise/types';
 import type { DeriveBalancesAll } from '@polkadot/api-derive/types';
-import type { RuntimeDispatchInfo } from '@polkadot/types/interfaces';
+import type { RuntimeDispatchInfo } from '@maticnetwork/da-types/interfaces';
 
 import BN from 'bn.js';
 import React, { useEffect, useState } from 'react';

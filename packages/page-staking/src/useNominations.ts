@@ -1,8 +1,8 @@
 // Copyright 2017-2021 @polkadot/app-staking authors & contributors
 // SPDX-License-Identifier: Apache-2.0
 
-import type { Option, StorageKey } from '@polkadot/types';
-import type { Nominations } from '@polkadot/types/interfaces';
+import type { Option, StorageKey } from '@maticnetwork/da-types';
+import type { Nominations } from '@maticnetwork/da-types/interfaces';
 import type { NominatedBy } from './types';
 
 import { useMemo } from 'react';

@@ -2,8 +2,8 @@
 // SPDX-License-Identifier: Apache-2.0
 
 import type { AppProps as Props, ThemeProps } from '@polkadot/react-components/types';
-import type { Option } from '@polkadot/types';
-import type { EcdsaSignature, EthereumAddress, StatementKind } from '@polkadot/types/interfaces';
+import type { Option } from '@maticnetwork/da-types';
+import type { EcdsaSignature, EthereumAddress, StatementKind } from '@maticnetwork/da-types/interfaces';
 
 import React, { useCallback, useEffect, useRef, useState } from 'react';
 import CopyToClipboard from 'react-copy-to-clipboard';

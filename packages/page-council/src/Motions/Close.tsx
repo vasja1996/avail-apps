@@ -1,7 +1,7 @@
 // Copyright 2017-2021 @polkadot/app-council authors & contributors
 // SPDX-License-Identifier: Apache-2.0
 
-import type { Hash, Proposal, ProposalIndex } from '@polkadot/types/interfaces';
+import type { Hash, Proposal, ProposalIndex } from '@maticnetwork/da-types/interfaces';
 
 import React, { useState } from 'react';
 

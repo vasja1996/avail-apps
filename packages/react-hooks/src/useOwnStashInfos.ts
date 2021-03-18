@@ -2,8 +2,8 @@
 // SPDX-License-Identifier: Apache-2.0
 
 import type { DeriveStakingAccount } from '@polkadot/api-derive/types';
-import type { AccountId, ValidatorPrefs } from '@polkadot/types/interfaces';
-import type { Codec, ITuple } from '@polkadot/types/types';
+import type { AccountId, ValidatorPrefs } from '@maticnetwork/da-types/interfaces';
+import type { Codec, ITuple } from '@maticnetwork/da-types/types';
 import type { StakerState } from './types';
 
 import { useEffect, useMemo, useState } from 'react';

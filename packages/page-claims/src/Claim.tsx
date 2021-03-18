@@ -4,8 +4,8 @@
 import type { ApiPromise } from '@polkadot/api';
 import type { SubmittableExtrinsic } from '@polkadot/api/types';
 import type { TxCallback } from '@polkadot/react-components/Status/types';
-import type { Option } from '@polkadot/types';
-import type { BalanceOf, EthereumAddress, StatementKind } from '@polkadot/types/interfaces';
+import type { Option } from '@maticnetwork/da-types';
+import type { BalanceOf, EthereumAddress, StatementKind } from '@maticnetwork/da-types/interfaces';
 
 import React, { useEffect, useState } from 'react';
 import styled from 'styled-components';

@@ -1,13 +1,13 @@
 // Copyright 2017-2021 @polkadot/react-components authors & contributors
 // SPDX-License-Identifier: Apache-2.0
 
-import type { StorageEntry } from '@polkadot/types/primitive/types';
+import type { StorageEntry } from '@maticnetwork/da-types/primitive/types';
 import type { DropdownOption, DropdownOptions } from '../../util/types';
 
 import React from 'react';
 
 import { ApiPromise } from '@polkadot/api';
-import { unwrapStorageType } from '@polkadot/types/primitive/StorageKey';
+import { unwrapStorageType } from '@maticnetwork/da-types/primitive/StorageKey';
 
 export default function createOptions (api: ApiPromise, sectionName: string): DropdownOptions {
   const section = api.query[sectionName];

@@ -1,12 +1,12 @@
 // Copyright 2017-2021 @polkadot/react-params authors & contributors
 // SPDX-License-Identifier: Apache-2.0
 
-import type { Keys, ValidatorId } from '@polkadot/types/interfaces';
-import type { Codec } from '@polkadot/types/types';
+import type { Keys, ValidatorId } from '@maticnetwork/da-types/interfaces';
+import type { Codec } from '@maticnetwork/da-types/types';
 
 import React from 'react';
 
-import { Option, Raw } from '@polkadot/types';
+import { Option, Raw } from '@maticnetwork/da-types';
 import { isFunction, isNull, isUndefined, u8aToHex } from '@polkadot/util';
 
 interface DivProps {

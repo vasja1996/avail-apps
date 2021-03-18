@@ -2,8 +2,8 @@
 // SPDX-License-Identifier: Apache-2.0
 
 import type { DeriveSocietyCandidate } from '@polkadot/api-derive/types';
-import type { Option } from '@polkadot/types';
-import type { AccountId, SocietyVote } from '@polkadot/types/interfaces';
+import type { Option } from '@maticnetwork/da-types';
+import type { AccountId, SocietyVote } from '@maticnetwork/da-types/interfaces';
 import type { VoteType } from '../types';
 
 import React from 'react';

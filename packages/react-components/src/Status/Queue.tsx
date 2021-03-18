@@ -2,15 +2,15 @@
 // SPDX-License-Identifier: Apache-2.0
 
 import type { SubmittableExtrinsic } from '@polkadot/api/promise/types';
-import type { Bytes } from '@polkadot/types';
-import type { DispatchError } from '@polkadot/types/interfaces';
-import type { ITuple, Registry, SignerPayloadJSON } from '@polkadot/types/types';
+import type { Bytes } from '@maticnetwork/da-types';
+import type { DispatchError } from '@maticnetwork/da-types/interfaces';
+import type { ITuple, Registry, SignerPayloadJSON } from '@maticnetwork/da-types/types';
 import type { ActionStatus, ActionStatusPartial, PartialQueueTxExtrinsic, PartialQueueTxRpc, QueueStatus, QueueTx, QueueTxExtrinsic, QueueTxRpc, QueueTxStatus, SignerCallback } from './types';
 
 import React, { useCallback, useRef, useState } from 'react';
 
 import { SubmittableResult } from '@polkadot/api';
-import jsonrpc from '@polkadot/types/interfaces/jsonrpc';
+import jsonrpc from '@maticnetwork/da-types/interfaces/jsonrpc';
 
 import { getContractAbi } from '../util';
 import { STATUS_COMPLETE } from './constants';

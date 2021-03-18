@@ -2,8 +2,8 @@
 // SPDX-License-Identifier: Apache-2.0
 
 import type { DeriveCollectiveProposal } from '@polkadot/api-derive/types';
-import type { Option } from '@polkadot/types';
-import type { AccountId } from '@polkadot/types/interfaces';
+import type { Option } from '@maticnetwork/da-types';
+import type { AccountId } from '@maticnetwork/da-types/interfaces';
 
 import React, { useMemo } from 'react';
 import { Route, Switch } from 'react-router';

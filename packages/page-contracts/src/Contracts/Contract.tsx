@@ -3,8 +3,8 @@
 
 import type { ContractCallOutcome } from '@polkadot/api-contract/types';
 import type { ActionStatus } from '@polkadot/react-components/Status/types';
-import type { Option } from '@polkadot/types';
-import type { BlockNumber, ContractInfo } from '@polkadot/types/interfaces';
+import type { Option } from '@maticnetwork/da-types';
+import type { BlockNumber, ContractInfo } from '@maticnetwork/da-types/interfaces';
 import type { ContractLink } from './types';
 
 import React, { useCallback, useEffect, useState } from 'react';

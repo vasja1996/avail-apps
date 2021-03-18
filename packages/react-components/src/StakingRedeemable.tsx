@@ -2,8 +2,8 @@
 // SPDX-License-Identifier: Apache-2.0
 
 import type { DeriveStakingAccount } from '@polkadot/api-derive/types';
-import type { Option } from '@polkadot/types';
-import type { SlashingSpans } from '@polkadot/types/interfaces';
+import type { Option } from '@maticnetwork/da-types';
+import type { SlashingSpans } from '@maticnetwork/da-types/interfaces';
 
 import React from 'react';
 

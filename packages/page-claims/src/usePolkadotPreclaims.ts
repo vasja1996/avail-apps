@@ -2,9 +2,9 @@
 // SPDX-License-Identifier: Apache-2.0
 
 import type { QueryableStorageEntry } from '@polkadot/api/types';
-import type { Option } from '@polkadot/types';
-import type { EthereumAddress } from '@polkadot/types/interfaces';
-import type { Codec } from '@polkadot/types/types';
+import type { Option } from '@maticnetwork/da-types';
+import type { EthereumAddress } from '@maticnetwork/da-types/interfaces';
+import type { Codec } from '@maticnetwork/da-types/types';
 
 import { useEffect, useState } from 'react';
 

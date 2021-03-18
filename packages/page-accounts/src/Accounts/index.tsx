@@ -2,7 +2,7 @@
 // SPDX-License-Identifier: Apache-2.0
 
 import type { ActionStatus } from '@polkadot/react-components/Status/types';
-import type { AccountId, ProxyDefinition, ProxyType, Voting } from '@polkadot/types/interfaces';
+import type { AccountId, ProxyDefinition, ProxyType, Voting } from '@maticnetwork/da-types/interfaces';
 import type { Delegation, SortedAccount } from '../types';
 
 import BN from 'bn.js';

@@ -4,10 +4,10 @@
 import type { SubmittableResult } from '@polkadot/api';
 import type { Signer, SignerResult } from '@polkadot/api/types';
 import type { QueueTxMessageSetStatus, QueueTxPayloadAdd, QueueTxStatus } from '@polkadot/react-components/Status/types';
-import type { Hash } from '@polkadot/types/interfaces';
-import type { Registry, SignerPayloadJSON } from '@polkadot/types/types';
+import type { Hash } from '@maticnetwork/da-types/interfaces';
+import type { Registry, SignerPayloadJSON } from '@maticnetwork/da-types/types';
 
-import { ClassOf } from '@polkadot/types/create';
+import { ClassOf } from '@maticnetwork/da-types/create';
 
 export default class ApiSigner implements Signer {
   readonly #queuePayload: QueueTxPayloadAdd;

@@ -1,15 +1,15 @@
 // Copyright 2017-2021 @polkadot/app-democracy authors & contributors
 // SPDX-License-Identifier: Apache-2.0
 
-import type { Compact, Option } from '@polkadot/types';
-import type { ProposalIndex, TreasuryProposal } from '@polkadot/types/interfaces';
-import type { TypeDef } from '@polkadot/types/types';
+import type { Compact, Option } from '@maticnetwork/da-types';
+import type { ProposalIndex, TreasuryProposal } from '@maticnetwork/da-types/interfaces';
+import type { TypeDef } from '@maticnetwork/da-types/types';
 
 import React, { useEffect, useState } from 'react';
 
 import { useApi, useCall } from '@polkadot/react-hooks';
 import Params from '@polkadot/react-params';
-import { getTypeDef } from '@polkadot/types/create';
+import { getTypeDef } from '@maticnetwork/da-types/create';
 
 interface Props {
   className?: string;

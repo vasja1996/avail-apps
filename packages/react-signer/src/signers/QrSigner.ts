@@ -2,7 +2,7 @@
 // SPDX-License-Identifier: Apache-2.0
 
 import type { Signer, SignerResult } from '@polkadot/api/types';
-import type { Registry, SignerPayloadJSON } from '@polkadot/types/types';
+import type { Registry, SignerPayloadJSON } from '@maticnetwork/da-types/types';
 import type { QrState } from '../types';
 
 import { blake2AsU8a } from '@polkadot/util-crypto';

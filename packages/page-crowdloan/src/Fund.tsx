@@ -2,7 +2,7 @@
 // SPDX-License-Identifier: Apache-2.0
 
 import type BN from 'bn.js';
-import type { FundIndex, FundInfo } from '@polkadot/types/interfaces';
+import type { FundIndex, FundInfo } from '@maticnetwork/da-types/interfaces';
 
 import React, { useMemo } from 'react';
 

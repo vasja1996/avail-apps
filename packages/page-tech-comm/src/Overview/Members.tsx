@@ -1,7 +1,7 @@
 // Copyright 2017-2021 @polkadot/app-tech-comm authors & contributors
 // SPDX-License-Identifier: Apache-2.0
 
-import type { AccountId } from '@polkadot/types/interfaces';
+import type { AccountId } from '@maticnetwork/da-types/interfaces';
 
 import React, { useRef } from 'react';
 

@@ -3,7 +3,7 @@
 
 import type { SubmittableExtrinsic } from '@polkadot/api/types';
 import type { DeriveCollectiveProposal } from '@polkadot/api-derive/types';
-import type { Bounty, BountyIndex, BountyStatus } from '@polkadot/types/interfaces';
+import type { Bounty, BountyIndex, BountyStatus } from '@maticnetwork/da-types/interfaces';
 
 import { fireEvent } from '@testing-library/react';
 import BN from 'bn.js';

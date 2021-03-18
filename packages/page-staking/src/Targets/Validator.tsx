@@ -2,7 +2,7 @@
 // SPDX-License-Identifier: Apache-2.0
 
 import type { DeriveAccountInfo } from '@polkadot/api-derive/types';
-import type { UnappliedSlash } from '@polkadot/types/interfaces';
+import type { UnappliedSlash } from '@maticnetwork/da-types/interfaces';
 import type { NominatedBy, ValidatorInfo } from '../types';
 
 import BN from 'bn.js';

@@ -4,8 +4,8 @@
 import type { SubmittableResult } from '@polkadot/api';
 import type { SubmittableExtrinsic } from '@polkadot/api/promise/types';
 import type { SignerResult } from '@polkadot/api/types';
-import type { AccountId, Address } from '@polkadot/types/interfaces';
-import type { DefinitionRpcExt, Registry, SignerPayloadJSON } from '@polkadot/types/types';
+import type { AccountId, Address } from '@maticnetwork/da-types/interfaces';
+import type { DefinitionRpcExt, Registry, SignerPayloadJSON } from '@maticnetwork/da-types/types';
 
 export type Actions = 'create' | 'edit' | 'restore' | 'forget' | 'backup' | 'changePassword' | 'transfer';
 

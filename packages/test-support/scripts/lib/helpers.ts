@@ -9,7 +9,7 @@ import { DeriveCollectiveProposal } from '@polkadot/api-derive/types';
 import { KeyringPair } from '@polkadot/keyring/types';
 import { charlieSigner, daveSigner, eveSigner, ferdieSigner } from '@polkadot/test-support/keyring';
 import { execute } from '@polkadot/test-support/transaction';
-import { Hash } from '@polkadot/types/interfaces';
+import { Hash } from '@maticnetwork/da-types/interfaces';
 
 import { LENGTH_BOUND, TREASURY_ADDRESS, WEIGHT_BOUND } from './constants';
 

@@ -3,7 +3,7 @@
 
 import BN from 'bn.js';
 
-import { TypeRegistry } from '@polkadot/types/create';
+import { TypeRegistry } from '@maticnetwork/da-types/create';
 
 import { isClaimable } from './isClaimable';
 
