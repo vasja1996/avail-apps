@@ -126,7 +126,7 @@ function BlockByHash({ className = '', error, value }: Props): React.ReactElemen
               }</td>
               <td className='hash overflow'>{getHeader.extrinsicsRoot.toHex()}</td>
               <td className='hash overflow'>{getHeader.stateRoot.toHex()}</td>
-              <td className='hash overflow'>{confidence}</td>
+              <td className='hash overflow'>{`${confidence} %`}</td>
               <td>
                 <LinkExternal
                   data={value}
