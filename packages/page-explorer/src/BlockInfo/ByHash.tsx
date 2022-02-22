@@ -5,6 +5,7 @@ import type { HeaderExtended } from '@polkadot/api-derive/types';
 import type { KeyedEvent } from '@polkadot/react-query/types';
 import type { EventRecord, SignedBlock } from '@polkadot/types/interfaces';
 
+import axios from 'axios';
 import React, { useEffect, useMemo, useState } from 'react';
 import { Link } from 'react-router-dom';
 
@@ -44,6 +45,7 @@ function BlockByHash ({ className = '', error, value }: Props): React.ReactEleme
   const { api } = useApi();
   const mountedRef = useIsMountedRef();
   const [[events, getBlock, getHeader], setState] = useState<[KeyedEvent[]?, SignedBlock?, HeaderExtended?]>([]);
+  const [confidence, setConfidence] = useState<string>('0 %');
   const [myError, setError] = useState<Error | null | undefined>(error);
 
   useEffect((): void => {
@@ -55,6 +57,45 @@ function BlockByHash ({ className = '', error, value }: Props): React.ReactEleme
       ])
       .then((result): void => {
         mountedRef.current && setState(transformResult(result));
+
+        const number = result[2]?.number.unwrap().toNumber();
+        let LightClientURI = 'https://polygon-da-light.matic.today/v1/';
+
+        const url = new URL(window.location.href);
+        const searchParams = new URLSearchParams(url.search);
+        const getParam = searchParams.get('light');
+        const savedLcUri = window.localStorage.getItem('lcUrl');
+
+        if (getParam) {
+          LightClientURI = getParam;
+        } else if (savedLcUri !== null) {
+          LightClientURI = savedLcUri;
+        }
+
+        console.log('Using Light Client at ', LightClientURI);
+
+        axios.get(
+          `confidence/${number}`,
+          {
+            baseURL: LightClientURI,
+            headers: {
+              'Content-Type': 'application/json'
+            }
+          }
+        ).then((v) => {
+          console.log(v);
+
+          if (v.status !== 200) {
+            setConfidence('ℹ️ Make sure Light Client runs on ' + LightClientURI);
+
+            return;
+          }
+
+          setConfidence(v.data.confidence);
+        }).catch((_) => {
+          setConfidence('ℹ️ Make sure Light Client runs on ' + LightClientURI);
+          console.log('Light client: Called, but failed');
+        });
       })
       .catch((error: Error): void => {
         mountedRef.current && setError(error);
@@ -69,6 +110,7 @@ function BlockByHash ({ className = '', error, value }: Props): React.ReactEleme
         [t('parent'), 'start'],
         [t('extrinsics'), 'start'],
         [t('state'), 'start'],
+        [t('confidence'), 'start'],
         [undefined, 'media--1200']
       ]
       : EMPTY_HEADER,
@@ -107,6 +149,7 @@ function BlockByHash ({ className = '', error, value }: Props): React.ReactEleme
               }</td>
               <td className='hash overflow'>{getHeader.extrinsicsRoot.toHex()}</td>
               <td className='hash overflow'>{getHeader.stateRoot.toHex()}</td>
+              <td className='hash overflow'>{confidence}</td>
               <td className='media--1200'>
                 <LinkExternal
                   data={value}
