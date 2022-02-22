@@ -31,6 +31,7 @@ import crownSterlingChain from './crown-sterling';
 import crust from './crust';
 import testPara from './cumulus-test-parachain';
 import darwinia from './darwinia';
+import dataavail from './dataavail';
 import datahighwayParachain from './datahighway';
 import dockMainnet from './dock-mainnet';
 import dockTestnet from './dock-testnet';
@@ -67,6 +68,7 @@ import laminar from './laminar';
 import litentry from './litentry';
 import manta from './manta';
 import mathchain from './mathchain';
+import matic from './matic';
 import moonbeam from './moonbeam';
 import mybank from './mybank';
 import neatcoin from './neatcoin';
@@ -118,8 +120,6 @@ import zCloak from './zCloak';
 import zeitgeist from './zeitgeist';
 import zenlink from './zenlink';
 import zero from './zero';
-import matic from './matic';
-import dataavail from './dataavail.ts';
 
 // NOTE: The mapping is done from specName in state.getRuntimeVersion
 const spec: Record<string, OverrideBundleDefinition> = {
@@ -162,6 +162,7 @@ const spec: Record<string, OverrideBundleDefinition> = {
   'crust-parachain': crust,
   'cumulus-subsocial-parachain': subsocial,
   'cumulus-test-parachain': testPara,
+  'data-avail': dataavail,
   datahighway: westlake,
   'datahighway-parachain': datahighwayParachain,
   dawn: eave,
@@ -216,6 +217,7 @@ const spec: Record<string, OverrideBundleDefinition> = {
   nftmart,
   'node-moonbeam': moonbeam,
   'node-polkadex': polkadex,
+  'node-template': matic,
   'nodle-chain': nodle,
   opal: opal,
   opportunity,
@@ -255,8 +257,6 @@ const spec: Record<string, OverrideBundleDefinition> = {
   'unit-node': unitv,
   'unit-parachain': unitv,
   unorthodox: standard,
-  'node-template': matic,
-  'data-avail': dataavail,
   vodka,
   'web3games-node': web3games,
   'zcloak-network': zCloak,

@@ -31,7 +31,7 @@ export function createPolkadot (t: TFunction): EndpointOption {
       // (1) system parachains (none available yet)
       // ...
       // (2) all common good parachains
-      {
+      /* ({
         info: 'statemint',
         paraId: 1000,
         text: t('rpc.polkadot.statemint', 'Statemint', { ns: 'apps-config' }),
@@ -275,7 +275,7 @@ export function createPolkadot (t: TFunction): EndpointOption {
         providers: {
           SubGame: 'wss://gamma.subgame.org/'
         }
-      }
+      } */
     ]
   };
 }

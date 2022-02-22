@@ -134,6 +134,7 @@ import nodePolkadot from './nodes/polkadot-circle.svg';
 import nodePolkadotJs from './nodes/polkadot-js.svg';
 import nodePolkaFoundry from './nodes/polkafoundry.svg';
 import nodePolkaSmith from './nodes/polkasmith.svg';
+import nodePolygon from './nodes/polygon.png';
 import nodePolymesh from './nodes/polymesh.svg';
 import nodePontem from './nodes/pontem.svg';
 import nodePrism from './nodes/prism.png';
@@ -169,7 +170,6 @@ import nodeZCloak from './nodes/zCloak.svg';
 import nodeZeitgeist from './nodes/zeitgeist.png';
 import nodeZenlink from './nodes/zenlink.svg';
 import nodeZero from './nodes/zero.svg';
-import nodePolygon from './nodes/polygon.png';
 import emptyLogo from './empty.svg';
 // last-resort fallback, just something empty
 
@@ -204,6 +204,7 @@ export const chainLogos = Object.entries({
   'darwinia crab': nodeCrab,
   'Darwinia Crab PC2': nodeCrab,
   'Darwinia PC2': nodeDarwinia,
+  'data-avail': nodePolygon,
   DataHighway: nodeDataHighway,
   'Dolphin Testnet': nodeDolphin,
   Dusty: chainDusty,
@@ -283,6 +284,7 @@ export const chainLogos = Object.entries({
   'Polkadex Mainnet': nodePolkadex,
   'Polkadex Testnet': nodePolkadex,
   'PolkaFoundry PC1': nodePolkaFoundry,
+  'Polygon-DA-Testnet': nodePolygon,
   'Pontem Testnet': nodePontem,
   'Prism PC1': nodePrism,
   'Prism Testnet': nodePrism,
@@ -330,8 +332,7 @@ export const chainLogos = Object.entries({
   Westmint: nodeStatemine,
   'Westmint Test': nodeStatemine,
   WILT: nodeKilt,
-  'zcloak poc1': nodeZCloak,
-  'Polygon-DA-Testnet': nodePolygon
+  'zcloak poc1': nodeZCloak
 }).reduce<Record<string, unknown>>((logos, [chain, logo]) => ({
   ...logos,
   [sanitize(chain)]: logo
@@ -372,6 +373,7 @@ export const nodeLogos = Object.entries({
   'darwinia crab': nodeCrab,
   'darwinia parachain': nodeDarwinia,
   'Darwinia Runtime Module Library': nodeDarwinia,
+  'data-avail': nodePolygon,
   DataHighway: nodeDataHighway,
   'DataHighway Node': nodeDataHighway,
   'DataHighway Parachain Collator': nodeDataHighway,
@@ -446,6 +448,7 @@ export const nodeLogos = Object.entries({
   'PolkaFoundry Node': nodePolkaFoundry,
   'PolkaFoundry Parachain Collator': nodePolkaFoundry,
   'PolkaSmith Parachain Collator': nodePolkaSmith,
+  'Polygon DA Node': nodePolygon,
   'Pontem Testnet': nodePontem,
   'Prism Collator': nodePrism,
   'Prism Node': nodePrism,
@@ -498,8 +501,7 @@ export const nodeLogos = Object.entries({
   'Zeitgeist Collator': nodeZeitgeist,
   'Zeitgeist Node': nodeZeitgeist,
   Zenlink: nodeZenlink,
-  'Zenlink Collator': nodeZenlink,
-  'Polygon DA Node': nodePolygon
+  'Zenlink Collator': nodeZenlink
 }).reduce<Record<string, unknown>>((logos, [node, logo]) => ({
   ...logos,
   [sanitize(node)]: logo
@@ -548,6 +550,7 @@ export const namedLogos: Record<string, unknown> = {
   'Crust Maxwell': nodeCrustMaxwell,
   crustParachain: nodeCrustParachain,
   darwinia: nodeDarwinia,
+  'data-avail': nodePolygon,
   datahighway: nodeDataHighway,
   'dock-pos-mainnet': nodeDockMainnet,
   'dock-pos-testnet': nodeDockTestnet,
@@ -594,6 +597,7 @@ export const namedLogos: Record<string, unknown> = {
   manta: nodeManta,
   mars: nodeAresMars,
   mathchain: nodeMath,
+  matic: nodePolygon,
   moonbaseAlpha: moonbase,
   moonbeam: moonbeam,
   moonriver: moonriver,
@@ -713,7 +717,6 @@ export const namedLogos: Record<string, unknown> = {
   web3games: nodeWeb3games,
   westend: nodeWestend,
   westendPichiu: nodePichiu,
-  matic: nodePolygon,
   westendStandard: chainStandard,
   westlake: nodeWestlake,
   westmint: nodeStatemine,

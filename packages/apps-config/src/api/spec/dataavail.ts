@@ -32,23 +32,25 @@ const definitions: OverrideBundleDefinition = {
           appDataLookup: 'DataLookup'
         },
         Header: 'KateHeader',
+        CheckAppIdExtra: {
+          appId: 'u32'
+        },
+        CheckAppIdTypes: {},
         CheckAppId: {
-          extra: {
-            appId: 'u32', 
-          },
-          types: {}
+          extra: 'CheckAppIdExtra',
+          types: 'CheckAppIdTypes'
         }
-      },
+      }
     }
- ],
- signedExtensions: {
-  CheckAppId: {
-    extrinsic: {
-      appId: 'u32'
-    },
-    payload: {}
-  },
- }
+  ],
+  signedExtensions: {
+    CheckAppId: {
+      extrinsic: {
+        appId: 'u32'
+      },
+      payload: {}
+    }
+  }
 };
 
 console.log('Add DA definitions');

@@ -2,9 +2,8 @@
 // SPDX-License-Identifier: Apache-2.0
 
 import type { u32 } from '@polkadot/types';
-import { BN_ZERO } from '@polkadot/util';
 
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 
 import { InputNumber, Modal } from '@polkadot/react-components';
 
@@ -15,7 +14,7 @@ interface Props {
   onChange: (app_id: u32) => void;
 }
 
-function AppId({ className, onChange }: Props): React.ReactElement<Props> | null {
+function AppId ({ className, onChange }: Props): React.ReactElement<Props> | null {
   const { t } = useTranslation();
 
   return (
@@ -24,11 +23,11 @@ function AppId({ className, onChange }: Props): React.ReactElement<Props> | null
       hint={t<string>('Application Id.')}
     >
       <InputNumber
-          help={t<string>('Specify different Application Id for this Tx')}
-          isZeroable
-          label={t<string>('App Id')}
-          onChange={onChange}
-       />
+        help={t<string>('Specify different Application Id for this Tx')}
+        isZeroable
+        label={t<string>('App Id')}
+        onChange={onChange}
+      />
     </Modal.Columns>
   );
 }

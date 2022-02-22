@@ -55,6 +55,9 @@
     "test:one": "polkadot-dev-run-test",
     "test:skipped": "echo 'tests skipped'"
   },
+  "dependencies": {
+    "axios": "^0.21.1"
+  },
   "devDependencies": {
     "@babel/core": "^7.16.12",
     "@babel/register": "^7.16.9",

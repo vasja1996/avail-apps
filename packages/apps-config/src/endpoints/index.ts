@@ -5,17 +5,17 @@ import type { TFunction } from 'i18next';
 import type { LinkOption } from './types';
 
 import { createCustom, createDev, createOwn } from './development';
-import { createProduction } from './production';
-import { createKusamaRelay, createPolkadotRelay } from './productionRelays';
+// import { createProduction } from './production';
+// import { createKusamaRelay, createPolkadotRelay } from './productionRelays';
 import { createTesting } from './testing';
-import { createRococoRelay, createWestendRelay } from './testingRelays';
+// import { createRococoRelay, createWestendRelay } from './testingRelays';
 
 export { CUSTOM_ENDPOINT_KEY } from './development';
 
 export function createWsEndpoints (t: TFunction, firstOnly = false, withSort = true): LinkOption[] {
   return [
     ...createCustom(t),
-    {
+    /* {
       isDisabled: false,
       isHeader: true,
       isSpaced: true,
@@ -58,6 +58,7 @@ export function createWsEndpoints (t: TFunction, firstOnly = false, withSort = t
       value: ''
     },
     ...createProduction(t, firstOnly, withSort),
+    */
     {
       isDisabled: false,
       isHeader: true,

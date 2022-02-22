@@ -23,11 +23,11 @@ export function createTesting (t: TFunction, firstOnly: boolean, withSort: boole
       text: t('rpc.matic', 'Polygon', { ns: 'apps-config' }),
       providers: {
         MATIC: 'wss://polygon-da-explorer.matic.today/ws'
-        //MATIC_1: 'ws://54.160.87.220:8001',
-        //MATIC_2: 'ws://3.218.2.152:8001'
+        // MATIC_1: 'ws://54.160.87.220:8001',
+        // MATIC_2: 'ws://3.218.2.152:8001'
       }
-     },
-     {
+    }
+    /* {
       info: 'aleph',
       text: t('rpc.test.aleph', 'Aleph Zero Testnet', { ns: 'apps-config' }),
       providers: {
@@ -553,6 +553,6 @@ export function createTesting (t: TFunction, firstOnly: boolean, withSort: boole
       providers: {
         ZERO: 'wss://alphaville.zero.io'
       }
-    }
+    } */
   ], firstOnly, withSort);
 }
