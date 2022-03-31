@@ -59,7 +59,7 @@ function BlockByHash ({ className = '', error, value }: Props): React.ReactEleme
         mountedRef.current && setState(transformResult(result));
 
         const number = result[2]?.number.unwrap().toNumber();
-        let LightClientURI = 'https://polygon-da-light.matic.today/v1/';
+        let LightClientURI = 'https://devnet-avail.polygon.technology/light/v1';
 
         const url = new URL(window.location.href);
         const searchParams = new URLSearchParams(url.search);

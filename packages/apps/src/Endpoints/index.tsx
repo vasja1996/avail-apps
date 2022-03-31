@@ -128,7 +128,7 @@ function extractLcUrlState (lcUrl: string | null, groups: Group[]): LcUrlState {
   }
 
   if (lcUrl === null) {
-    lcUrl = 'https://polygon-da-light.matic.today/v1/json-rpc';
+    lcUrl = 'https://devnet-avail.polygon.technology/light/json-rpc';
   }
 
   return {
