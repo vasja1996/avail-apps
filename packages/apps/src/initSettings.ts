@@ -63,7 +63,7 @@ function getApiUrl (): string {
 function getLightClientUrl (): string {
   // we split here so that both these forms are allowed
   //  - http://localhost:3000/?light=https://polygon-da-light.matic.today/#/explorer
-  //  - http://localhost:3000/#/explorer?light=https://devnet-avail.polygon.technology/light
+  //  - http://localhost:3000/#/explorer?light=https://devnet-avail.polygon.technology/light/v1
   const urlOptions = queryString.parse(location.href.split('?')[1]);
 
   // if specified, this takes priority
@@ -80,7 +80,7 @@ function getLightClientUrl (): string {
 
   const stored = window.localStorage.getItem('lcUrl');
 
-  const fallbackUrl = 'https://devnet-avail.polygon.technology/light';
+  const fallbackUrl = 'https://devnet-avail.polygon.technology/light/v1';
 
   // via settings, or the default chain
   return (stored !== null && stored !== undefined)
