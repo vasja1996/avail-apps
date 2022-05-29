@@ -128,7 +128,7 @@ function extractLcUrlState (lcUrl: string | null, groups: Group[]): LcUrlState {
   }
 
   if (lcUrl === null) {
-    lcUrl = 'https://devnet-avail.polygon.technology/light/json-rpc';
+    lcUrl = 'https://testnet.polygonavail.net/light/json-rpc';
   }
 
   return {
