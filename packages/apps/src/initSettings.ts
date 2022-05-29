@@ -63,14 +63,14 @@ function getApiUrl (): string {
 function getLightClientUrl (): string {
   // we split here so that both these forms are allowed
   //  - http://localhost:3000/?light=https://polygon-da-light.matic.today/#/explorer
-  //  - http://localhost:3000/#/explorer?light=https://devnet-avail.polygon.technology/light/v1
+  //  - http://localhost:3000/#/explorer?light=https://testnet.polygonavail.net/light/v1
   const urlOptions = queryString.parse(location.href.split('?')[1]);
 
   // if specified, this takes priority
   if (urlOptions.light) {
     assert(!Array.isArray(urlOptions.light), 'Invalid LC endpoint specified');
 
-    // https://devnet-avail.polygon.technology?light=ws://127.0.0.1:7000/v1/json-rpc#/explorer;
+    // https://testnet.polygonavail.net?light=ws://127.0.0.1:7000/v1/json-rpc#/explorer;
     const url = decodeURIComponent(urlOptions.light.split('#')[0]);
 
     assert(url.startsWith('http://') || url.startsWith('https://'), 'Non-prefixed http/https url');
@@ -80,7 +80,7 @@ function getLightClientUrl (): string {
 
   const stored = window.localStorage.getItem('lcUrl');
 
-  const fallbackUrl = 'https://devnet-avail.polygon.technology/light/v1';
+  const fallbackUrl = 'https://testnet.polygonavail.net/light/v1';
 
   // via settings, or the default chain
   return (stored !== null && stored !== undefined)
