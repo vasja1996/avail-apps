@@ -6,7 +6,6 @@ import type { LinkOption } from './types';
 
 import { expandEndpoints } from './util';
 
-// var configs = require("../../../config/config.js");
 /* eslint-disable sort-keys */
 
 // The available endpoints that will show in the dropdown. For the most part (with the exception of
