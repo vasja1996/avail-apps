@@ -1,16 +1,21 @@
+<div align="Center">
+<h1>avail-apps</h1>
+<h3>Block Explorer & Apps for the Polygon Avail blockchain</h3>
+</div>
+
+<br>
+
 [![polkadotjs](https://img.shields.io/badge/polkadot-js-orange?style=flat-square)](https://polkadot.js.org)
 ![license](https://img.shields.io/badge/License-Apache%202.0-blue?logo=apache&style=flat-square)
 [![maintainability](https://img.shields.io/codeclimate/maintainability-percentage/polkadot-js/apps?logo=code-climate&style=flat-square)](https://codeclimate.com/github/polkadot-js/apps)
 
-# @polkadot/apps
+# Introduction
 
-A Portal into the Polkadot and Substrate networks. Provides a view and interaction layer from a browser.
+`avail-apps` is a modified version of the [@polkadot/apps](https://github.com/polkadot-js/apps) repository for visualizing and interacting with the Avail network.
 
-This can be accessed as a hosted application via https://polkadot.js.org/apps/ or you can access the IPFS hosted version via https://polkadot.js.org/apps/ipfs (via hash) or https://dotapps.io (via ipns) to explore any of the supported Polkadot and Substrate chains.
+Learn more about Avail at the Avail [product page](https://polygon.technology/solutions/polygon-avail/) and [documentation](https://docs.polygon.technology/docs/avail/introduction/what-is-avail/) websites.
 
-If you run one or more IPFS node(s), pinning the UI (which only gets updated on releases) will make it faster for you and others. You can find details about that below in the IPFS chapter below.
-
-**Important** If you are a chain developer and would like to add support for your chain to the UI, all the local configuration (API types, settings, logos) can be customized in [the apps-config package](packages/apps-config#README.md), complete with instructions of what goes where.
+You can access a live version of the explorer for the Avail Testnet at https://testnet.polygonavail.net/
 
 ## overview
 
