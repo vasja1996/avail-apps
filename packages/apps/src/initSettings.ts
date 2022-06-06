@@ -9,7 +9,7 @@ import { extractIpfsDetails } from '@polkadot/react-hooks/useIpfs';
 import { settings } from '@polkadot/ui-settings';
 import { assert } from '@polkadot/util';
 
-function networkOrUrl (apiUrl: string, lcUrl: string): void {
+function networkOrUrl(apiUrl: string, lcUrl: string): void {
   if (apiUrl.startsWith('light://')) {
     console.log('Light endpoint=', apiUrl.replace('light://', ''));
   } else {
@@ -19,7 +19,7 @@ function networkOrUrl (apiUrl: string, lcUrl: string): void {
   console.log('LC endpoint=', lcUrl);
 }
 
-function getApiUrl (): string {
+function getApiUrl(): string {
   // we split here so that both these forms are allowed
   //  - http://localhost:3000/?rpc=wss://substrate-rpc.parity.io/#/explorer
   //  - http://localhost:3000/#/explorer?rpc=wss://substrate-rpc.parity.io
@@ -60,9 +60,9 @@ function getApiUrl (): string {
       : 'ws://127.0.0.1:9944'; // nothing found, go local
 }
 
-function getLightClientUrl (): string {
+function getLightClientUrl(): string {
   // we split here so that both these forms are allowed
-  //  - http://localhost:3000/?light=https://polygon-da-light.matic.today/#/explorer
+  //  - http://localhost:3000/?light=https://testnet.polygonavail.net/#/explorer
   //  - http://localhost:3000/#/explorer?light=https://testnet.polygonavail.net/light/v1
   const urlOptions = queryString.parse(location.href.split('?')[1]);
 
@@ -80,7 +80,10 @@ function getLightClientUrl (): string {
 
   const stored = window.localStorage.getItem('lcUrl');
 
-  const fallbackUrl = 'https://testnet.polygonavail.net/light/v1';
+  const fallUrl = process.env.LIGHTCLIENT as string + '/v1'
+  console.log('LC fallback=', fallUrl);
+  const fallbackUrl = fallUrl;
+  // const fallbackUrl = 'https://testnet.polygonavail.net/light/v1';
 
   // via settings, or the default chain
   return (stored !== null && stored !== undefined)
