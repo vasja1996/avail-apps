@@ -39,7 +39,8 @@ const definitions: OverrideBundleDefinition = {
         CheckAppId: {
           extra: 'CheckAppIdExtra',
           types: 'CheckAppIdTypes'
-        }
+        },
+        DaPrimitivesHeader: 'KateHeader'
       }
     }
   ],
