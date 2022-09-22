@@ -1,13 +1,13 @@
 {
-  "bugs": "https://github.com/polkadot-js/apps/issues",
-  "homepage": "https://github.com/polkadot-js/apps/tree/master/packages/apps#readme",
+  "bugs": "https://github.com/maticnetwork/avail-apps/issues",
+  "homepage": "https://github.com/maticnetwork/avail-apps#readme",
   "license": "Apache-2.0",
   "name": "@polkadot/apps",
   "private": true,
   "repository": {
     "directory": "packages/apps",
     "type": "git",
-    "url": "https://github.com/polkadot-js/apps.git"
+    "url": "https://github.com/maticnetwork/avail-apps.git"
   },
   "sideEffects": true,
   "type": "module",
