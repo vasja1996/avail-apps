@@ -11,7 +11,7 @@
   },
   "sideEffects": true,
   "type": "module",
-  "version": "0.104.2-1",
+  "version": "1.1.1",
   "dependencies": {
     "@babel/core": "^7.16.12",
     "@babel/polyfill": "^7.12.1",
