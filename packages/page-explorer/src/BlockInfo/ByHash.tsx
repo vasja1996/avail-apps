@@ -28,7 +28,7 @@ interface Props {
 
 const EMPTY_HEADER = [['...', 'start', 6]];
 
-function transformResult([events, getBlock, getHeader]: [EventRecord[], SignedBlock, HeaderExtended?]): [KeyedEvent[], SignedBlock, HeaderExtended?] {
+function transformResult ([events, getBlock, getHeader]: [EventRecord[], SignedBlock, HeaderExtended?]): [KeyedEvent[], SignedBlock, HeaderExtended?] {
   return [
     events.map((record, index) => ({
       indexes: [index],
@@ -40,7 +40,7 @@ function transformResult([events, getBlock, getHeader]: [EventRecord[], SignedBl
   ];
 }
 
-function BlockByHash({ className = '', error, value }: Props): React.ReactElement<Props> {
+function BlockByHash ({ className = '', error, value }: Props): React.ReactElement<Props> {
   const { t } = useTranslation();
   const { api } = useApi();
   const mountedRef = useIsMountedRef();

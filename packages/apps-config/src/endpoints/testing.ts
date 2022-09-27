@@ -14,7 +14,7 @@ import { expandEndpoints } from './util';
 //   text: The text to display on the dropdown
 //   value: The actual hosted secure websocket endpoint
 
-export function createTesting(t: TFunction, firstOnly: boolean, withSort: boolean): LinkOption[] {
+export function createTesting (t: TFunction, firstOnly: boolean, withSort: boolean): LinkOption[] {
   return expandEndpoints(t, [
     // alphabetical based on chain name, e.g. Amber, Arcadia, Beresheet, ...
     {
@@ -22,7 +22,7 @@ export function createTesting(t: TFunction, firstOnly: boolean, withSort: boolea
       isDevelopment: false,
       text: t('rpc.matic', 'Avail-Testnet', { ns: 'apps-config' }),
       providers: {
-        POLYGON: process.env.TESTNETURL as string,
+        POLYGON: process.env.TESTNETURL as string
       }
     }
     /* {
