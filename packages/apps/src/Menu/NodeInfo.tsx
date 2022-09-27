@@ -14,7 +14,7 @@ const pkgJson = require('../../package.json') as { version: string };
 
 const uiInfo = `avail-apps v${pkgJson.version}`;
 
-function NodeInfo({ className = '' }: Props): React.ReactElement<Props> {
+function NodeInfo ({ className = '' }: Props): React.ReactElement<Props> {
   const { api, isApiReady } = useApi();
 
   return (
