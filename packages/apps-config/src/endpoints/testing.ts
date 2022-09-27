@@ -20,9 +20,9 @@ export function createTesting (t: TFunction, firstOnly: boolean, withSort: boole
     {
       info: 'matic',
       isDevelopment: false,
-      text: t('rpc.matic', 'Polygon', { ns: 'apps-config' }),
+      text: t('rpc.matic', 'Avail-Testnet', { ns: 'apps-config' }),
       providers: {
-        MATIC: 'wss://testnet.polygonavail.net/ws'
+        POLYGON: process.env.TESTNETURL as string
       }
     }
     /* {
