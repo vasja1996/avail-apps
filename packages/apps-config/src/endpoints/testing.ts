@@ -22,7 +22,7 @@ export function createTesting (t: TFunction, firstOnly: boolean, withSort: boole
       isDevelopment: false,
       text: t('rpc.matic', 'Polygon', { ns: 'apps-config' }),
       providers: {
-        MATIC: 'wss://devnet-avail.polygon.technology/ws'
+        MATIC: 'wss://testnet.polygonavail.net/ws'
       }
     }
     /* {

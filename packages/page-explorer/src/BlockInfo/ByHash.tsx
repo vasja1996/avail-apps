@@ -75,6 +75,7 @@ function BlockByHash ({ className = '', error, value }: Props): React.ReactEleme
         console.log('Using Light Client at ', LightClientURI);
 
         axios.get(
+          // eslint-disable-next-line @typescript-eslint/restrict-template-expressions
           `confidence/${number}`,
           {
             baseURL: LightClientURI,
@@ -91,7 +92,9 @@ function BlockByHash ({ className = '', error, value }: Props): React.ReactEleme
             return;
           }
 
+          // eslint-disable-next-line @typescript-eslint/no-unsafe-argument, @typescript-eslint/no-unsafe-member-access
           setConfidence(v.data.confidence);
+        // eslint-disable-next-line @typescript-eslint/no-unused-vars
         }).catch((_) => {
           setConfidence('ℹ️ Make sure Light Client runs on ' + LightClientURI);
           console.log('Light client: Called, but failed');
