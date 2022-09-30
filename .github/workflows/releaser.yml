@@ -4,7 +4,7 @@ on:
 
 jobs:
 
-  binary_linux_amd64:
+  build_linux_amd64:
     runs-on: ubuntu-latest
     steps:
          - uses: actions/checkout@v2
@@ -14,32 +14,31 @@ jobs:
             yarn install
             yarn run build:www
             tar czf avail-apps-linux-amd64.tar.gz /home/runner/work/avail-apps/avail-apps/packages/apps/build
-            mkdir -p /tmp/build_extract
-            tar -xvf avail-apps-linux-amd64.tar.gz --directory /tmp/build_extract
          - uses: actions/upload-artifact@v2
            with:
              name: avail-apps-linux-amd64-build
              path: /home/runner/work/avail-apps/avail-apps/avail-apps-linux-amd64.tar.gz
 
-  # can extend binary publish 'needs' to include more releases i.e. arm64 in future
-  # binary_publish:
-  #   needs: [binary_linux_amd64]
-  #   runs-on: ubuntu-latest
-  #   steps:
-  #        - uses: actions/download-artifact@v2
-  #          with:
-  #            name: avail-light-linux-amd64-binary
-  #        - name: Prepare
-  #          id: prepare
-  #          run: |
-  #              TAG=${GITHUB_REF#refs/tags/}
-  #              echo ::set-output name=tag_name::${TAG}
-  #        - name: publish binaries
-  #          uses: svenstaro/upload-release-action@v2
-  #          with:
-  #            repo_token: ${{ secrets.PAT_TOKEN }}
-  #            file: /home/runner/work/avail-light/avail-light/avail-light*
-  #            release_name: ${{ steps.prepare.outputs.tag_name }}
-  #            tag: ${{ steps.prepare.outputs.tag_name }}
-  #            overwrite: true
-  #            file_glob: true
+  # can extend builds publish 'needs' to include more releases i.e. arm64 in future
+  build_publish:
+    needs: [build_linux_amd64]
+    runs-on: ubuntu-latest
+    steps:
+         - uses: actions/download-artifact@v2
+           with:
+             name: avail-apps-linux-amd64-build
+         - name: Prepare
+           id: prepare
+           run: |
+               # TAG=${GITHUB_REF#refs/tags/}
+               # echo ::set-output name=tag_name::${TAG}
+               tar -xvf avail-apps-linux-amd64-build
+         # - name: publish builds
+         #   uses: svenstaro/upload-release-action@v2
+         #   with:
+         #     repo_token: ${{ secrets.PAT_TOKEN }}
+         #     file: /home/runner/work/avail-light/avail-light/avail-light*
+         #     release_name: ${{ steps.prepare.outputs.tag_name }}
+         #     tag: ${{ steps.prepare.outputs.tag_name }}
+         #     overwrite: true
+         #     file_glob: true
