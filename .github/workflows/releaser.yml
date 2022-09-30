@@ -1,11 +1,11 @@
 name: Releaser
 on:
   push:
-    # branches-ignore:
-    #   - '**'
-    # tags:
-    #   - 'v*.*.*'
-    #   - 'v*.*.*-*'
+    branches-ignore:
+      - '**'
+    tags:
+      - 'v*.*.*'
+      - 'v*.*.*-*'
 
 jobs:
 
@@ -55,18 +55,14 @@ jobs:
          - name: Prepare
            id: prepare
            run: |
-               # TAG=${GITHUB_REF#refs/tags/}
-               # echo ::set-output name=tag_name::${TAG}
-               echo "MAIN"
-               ls
-               echo "APPS"
-               ls /home/runner/work/avail-apps/avail-apps/
-         # - name: publish builds
-         #   uses: svenstaro/upload-release-action@v2
-         #   with:
-         #     repo_token: ${{ secrets.PAT_TOKEN }}
-         #     file: /home/runner/work/avail-apps/avail-apps/avail-apps*
-         #     release_name: ${{ steps.prepare.outputs.tag_name }}
-         #     tag: ${{ steps.prepare.outputs.tag_name }}
-         #     overwrite: true
-         #     file_glob: true
+               TAG=${GITHUB_REF#refs/tags/}
+               echo ::set-output name=tag_name::${TAG}
+         - name: publish builds
+           uses: svenstaro/upload-release-action@v2
+           with:
+             repo_token: ${{ secrets.PAT_TOKEN }}
+             file: /home/runner/work/avail-apps/avail-apps/avail-apps*
+             release_name: ${{ steps.prepare.outputs.tag_name }}
+             tag: ${{ steps.prepare.outputs.tag_name }}
+             overwrite: true
+             file_glob: true
