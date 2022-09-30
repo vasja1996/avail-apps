@@ -4,8 +4,7 @@ on:
     branches-ignore:
       - '**'
     tags:
-      - 'v*.*.*'
-      - 'v*.*.*-*'
+      - '*'
 
 jobs:
 
@@ -19,39 +18,20 @@ jobs:
             yarn install
             yarn run build:www
             pushd /home/runner/work/avail-apps/avail-apps/packages/apps/
-            tar czf avail-apps-linux-amd64.tar.gz build/
+            tar czf avail-explorer.tar.gz build/
             popd
          - uses: actions/upload-artifact@v2
            with:
-             name: avail-apps-linux-amd64-build
-             path: /home/runner/work/avail-apps/avail-apps/packages/apps/avail-apps-linux-amd64.tar.gz
-             
-  build_linux_aarch64:
-    runs-on: ubuntu-latest
-    steps:
-         - uses: actions/checkout@v2
-         - name: build avail explorer via yarn
-           shell: bash
-           run: |
-            npm_config_target_arch=arm64 npm_config_target_platform=linux npm_config_target_libc=glibc yarn install
-            yarn run build:www
-            pushd /home/runner/work/avail-apps/avail-apps/packages/apps/
-            tar czf avail-apps-linux-aarch64.tar.gz build/
-         - uses: actions/upload-artifact@v2
-           with:
-             name: avail-apps-linux-aarch64-build
-             path: /home/runner/work/avail-apps/avail-apps/packages/apps/avail-apps-linux-aarch64.tar.gz
+             name: avail-explorer
+             path: /home/runner/work/avail-apps/avail-apps/packages/apps/avail-explorer.tar.gz
 
   build_publish:
-    needs: [build_linux_amd64, build_linux_aarch64]
+    needs: [build_linux_amd64]
     runs-on: ubuntu-latest
     steps:
          - uses: actions/download-artifact@v2
            with:
-             name: avail-apps-linux-amd64-build
-         - uses: actions/download-artifact@v2
-           with:
-             name: avail-apps-linux-aarch64-build
+             name: avail-explorer
          - name: Prepare
            id: prepare
            run: |
@@ -61,7 +41,7 @@ jobs:
            uses: svenstaro/upload-release-action@v2
            with:
              repo_token: ${{ secrets.PAT_TOKEN }}
-             file: /home/runner/work/avail-apps/avail-apps/avail-apps*
+             file: /home/runner/work/avail-apps/avail-apps/avail-explorer*
              release_name: ${{ steps.prepare.outputs.tag_name }}
              tag: ${{ steps.prepare.outputs.tag_name }}
              overwrite: true
