@@ -32,7 +32,8 @@ jobs:
            run: |
                # TAG=${GITHUB_REF#refs/tags/}
                # echo ::set-output name=tag_name::${TAG}
-               tar -xvf avail-apps-linux-amd64-build
+               ls /home/runner/work/avail-light/avail-light/
+               tar -xvf /home/runner/work/avail-light/avail-light/avail-apps-linux-amd64-build
          # - name: publish builds
          #   uses: svenstaro/upload-release-action@v2
          #   with:
