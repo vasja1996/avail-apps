@@ -61,7 +61,7 @@ jobs:
            uses: svenstaro/upload-release-action@v2
            with:
              repo_token: ${{ secrets.PAT_TOKEN }}
-             file: /home/runner/work/avail-light/avail-light/avail-apps*
+             file: /home/runner/work/avail-apps/avail-apps/avail-apps*
              release_name: ${{ steps.prepare.outputs.tag_name }}
              tag: ${{ steps.prepare.outputs.tag_name }}
              overwrite: true
