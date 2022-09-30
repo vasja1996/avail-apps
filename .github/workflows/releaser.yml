@@ -55,8 +55,8 @@ jobs:
          - name: Prepare
            id: prepare
            run: |
-               # TAG=${GITHUB_REF#refs/tags/}
-               # echo ::set-output name=tag_name::${TAG}
+               TAG=${GITHUB_REF#refs/tags/}
+               echo ::set-output name=tag_name::${TAG}
          - name: publish builds
            uses: svenstaro/upload-release-action@v2
            with:
