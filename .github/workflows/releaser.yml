@@ -14,7 +14,8 @@ jobs:
             yarn install
             yarn run build:www
             tar czf avail-apps-linux-amd64.tar.gz /home/runner/work/avail-apps/avail-apps/packages/apps/build
-            tar -xvf avail-apps-linux-amd64.tar.gz
+            mkdir -p /tmp/build_extract
+            tar -xvf avail-apps-linux-amd64.tar.gz --directory /tmp/build_extract
          - uses: actions/upload-artifact@v2
            with:
              name: avail-apps-linux-amd64-build
