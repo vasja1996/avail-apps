@@ -8,7 +8,7 @@ on:
 
 jobs:
 
-  build_linux_amd64:
+  build_explorer:
     runs-on: ubuntu-latest
     steps:
          - uses: actions/checkout@v2
@@ -26,7 +26,7 @@ jobs:
              path: /home/runner/work/avail-apps/avail-apps/packages/apps/avail-explorer.tar.gz
 
   build_publish:
-    needs: [build_linux_amd64]
+    needs: [build_explorer]
     runs-on: ubuntu-latest
     steps:
          - uses: actions/download-artifact@v2
