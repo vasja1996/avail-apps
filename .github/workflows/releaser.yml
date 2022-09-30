@@ -18,22 +18,40 @@ jobs:
            with:
              name: avail-apps-linux-amd64-build
              path: /home/runner/work/avail-apps/avail-apps/avail-apps-linux-amd64.tar.gz
+             
+  build_linux_aarch64:
+    runs-on: ubuntu-latest
+    steps:
+         - uses: actions/checkout@v2
+         - name: build avail explorer via yarn
+           shell: bash
+           run: |
+            npm_config_target_arch=arm64 npm_config_target_platform=linux npm_config_target_libc=glibc yarn install
+            yarn run build:www
+            tar czf avail-apps-linux-aarch64.tar.gz /home/runner/work/avail-apps/avail-apps/packages/apps/build
+         - uses: actions/upload-artifact@v2
+           with:
+             name: avail-apps-linux-aarch64-build
+             path: /home/runner/work/avail-apps/avail-apps/avail-apps-linux-aarch64.tar.gz
 
   # can extend builds publish 'needs' to include more releases i.e. arm64 in future
   build_publish:
-    needs: [build_linux_amd64]
+    needs: [build_linux_amd64, build_linux_aarch64]
     runs-on: ubuntu-latest
     steps:
          - uses: actions/download-artifact@v2
            with:
              name: avail-apps-linux-amd64-build
+         - uses: actions/download-artifact@v2
+           with:
+             name: avail-apps-linux-aarch64-build
          - name: Prepare
            id: prepare
            run: |
                # TAG=${GITHUB_REF#refs/tags/}
                # echo ::set-output name=tag_name::${TAG}
-               ls /home/runner/work/avail-apps/avail-apps/
-               tar -xvf /home/runner/work/avail-apps/avail-apps/avail-apps-linux-amd64-build
+               tar -xvf /home/runner/work/avail-apps/avail-apps/avail-apps-linux-amd64.tar.gz
+               tar -xvf /home/runner/work/avail-apps/avail-apps/avail-apps-linux-aarch64.tar.gz
          # - name: publish builds
          #   uses: svenstaro/upload-release-action@v2
          #   with:
