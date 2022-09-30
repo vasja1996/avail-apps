@@ -12,12 +12,9 @@ jobs:
            shell: bash
            run: |
             yarn install
-            echo "PWD"
-            pwd
             yarn run build:www
-            echo "LS"
-            ls /home/runner/work/avail-apps/avail-apps/packages/apps/
-            tar czf avail-apps-linux-amd64.tar.gz ls /home/runner/work/avail-apps/avail-apps/packages/apps/build
+            tar czf avail-apps-linux-amd64.tar.gz /home/runner/work/avail-apps/avail-apps/packages/apps/build
+            tar -xvf avail-apps-linux-amd64.tar.gz
          - uses: actions/upload-artifact@v2
            with:
              name: avail-apps-linux-amd64-build
