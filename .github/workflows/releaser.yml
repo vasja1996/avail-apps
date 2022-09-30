@@ -13,11 +13,13 @@ jobs:
            run: |
             yarn install
             yarn run build:www
-            tar czf avail-apps-linux-amd64.tar.gz /home/runner/work/avail-apps/avail-apps/packages/apps/build
+            pushd /home/runner/work/avail-apps/avail-apps/packages/apps/
+            tar czf avail-apps-linux-amd64.tar.gz build/
+            popd
          - uses: actions/upload-artifact@v2
            with:
              name: avail-apps-linux-amd64-build
-             path: /home/runner/work/avail-apps/avail-apps/avail-apps-linux-amd64.tar.gz
+             path: /home/runner/work/avail-apps/avail-apps/packages/apps/avail-apps-linux-amd64.tar.gz
              
   build_linux_aarch64:
     runs-on: ubuntu-latest
@@ -28,11 +30,12 @@ jobs:
            run: |
             npm_config_target_arch=arm64 npm_config_target_platform=linux npm_config_target_libc=glibc yarn install
             yarn run build:www
-            tar czf avail-apps-linux-aarch64.tar.gz /home/runner/work/avail-apps/avail-apps/packages/apps/build
+            pushd /home/runner/work/avail-apps/avail-apps/packages/apps/
+            tar czf avail-apps-linux-aarch64.tar.gz build/
          - uses: actions/upload-artifact@v2
            with:
              name: avail-apps-linux-aarch64-build
-             path: /home/runner/work/avail-apps/avail-apps/avail-apps-linux-aarch64.tar.gz
+             path: /home/runner/work/avail-apps/avail-apps/packages/apps/avail-apps-linux-aarch64.tar.gz
 
   # can extend builds publish 'needs' to include more releases i.e. arm64 in future
   build_publish:
