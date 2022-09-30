@@ -1,0 +1,47 @@
+name: Releaser
+on:
+  push:
+
+jobs:
+
+  binary_linux_amd64:
+    runs-on: ubuntu-latest
+    steps:
+         - uses: actions/checkout@v2
+         - name: build avail explorer via yarn
+           shell: bash
+           run: |
+            yarn install
+            echo "PWD"
+            pwd
+            yarn run build:www
+            echo "LS"
+            ls /home/runner/work/avail-apps/avail-apps/packages/apps/
+            tar czf avail-apps-linux-amd64.tar.gz ls /home/runner/work/avail-apps/avail-apps/packages/apps/build
+         - uses: actions/upload-artifact@v2
+           with:
+             name: avail-apps-linux-amd64-build
+             path: /home/runner/work/avail-apps/avail-apps/avail-apps-linux-amd64.tar.gz
+
+  # can extend binary publish 'needs' to include more releases i.e. arm64 in future
+  # binary_publish:
+  #   needs: [binary_linux_amd64]
+  #   runs-on: ubuntu-latest
+  #   steps:
+  #        - uses: actions/download-artifact@v2
+  #          with:
+  #            name: avail-light-linux-amd64-binary
+  #        - name: Prepare
+  #          id: prepare
+  #          run: |
+  #              TAG=${GITHUB_REF#refs/tags/}
+  #              echo ::set-output name=tag_name::${TAG}
+  #        - name: publish binaries
+  #          uses: svenstaro/upload-release-action@v2
+  #          with:
+  #            repo_token: ${{ secrets.PAT_TOKEN }}
+  #            file: /home/runner/work/avail-light/avail-light/avail-light*
+  #            release_name: ${{ steps.prepare.outputs.tag_name }}
+  #            tag: ${{ steps.prepare.outputs.tag_name }}
+  #            overwrite: true
+  #            file_glob: true
