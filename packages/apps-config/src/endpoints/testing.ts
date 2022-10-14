@@ -4,8 +4,8 @@
 import type { TFunction } from 'i18next';
 import type { LinkOption } from './types';
 
+import config from '../variables/config';
 import { expandEndpoints } from './util';
-
 /* eslint-disable sort-keys */
 
 // The available endpoints that will show in the dropdown. For the most part (with the exception of
@@ -22,7 +22,7 @@ export function createTesting (t: TFunction, firstOnly: boolean, withSort: boole
       isDevelopment: false,
       text: t('rpc.matic', 'Avail-Testnet', { ns: 'apps-config' }),
       providers: {
-        POLYGON: process.env.TESTNETURL as string
+        POLYGON: config.testnet_url
       }
     }
     /* {
@@ -32,7 +32,7 @@ export function createTesting (t: TFunction, firstOnly: boolean, withSort: boole
         'Aleph Zero Foundation': 'wss://ws.test.azero.dev'
       }
     },
-    {
+    {https://devnet01.dataavailability.link:27000/
       info: 'centrifuge',
       text: t('rpc.test.amber', 'Amber', { ns: 'apps-config' }),
       providers: {
