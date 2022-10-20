@@ -12,29 +12,47 @@ const definitions: OverrideBundleDefinition = {
       // on all versions
       minmax: [0, undefined],
       types: {
-        AppId: 'u32',
+        AppId: 'Compact<u32>',
+        DataLookupIndexItem: { 
+          appId: 'AppId',
+          start: 'Compact<u32>'
+        },
         DataLookup: {
-          size: 'u32',
-          index: 'Vec<(AppId,u32)>'
+          size: 'Compact<u32>',
+          index: 'Vec<DataLookupIndexItem>'
         },
-        KateExtrinsicRoot: {
-          hash: 'Hash',
-          commitment: 'Vec<u8>',
-          rows: 'u16',
-          cols: 'u16',
-          dataRoot: '[u8;32]'
+        KateCommitment: {
+          rows: 'Compact<u16>',
+          cols: 'Compact<u16>',
+          dataRoot: 'H256',
+          commitment: 'Vec<u8>'
         },
-        KateHeader: {
+        V1HeaderExtension: {
+          commitment: 'KateCommitment',
+          appLookup: 'DataLookup'
+        },
+        VTHeaderExtension: {
+          newField: 'Vec<u8>',
+          commitment: 'KateCommitment',
+          appLookup: 'DataLookup'
+        },
+        HeaderExtension: {
+          _enum: {
+            V1: 'V1HeaderExtension',
+            VTest: 'VTHeaderExtension'
+          }
+        },
+        DaHeader: {
           parentHash: 'Hash',
           number: 'Compact<BlockNumber>',
           stateRoot: 'Hash',
-          extrinsicsRoot: 'KateExtrinsicRoot',
+          extrinsicsRoot: 'Hash',
           digest: 'Digest',
-          appDataLookup: 'DataLookup'
+          extension: 'HeaderExtension'
         },
-        Header: 'KateHeader',
+        Header: 'DaHeader',
         CheckAppIdExtra: {
-          appId: 'u32'
+          appId: 'AppId'
         },
         CheckAppIdTypes: {},
         CheckAppId: {
@@ -47,7 +65,7 @@ const definitions: OverrideBundleDefinition = {
   signedExtensions: {
     CheckAppId: {
       extrinsic: {
-        appId: 'u32'
+        appId: 'AppId'
       },
       payload: {}
     }
