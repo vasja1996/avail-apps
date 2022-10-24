@@ -5,7 +5,6 @@ const fs = require('fs');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const path = require('path');
 const { merge } = require('webpack-merge');
-
 const baseConfig = require('./webpack.base.cjs');
 
 const context = __dirname;

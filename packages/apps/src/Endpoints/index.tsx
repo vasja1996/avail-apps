@@ -128,7 +128,11 @@ function extractLcUrlState (lcUrl: string | null, groups: Group[]): LcUrlState {
   }
 
   if (lcUrl === null) {
-    lcUrl = 'https://devnet-avail.polygon.technology/light/json-rpc';
+    // eslint-disable-next-line @typescript-eslint/restrict-plus-operands
+    const lcU = process.env.LIGHTCLIENT + '/json-rpc';
+
+    // lcUrl = 'https://testnet.polygonavail.net/light/json-rpc';
+    lcUrl = lcU;
   }
 
   return {
