@@ -8,6 +8,45 @@ import type { OverrideBundleDefinition } from '@polkadot/types/types';
 /* eslint-disable sort-keys */
 
 const definitions: OverrideBundleDefinition = {
+  rpc: {
+    kate: {
+      blockLength: {
+        description: "Get Block Length",
+        params: [],
+        type: 'BlockLength' 
+      },
+      queryProof: {
+        description: 'Generate the kate proof for the given `cells`',
+        params: [
+          {
+            name: 'cells',
+            type: 'Vec<Cell>'
+          },
+          {
+            name: 'at',
+            type: 'Hash',
+            isOptional: true
+          },
+        ],
+        type: 'Vec<u8>'
+      },
+      queryDataProof: {
+        description: 'Generate the data proof for the given `index`',
+        params: [
+          {
+            name: 'data_index',
+            type: 'u32'
+          },
+          {
+            name: 'at',
+            type: 'Hash',
+            isOptional: true
+          }
+        ],
+        type: 'Vec<H256>'
+      }
+    }
+  },
   types: [
     {
       // on all versions
@@ -59,6 +98,17 @@ const definitions: OverrideBundleDefinition = {
         CheckAppId: {
           extra: 'CheckAppIdExtra',
           types: 'CheckAppIdTypes'
+        },
+        BlockLength: {
+          max: 'PerDispatchClass',
+          cols: 'Compact<u32>',
+          rows: 'Compact<u32>',
+          chunkSize: 'Compact<u32>'
+        },
+        PerDispatchClass: {
+          normal: 'u32',
+          operational: 'u32',
+          mandatory: 'u32'
         }
       }
     }
