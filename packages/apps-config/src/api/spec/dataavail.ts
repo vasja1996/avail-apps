@@ -43,7 +43,7 @@ const definitions: OverrideBundleDefinition = {
             isOptional: true
           }
         ],
-        type: 'Vec<H256>'
+        type: 'DataProof'
       }
     }
   },
@@ -109,6 +109,13 @@ const definitions: OverrideBundleDefinition = {
           normal: 'u32',
           operational: 'u32',
           mandatory: 'u32'
+        },
+        DataProof: {
+          root: 'H256',
+          proof: 'Vec<H256>',
+          numberOfLeaves: 'Compact<u32>',
+          leaf_index: 'Compact<u32>',
+          leaf: 'H256'
         }
       }
     }
