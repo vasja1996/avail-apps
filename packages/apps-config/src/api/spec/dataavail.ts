@@ -12,7 +12,13 @@ const definitions: OverrideBundleDefinition = {
     kate: {
       blockLength: {
         description: "Get Block Length",
-        params: [],
+        params: [
+          {
+            name: 'at',
+            type: 'Hash',
+            isOptional: true
+          }
+        ],
         type: 'BlockLength' 
       },
       queryProof: {
@@ -116,6 +122,10 @@ const definitions: OverrideBundleDefinition = {
           numberOfLeaves: 'Compact<u32>',
           leaf_index: 'Compact<u32>',
           leaf: 'H256'
+        },
+        Cell: {
+          row: 'u32',
+          col: 'u32',
         }
       }
     }
