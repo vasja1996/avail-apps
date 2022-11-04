@@ -162,7 +162,7 @@ function createWebpack(context, mode = 'production') {
           VERSION: JSON.stringify(pkgJson.version),
           WS_URL: JSON.stringify(process.env.WS_URL),
           TESTNETURL: JSON.stringify(process.env.TESTNETURL),
-          LIGHTCLIENT: JSON.stringify(process.env.LIGHTCLIENT),
+          LCURL: JSON.stringify(process.env.LCURL),
         }
       }),
       new webpack.optimize.SplitChunksPlugin(),

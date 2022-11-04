@@ -2910,6 +2910,7 @@ __metadata:
     "@unique-nft/types": 0.2.0
     "@zeitgeistpm/type-defs": 0.3.10
     "@zeroio/type-definitions": 0.0.14
+    dotenv: ^16.0.3
     i18next: ^21.6.10
     lodash: ^4.17.21
     moonbeam-types-bundle: 2.0.3
@@ -8868,15 +8869,6 @@ __metadata:
   languageName: node
   linkType: hard
 
-"dotenv-defaults@npm:^2.0.2":
-  version: 2.0.2
-  resolution: "dotenv-defaults@npm:2.0.2"
-  dependencies:
-    dotenv: ^8.2.0
-  checksum: c005960bd048e2189c4799e729c41f362e415e6e0b54313d3f31e853a84b049bf770b25cb21c112c2805bb13a8376edc9de451fb514abf8546392d327c27f6e5
-  languageName: node
-  linkType: hard
-
 "dotenv-expand@npm:^5.1.0":
   version: 5.1.0
   resolution: "dotenv-expand@npm:5.1.0"
@@ -8884,21 +8876,10 @@ __metadata:
   languageName: node
   linkType: hard
 
-"dotenv-webpack@npm:^7.1.0":
-  version: 7.1.0
-  resolution: "dotenv-webpack@npm:7.1.0"
-  dependencies:
-    dotenv-defaults: ^2.0.2
-  peerDependencies:
-    webpack: ^4 || ^5
-  checksum: e69f5b5de16f99a0acc35f2bc75e1dd40a587053cdb62ffb2fe80cea197ba703a829771f6db270a01e96ca8f52c8160671c243875a7b9c7c040bc32fc3d400f1
-  languageName: node
-  linkType: hard
-
-"dotenv@npm:^8.2.0":
-  version: 8.6.0
-  resolution: "dotenv@npm:8.6.0"
-  checksum: 38e902c80b0666ab59e9310a3d24ed237029a7ce34d976796349765ac96b8d769f6df19090f1f471b77a25ca391971efde8a1ea63bb83111bd8bec8e5cc9b2cd
+"dotenv@npm:^16.0.3":
+  version: 16.0.3
+  resolution: "dotenv@npm:16.0.3"
+  checksum: afcf03f373d7a6d62c7e9afea6328e62851d627a4e73f2e12d0a8deae1cd375892004f3021883f8aec85932cd2834b091f568ced92b4774625b321db83b827f8
   languageName: node
   linkType: hard
 
@@ -16104,7 +16085,7 @@ __metadata:
     concurrently: ^7.0.0
     devtron: ^1.4.0
     dnslink-cloudflare: ^3.0.0
-    dotenv-webpack: ^7.1.0
+    dotenv: ^16.0.3
     electron: ^12.2.3
     electron-builder: 22.14.13
     electron-builder-notarize: ^1.2.0

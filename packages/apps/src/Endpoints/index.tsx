@@ -15,6 +15,7 @@ import { Button, Input, Sidebar } from '@polkadot/react-components';
 import { settings } from '@polkadot/ui-settings';
 import { isAscii } from '@polkadot/util';
 
+import config from '../../../apps-config/src/variables/config';
 import { useTranslation } from '../translate';
 import GroupDisplay from './Group';
 
@@ -129,7 +130,7 @@ function extractLcUrlState (lcUrl: string | null, groups: Group[]): LcUrlState {
 
   if (lcUrl === null) {
     // eslint-disable-next-line @typescript-eslint/restrict-plus-operands
-    const lcU = process.env.LIGHTCLIENT + '/json-rpc';
+    const lcU = config.LCURL + '/json-rpc';
 
     // lcUrl = 'https://testnet.polygonavail.net/light/json-rpc';
     lcUrl = lcU;
