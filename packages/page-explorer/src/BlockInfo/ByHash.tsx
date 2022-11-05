@@ -13,6 +13,7 @@ import { AddressSmall, Columar, LinkExternal, Table } from '@polkadot/react-comp
 import { useApi, useIsMountedRef } from '@polkadot/react-hooks';
 import { formatNumber } from '@polkadot/util';
 
+import config from '../../../apps-config/src/variables/config';
 import Events from '../Events';
 import { useTranslation } from '../translate';
 import Extrinsics from './Extrinsics';
@@ -60,7 +61,7 @@ function BlockByHash ({ className = '', error, value }: Props): React.ReactEleme
 
         const number = result[2]?.number.unwrap().toNumber();
         // let LightClientURI = 'https://testnet.polygonavail.net/light/v1';
-        let LightClientURI = process.env.LIGHTCLIENT as string + '/v1';
+        let LightClientURI = config.LCURL + '/v1';
 
         const url = new URL(window.location.href);
         const searchParams = new URLSearchParams(url.search);
