@@ -50,7 +50,7 @@ To start off, this repo uses yarn workspaces to organize the code. As such, afte
 To get started -
 
 1. Clone the repo locally, via `git clone https://github.com/maticnetwork/avail-apps.git <optional local path>`
-2. Ensure that you have a recent LTS version of Node.js, for development purposes [Node >=10.13.0](https://nodejs.org/en/) is recommended.
+2. Ensure that you have a recent LTS version of Node.js, for development purposes [Node >=14.13.0 && <=16.18.1](https://nodejs.org/en/download/releases/) is recommended. (Note: Node 17 and above are not supported)
 3. Ensure that you have a recent version of Yarn, for development purposes [Yarn >=1.10.1](https://yarnpkg.com/docs/install) is required.
 4. Install the dependencies by running `yarn`
 5. Ensure that env file is created as mentioned in `env-example` file 
