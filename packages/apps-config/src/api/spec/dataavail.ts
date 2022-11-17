@@ -36,6 +36,22 @@ const definitions: OverrideBundleDefinition = {
         ],
         type: 'Vec<u8>'
       },
+      queryAppData: {
+        description: 'Fetches app data rows for the given app',
+        params: [
+          {
+            name: 'app_id',
+            type: 'AppId'
+          },
+          {
+            name: 'at',
+            type: 'Hash',
+            isOptional: true
+          },
+        ],
+        type: 'Vec<Option<Vec<u8>>>'
+      },
+
       queryDataProof: {
         description: 'Generate the data proof for the given `index`',
         params: [
