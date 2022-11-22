@@ -121,10 +121,12 @@ const definitions: OverrideBundleDefinition = {
           extra: 'CheckAppIdExtra',
           types: 'CheckAppIdTypes'
         },
+        BlockLengthColumns: 'Compact<u32>',
+        BlockLengthRows: 'Compact<u32>',
         BlockLength: {
           max: 'PerDispatchClass',
-          cols: 'Compact<u32>',
-          rows: 'Compact<u32>',
+          cols: 'BlockLengthColumns',
+          rows: 'BlockLengthRows',
           chunkSize: 'Compact<u32>'
         },
         PerDispatchClass: {
@@ -140,8 +142,8 @@ const definitions: OverrideBundleDefinition = {
           leaf: 'H256'
         },
         Cell: {
-          row: 'u32',
-          col: 'u32',
+          row: 'BlockLengthRows',
+          col: 'BlockLengthColumns'
         }
       }
     }
