@@ -1,4 +1,4 @@
-// Copyright 2017-2022 @polkadot/react-components authors & contributors
+// Copyright 2017-2023 @polkadot/react-components authors & contributors
 // SPDX-License-Identifier: Apache-2.0
 
 import type { DeriveAccountInfo } from '@polkadot/api-derive/types';
@@ -32,7 +32,7 @@ function AccountIndex ({ children, className = '', defaultValue, label, value }:
     [info]
   );
 
-  if (!api.query.indices) {
+  if (!api || !api.query.indices) {
     return null;
   }
 

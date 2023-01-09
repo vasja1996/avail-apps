@@ -1,56 +1,65 @@
-// Copyright 2017-2022 @polkadot/app-staking authors & contributors
+// Copyright 2017-2023 @polkadot/app-staking authors & contributors
 // SPDX-License-Identifier: Apache-2.0
 
 import type { DeriveStakerPrefs } from '@polkadot/api-derive/types';
-import type { ChartInfo, LineDataEntry, Props } from './types';
+import type { LineData, Props } from './types';
 
-import React, { useMemo, useRef } from 'react';
+import React, { useEffect, useMemo, useRef, useState } from 'react';
 
-import { Chart, Spinner } from '@polkadot/react-components';
 import { useApi, useCall } from '@polkadot/react-hooks';
 import { BN, BN_BILLION } from '@polkadot/util';
 
 import { useTranslation } from '../translate';
+import Chart from './Chart';
 
 const MULT = new BN(100 * 100);
 const COLORS_POINTS = [undefined, '#acacac'];
 
-function extractPrefs (prefs: DeriveStakerPrefs[] = []): ChartInfo {
-  const labels: string[] = [];
-  const avgSet: LineDataEntry = [];
-  const idxSet: LineDataEntry = [];
-  let avgCount = 0;
-  let total = 0;
-
-  prefs.forEach(({ era, validatorPrefs }): void => {
+function extractPrefs (labels: string[], prefs: DeriveStakerPrefs[]): LineData {
+  const avgSet = new Array<number>(labels.length);
+  const idxSet = new Array<number>(labels.length);
+  const [total, avgCount] = prefs.reduce(([total, avgCount], { validatorPrefs }) => {
     const comm = validatorPrefs.commission.unwrap().mul(MULT).div(BN_BILLION).toNumber() / 100;
 
-    total += comm;
-    labels.push(era.toHuman());
-
     if (comm !== 0) {
+      total += comm;
       avgCount++;
     }
 
-    avgSet.push((avgCount ? Math.ceil(total * 100 / avgCount) : 0) / 100);
-    idxSet.push(comm);
+    return [total, avgCount];
+  }, [0, 0]);
+
+  prefs.forEach(({ era, validatorPrefs }): void => {
+    const comm = validatorPrefs.commission.unwrap().mul(MULT).div(BN_BILLION).toNumber() / 100;
+    const avg = avgCount > 0
+      ? Math.ceil(total * 100 / avgCount) / 100
+      : 0;
+    const index = labels.indexOf(era.toHuman());
+
+    if (index !== -1) {
+      avgSet[index] = avg;
+      idxSet[index] = comm;
+    }
   });
 
-  return {
-    chart: [idxSet, avgSet],
-    labels
-  };
+  return [idxSet, avgSet];
 }
 
-function ChartPrefs ({ validatorId }: Props): React.ReactElement<Props> {
+function ChartPrefs ({ labels, validatorId }: Props): React.ReactElement<Props> {
   const { t } = useTranslation();
   const { api } = useApi();
   const params = useMemo(() => [validatorId, false], [validatorId]);
   const stakerPrefs = useCall<DeriveStakerPrefs[]>(api.derive.staking.stakerPrefs, params);
+  const [values, setValues] = useState<LineData>([]);
 
-  const { chart, labels } = useMemo(
-    () => extractPrefs(stakerPrefs),
-    [stakerPrefs]
+  useEffect(
+    () => setValues([]),
+    [validatorId]
+  );
+
+  useEffect(
+    () => stakerPrefs && setValues(extractPrefs(labels, stakerPrefs)),
+    [labels, stakerPrefs]
   );
 
   const legendsRef = useRef([
@@ -59,20 +68,13 @@ function ChartPrefs ({ validatorId }: Props): React.ReactElement<Props> {
   ]);
 
   return (
-    <div className='staking--Chart'>
-      <h1>{t<string>('commission')}</h1>
-      {labels.length
-        ? (
-          <Chart.Line
-            colors={COLORS_POINTS}
-            labels={labels}
-            legends={legendsRef.current}
-            values={chart}
-          />
-        )
-        : <Spinner />
-      }
-    </div>
+    <Chart
+      colors={COLORS_POINTS}
+      header={t<string>('commission')}
+      labels={labels}
+      legends={legendsRef.current}
+      values={values}
+    />
   );
 }
 

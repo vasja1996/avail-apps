@@ -1,4 +1,4 @@
-// Copyright 2017-2022 @polkadot/app-parachains authors & contributors
+// Copyright 2017-2023 @polkadot/app-parachains authors & contributors
 // SPDX-License-Identifier: Apache-2.0
 
 import type { BN } from '@polkadot/util';
@@ -16,17 +16,21 @@ interface Props {
   value?: number | BN | null;
 }
 
+function calcBlocks (leasePeriod?: LeasePeriod | null, value?: number | BN | null): BN | null | undefined | 0 {
+  return leasePeriod && value &&
+    bnToBn(value)
+      .sub(BN_ONE)
+      .imul(leasePeriod.length)
+      .iadd(leasePeriod.remainder);
+}
+
 function LeaseBlocks ({ children, className, leasePeriod, value }: Props): React.ReactElement<Props> | null {
   const blocks = useMemo(
-    () => leasePeriod && value &&
-      bnToBn(value)
-        .sub(BN_ONE)
-        .imul(leasePeriod.length)
-        .iadd(leasePeriod.remainder),
+    () => calcBlocks(leasePeriod, value),
     [leasePeriod, value]
   );
 
-  if (!leasePeriod || !blocks) {
+  if (!blocks) {
     return null;
   }
 

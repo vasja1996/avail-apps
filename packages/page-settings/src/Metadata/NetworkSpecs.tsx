@@ -1,4 +1,4 @@
-// Copyright 2017-2022 @polkadot/app-settings authors & contributors
+// Copyright 2017-2023 @polkadot/app-settings authors & contributors
 // SPDX-License-Identifier: Apache-2.0
 
 import type { NetworkSpecsStruct } from '@polkadot/ui-settings/types';
@@ -94,8 +94,8 @@ function NetworkSpecs ({ chainInfo, className }: Props): React.ReactElement<Prop
     [networkSpecs]
   );
 
-  const headerRef = useRef([
-    [t('chain specifications'), 'start', '2']
+  const headerRef = useRef<[React.ReactNode?, string?, number?][]>([
+    [t('chain specifications'), 'start', 2]
   ]);
 
   if (!isApiReady) {
@@ -122,7 +122,7 @@ function NetworkSpecs ({ chainInfo, className }: Props): React.ReactElement<Prop
             <ChainImg className='settings--networkSpecs-logo' />
           </div>
         </td>
-        <td rowSpan={6}>
+        <td rowSpan={7}>
           {qrData.genesisHash && (
             <QrNetworkSpecs
               className='settings--networkSpecs-qr'
@@ -180,12 +180,11 @@ function NetworkSpecs ({ chainInfo, className }: Props): React.ReactElement<Prop
           />
         </td>
       </tr>
-
       <tr>
         <td>
           <Input
             className='full'
-            help={t<string>('Prefix indicates the ss58 address format in this network, it is a number between 0 ~ 255 that describes the precise format of the bytes of the address')}
+            help={t<string>('Prefix indicates the ss58 address format in this network, it is a 16 bit unsigned integer that describes the precise format of the bytes of the address')}
             isDisabled
             label={t<string>('Address Prefix')}
             value={networkSpecs.prefix.toString()}

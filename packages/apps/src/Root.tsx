@@ -1,21 +1,19 @@
-// Copyright 2017-2022 @polkadot/apps authors & contributors
+// Copyright 2017-2023 @polkadot/apps authors & contributors
 // SPDX-License-Identifier: Apache-2.0
 
-import type { ThemeDef } from '@polkadot/react-components/types';
+import type { ThemeDef } from '@polkadot/react-hooks/ctx/types';
 import type { KeyringStore } from '@polkadot/ui-keyring/types';
 
 import React, { Suspense, useEffect, useState } from 'react';
 import { HashRouter } from 'react-router-dom';
 import { ThemeProvider } from 'styled-components';
 
-import { Api } from '@polkadot/react-api';
-import Queue from '@polkadot/react-components/Status/Queue';
-import { BlockAuthors, Events } from '@polkadot/react-query';
+import { ApiCtxRoot } from '@polkadot/react-api';
+import { ApiStatsCtxRoot, BlockAuthorsCtxRoot, BlockEventsCtxRoot, KeyringCtxRoot, QueueCtxRoot, WindowSizeCtxRoot } from '@polkadot/react-hooks';
 import { settings } from '@polkadot/ui-settings';
 
 import Apps from './Apps';
 import { darkTheme, lightTheme } from './themes';
-import WindowDimensions from './WindowDimensions';
 
 interface Props {
   isElectron: boolean;
@@ -40,26 +38,32 @@ function Root ({ isElectron, store }: Props): React.ReactElement<Props> {
     settings.on('change', (settings) => setTheme(createTheme(settings)));
   }, []);
 
+  // The ordering here is critical. It defines the hierarchy of dependencies,
+  // i.e. Block* could from Api. Certainly no cross-deps allowed
   return (
     <Suspense fallback='...'>
       <ThemeProvider theme={theme}>
-        <Queue>
-          <Api
-            apiUrl={settings.apiUrl}
-            isElectron={isElectron}
-            store={store}
-          >
-            <BlockAuthors>
-              <Events>
-                <HashRouter>
-                  <WindowDimensions>
-                    <Apps />
-                  </WindowDimensions>
-                </HashRouter>
-              </Events>
-            </BlockAuthors>
-          </Api>
-        </Queue>
+        <KeyringCtxRoot>
+          <QueueCtxRoot>
+            <ApiCtxRoot
+              apiUrl={settings.apiUrl}
+              isElectron={isElectron}
+              store={store}
+            >
+              <ApiStatsCtxRoot>
+                <BlockAuthorsCtxRoot>
+                  <BlockEventsCtxRoot>
+                    <HashRouter>
+                      <WindowSizeCtxRoot>
+                        <Apps />
+                      </WindowSizeCtxRoot>
+                    </HashRouter>
+                  </BlockEventsCtxRoot>
+                </BlockAuthorsCtxRoot>
+              </ApiStatsCtxRoot>
+            </ApiCtxRoot>
+          </QueueCtxRoot>
+        </KeyringCtxRoot>
       </ThemeProvider>
     </Suspense>
   );

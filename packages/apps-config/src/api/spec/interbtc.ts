@@ -1,4 +1,4 @@
-// Copyright 2017-2022 @polkadot/apps-config authors & contributors
+// Copyright 2017-2023 @polkadot/apps-config authors & contributors
 // SPDX-License-Identifier: Apache-2.0
 
 /* eslint-disable @typescript-eslint/no-unsafe-argument, @typescript-eslint/no-unsafe-member-access, @typescript-eslint/no-unsafe-assignment */
@@ -29,6 +29,7 @@ function defaultAccountBalance (): DeriveBalancesAll {
     freeBalance: balanceOf(0),
     lockedBalance: balanceOf(0),
     lockedBreakdown: [],
+    namedReserves: [],
     reservedBalance: balanceOf(0)
   } as any;
 }

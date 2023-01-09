@@ -1,4 +1,4 @@
-// Copyright 2017-2022 @polkadot/app-staking authors & contributors
+// Copyright 2017-2023 @polkadot/app-staking authors & contributors
 // SPDX-License-Identifier: Apache-2.0
 
 import type { UnappliedSlash } from '@polkadot/types/interfaces';
@@ -7,14 +7,13 @@ import type { NominatedBy, ValidatorInfo } from '../types';
 
 import React, { useCallback, useMemo } from 'react';
 
-import { AddressSmall, Badge, Checkbox, Icon } from '@polkadot/react-components';
+import { AddressSmall, Badge, Checkbox, Icon, Table } from '@polkadot/react-components';
 import { checkVisibility } from '@polkadot/react-components/util';
 import { useApi, useBlockTime, useDeriveAccountInfo } from '@polkadot/react-hooks';
 import { FormatBalance } from '@polkadot/react-query';
 import { formatNumber } from '@polkadot/util';
 
 import MaxBadge from '../MaxBadge';
-import Favorite from '../Overview/Address/Favorite';
 import { useTranslation } from '../translate';
 
 interface Props {
@@ -33,50 +32,48 @@ function queryAddress (address: string): void {
   window.location.hash = `/staking/query/${address}`;
 }
 
-function Validator ({ allSlashes, canSelect, filterName, info, isNominated, isSelected, nominatedBy = [], toggleFavorite, toggleSelected }: Props): React.ReactElement<Props> | null {
+function Validator ({ allSlashes, canSelect, filterName, info: { accountId, bondOther, bondOwn, bondTotal, commissionPer, isBlocking, isElected, isFavorite, key, lastPayout, numNominators, rankOverall, stakedReturnCmp }, isNominated, isSelected, nominatedBy = [], toggleFavorite, toggleSelected }: Props): React.ReactElement<Props> | null {
   const { t } = useTranslation();
   const { api } = useApi();
-  const accountInfo = useDeriveAccountInfo(info.accountId);
-  const [,, time] = useBlockTime(info.lastPayout);
+  const accountInfo = useDeriveAccountInfo(accountId);
+  const [,, time] = useBlockTime(lastPayout);
 
   const isVisible = useMemo(
     () => accountInfo
-      ? checkVisibility(api, info.key, accountInfo, filterName)
+      ? checkVisibility(api, key, accountInfo, filterName)
       : true,
-    [accountInfo, api, filterName, info]
+    [accountInfo, api, filterName, key]
   );
 
   const slashes = useMemo(
     () => (allSlashes || [])
-      .map(([era, all]) => ({ era, slashes: all.filter(({ validator }) => validator.eq(info.accountId)) }))
+      .map(([era, all]) => ({ era, slashes: all.filter(({ validator }) => validator.eq(accountId)) }))
       .filter(({ slashes }) => slashes.length),
-    [allSlashes, info]
+    [allSlashes, accountId]
   );
 
   const _onQueryStats = useCallback(
-    () => queryAddress(info.key),
-    [info.key]
+    () => queryAddress(key),
+    [key]
   );
 
   const _toggleSelected = useCallback(
-    () => toggleSelected(info.key),
-    [info.key, toggleSelected]
+    () => toggleSelected(key),
+    [key, toggleSelected]
   );
 
   if (!isVisible) {
     return null;
   }
 
-  const { accountId, bondOther, bondOwn, bondTotal, commissionPer, isBlocking, isElected, isFavorite, key, lastPayout, numNominators, rankOverall, stakedReturnCmp } = info;
-
   return (
     <tr>
+      <Table.Column.Favorite
+        address={key}
+        isFavorite={isFavorite}
+        toggle={toggleFavorite}
+      />
       <td className='badge together'>
-        <Favorite
-          address={key}
-          isFavorite={isFavorite}
-          toggleFavorite={toggleFavorite}
-        />
         {isNominated
           ? (
             <Badge
@@ -114,7 +111,7 @@ function Validator ({ allSlashes, canSelect, filterName, info, isNominated, isSe
           />
         )}
       </td>
-      <td className='number'>{formatNumber(rankOverall)}</td>
+      <td className='number'>{rankOverall !== 0 && formatNumber(rankOverall)}</td>
       <td className='address all'>
         <AddressSmall value={accountId} />
       </td>

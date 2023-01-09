@@ -1,4 +1,4 @@
-// Copyright 2017-2022 @polkadot/app-council authors & contributors
+// Copyright 2017-2023 @polkadot/app-council authors & contributors
 // SPDX-License-Identifier: Apache-2.0
 
 import type { ComponentProps as Props } from './types';
@@ -14,7 +14,7 @@ import { useModuleElections } from '../useModuleElections';
 function SubmitCandidacy ({ electionsInfo }: Props): React.ReactElement<Props> | null {
   const { api } = useApi();
   const { t } = useTranslation();
-  const [accountId, setAcountId] = useState<string | null>(null);
+  const [accountId, setAccountId] = useState<string | null>(null);
   const { isOpen, onClose, onOpen } = useModal();
   const modLocation = useModuleElections();
 
@@ -35,7 +35,7 @@ function SubmitCandidacy ({ electionsInfo }: Props): React.ReactElement<Props> |
               <InputAddress
                 help={t<string>('Select the account you wish to submit for candidacy.')}
                 label={t<string>('candidate account')}
-                onChange={setAcountId}
+                onChange={setAccountId}
                 type='account'
               />
             </Modal.Columns>

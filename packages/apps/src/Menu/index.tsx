@@ -1,4 +1,4 @@
-// Copyright 2017-2022 @polkadot/apps authors & contributors
+// Copyright 2017-2023 @polkadot/apps authors & contributors
 // SPDX-License-Identifier: Apache-2.0
 
 import type { TFunction } from 'i18next';
@@ -42,7 +42,7 @@ function createExternals (t: TFunction): ItemRoute[] {
   ];
 }
 
-function checkVisible ({ api, isApiConnected, isApiReady }: ApiProps, allowTeleport: boolean, hasAccounts: boolean, hasSudo: boolean, { isHidden, needsAccounts, needsApi, needsApiInstances, needsSudo, needsTeleport }: Route['display']): boolean {
+function checkVisible ({ api, isApiConnected, isApiReady, isDevelopment: isApiDevelopment }: ApiProps, allowTeleport: boolean, hasAccounts: boolean, hasSudo: boolean, { isDevelopment, isHidden, needsAccounts, needsApi, needsApiCheck, needsApiInstances, needsSudo, needsTeleport }: Route['display']): boolean {
   if (isHidden) {
     return false;
   } else if (needsAccounts && !hasAccounts) {
@@ -55,9 +55,11 @@ function checkVisible ({ api, isApiConnected, isApiReady }: ApiProps, allowTelep
     return false;
   } else if (needsTeleport && !allowTeleport) {
     return false;
+  } else if (!isApiDevelopment && isDevelopment) {
+    return false;
   }
 
-  return findMissingApis(api, needsApi, needsApiInstances).length === 0;
+  return findMissingApis(api, needsApi, needsApiInstances, needsApiCheck).length === 0;
 }
 
 function extractGroups (routing: Routes, groupNames: Record<string, string>, apiProps: ApiProps, allowTeleport: boolean, hasAccounts: boolean, hasSudo: boolean): Group[] {
@@ -99,6 +101,7 @@ function Menu ({ className = '' }: Props): React.ReactElement<Props> {
   const groupRef = useRef({
     accounts: t('Accounts'),
     developer: t('Developer'),
+    files: t('Files'),
     governance: t('Governance'),
     network: t('Network'),
     settings: t('Settings')
@@ -160,6 +163,10 @@ export default React.memo(styled(Menu)`
   padding: 0;
   z-index: 220;
   position: relative;
+
+  .smallShow {
+    display: none;
+  }
 
   & .menuContainer {
     flex-direction: row;
@@ -226,4 +233,25 @@ export default React.memo(styled(Menu)`
     align-self: center;
   }
 
+  @media only screen and (max-width: 800px) {
+    .groupHdr {
+      padding: 0.857rem 0.75rem;
+    }
+
+    .smallShow {
+      display: initial;
+    }
+
+    .smallHide {
+      display: none;
+    }
+
+    .menuItems {
+      margin-right: 0;
+
+      > li + li {
+        margin-left: 0.25rem;
+      }
+    }
+  }
 `);

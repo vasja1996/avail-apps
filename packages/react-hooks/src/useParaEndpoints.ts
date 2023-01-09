@@ -1,4 +1,4 @@
-// Copyright 2017-2022 @polkadot/react-hooks authors & contributors
+// Copyright 2017-2023 @polkadot/react-hooks authors & contributors
 // SPDX-License-Identifier: Apache-2.0
 
 import type { LinkOption } from '@polkadot/apps-config/endpoints/types';
@@ -23,7 +23,9 @@ function extractRelayEndpoints (genesisHash: string): LinkOption[] {
 function extractParaEndpoints (allEndpoints: LinkOption[], paraId: BN | number): LinkOption[] {
   const numId = bnToBn(paraId).toNumber();
 
-  return allEndpoints.filter(({ paraId }) => paraId === numId);
+  return allEndpoints.filter(({ paraId }) =>
+    paraId === numId
+  );
 }
 
 function useRelayEndpointsImpl (): LinkOption[] {

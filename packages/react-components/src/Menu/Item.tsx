@@ -1,4 +1,4 @@
-// Copyright 2017-2022 @polkadot/react-components authors & contributors
+// Copyright 2017-2023 @polkadot/react-components authors & contributors
 // SPDX-License-Identifier: Apache-2.0
 
 import type { ItemProps } from './types';
@@ -8,9 +8,11 @@ import styled from 'styled-components';
 
 import Icon from '../Icon';
 
-function Item ({ children, className = '', icon, isDisabled, onClick }: ItemProps): React.ReactElement<ItemProps> {
+function Item ({ children, className = '', icon, isDisabled, label, onClick }: ItemProps): React.ReactElement<ItemProps> {
   const _onClick = useCallback(
-    () => !isDisabled && onClick && onClick(),
+    (): void => {
+      !isDisabled && onClick && onClick();
+    },
     [isDisabled, onClick]
   );
 
@@ -25,23 +27,20 @@ function Item ({ children, className = '', icon, isDisabled, onClick }: ItemProp
           icon={icon}
         />
       )}
-      {children}
+      {label}{children}
     </div>
   );
 }
 
 export default React.memo(styled(Item)`
+  align-items: center;
   cursor: pointer;
   display: flex;
   flex-direction: row;
-  align-items: center;
-
-  position: relative;
-
-  font-size: 0.93rem;
+  font-size: var(--font-size-small);
   line-height: 0.93rem;
-
   padding: 0.5rem 1rem;
+  position: relative;
 
   &:last-child {
     margin-bottom: 0;

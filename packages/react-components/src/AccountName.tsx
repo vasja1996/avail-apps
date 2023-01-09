@@ -1,4 +1,4 @@
-// Copyright 2017-2022 @polkadot/react-query authors & contributors
+// Copyright 2017-2023 @polkadot/react-query authors & contributors
 // SPDX-License-Identifier: Apache-2.0
 
 import type { IconName } from '@fortawesome/fontawesome-svg-core';
@@ -8,10 +8,10 @@ import type { AccountId, AccountIndex, Address } from '@polkadot/types/interface
 import React, { useCallback, useContext, useEffect, useState } from 'react';
 import styled from 'styled-components';
 
-import { AccountSidebarToggle } from '@polkadot/app-accounts/Sidebar';
+import { AccountSidebarCtx } from '@polkadot/app-accounts/Sidebar';
 import registry from '@polkadot/react-api/typeRegistry';
 import { useDeriveAccountInfo, useSystemApi } from '@polkadot/react-hooks';
-import { isFunction, stringToU8a } from '@polkadot/util';
+import { formatNumber, isCodec, isFunction, stringToU8a, u8aEmpty, u8aEq, u8aToBn } from '@polkadot/util';
 
 import Badge from './Badge';
 import { getAddressName } from './util';
@@ -29,14 +29,50 @@ interface Props {
   withSidebar?: boolean;
 }
 
-const KNOWN: [AccountId, string][] = [
-  [registry.createType('AccountId', stringToU8a('modlpy/socie'.padEnd(32, '\0'))), 'Society'],
-  [registry.createType('AccountId', stringToU8a('modlpy/trsry'.padEnd(32, '\0'))), 'Treasury']
+type AddrMatcher = (addr: unknown) => string | null;
+
+function createAllMatcher (prefix: string, name: string): AddrMatcher {
+  const test = registry.createType('AccountId', stringToU8a(prefix.padEnd(32, '\0')));
+
+  return (addr: unknown) =>
+    test.eq(addr)
+      ? name
+      : null;
+}
+
+function createNumMatcher (prefix: string, name: string, add?: string): AddrMatcher {
+  const test = stringToU8a(prefix);
+
+  // 4 bytes for u32 (more should not hurt, LE)
+  const minLength = test.length + 4;
+
+  return (addr: unknown): string | null => {
+    const u8a = isCodec(addr)
+      ? addr.toU8a()
+      : registry.createType('AccountId', addr as string).toU8a();
+
+    return (u8a.length >= minLength) && u8aEq(test, u8a.subarray(0, test.length)) && u8aEmpty(u8a.subarray(minLength))
+      ? `${name} ${formatNumber(u8aToBn(u8a.subarray(test.length, minLength)))}${add ? ` (${add})` : ''}`
+      : null;
+  };
+}
+
+const MATCHERS: AddrMatcher[] = [
+  createAllMatcher('modlpy/socie', 'Society'),
+  createAllMatcher('modlpy/trsry', 'Treasury'),
+  createNumMatcher('modlpy/cfund', 'Crowdloan'),
+  // Substrate master
+  createNumMatcher('modlpy/npols\x00', 'Pool', 'Stash'),
+  createNumMatcher('modlpy/npols\x01', 'Pool', 'Reward'),
+  // Westend
+  createNumMatcher('modlpy/nopls\x00', 'Pool', 'Stash'),
+  createNumMatcher('modlpy/nopls\x01', 'Pool', 'Reward'),
+  createNumMatcher('para', 'Parachain'),
+  createNumMatcher('sibl', 'Sibling')
 ];
 
 const displayCache = new Map<string, React.ReactNode>();
 const indexCache = new Map<string, string>();
-
 const parentCache = new Map<string, string>();
 
 export function getParentAccount (value: string): string | undefined {
@@ -44,10 +80,14 @@ export function getParentAccount (value: string): string | undefined {
 }
 
 function defaultOrAddr (defaultName = '', _address: AccountId | AccountIndex | Address | string | Uint8Array, _accountIndex?: AccountIndex | null): [React.ReactNode, boolean, boolean, boolean] {
-  const known = KNOWN.find(([known]) => known.eq(_address));
+  let known: string | null = null;
+
+  for (let i = 0; known === null && i < MATCHERS.length; i++) {
+    known = MATCHERS[i](_address);
+  }
 
   if (known) {
-    return [known[1], false, false, true];
+    return [known, false, false, true];
   }
 
   const accountId = _address.toString();
@@ -78,7 +118,7 @@ function extractName (address: string, accountIndex?: AccountIndex, defaultName?
   const [displayName, isLocal, isAddress, isSpecial] = defaultOrAddr(defaultName, address, accountIndex);
 
   return (
-    <div className='via-identity'>
+    <span className='via-identity'>
       {isSpecial && (
         <Badge
           color='green'
@@ -87,20 +127,20 @@ function extractName (address: string, accountIndex?: AccountIndex, defaultName?
         />
       )}
       <span className={`name${(isLocal || isSpecial) ? ' isLocal' : (isAddress ? ' isAddress' : '')}`}>{displayName}</span>
-    </div>
+    </span>
   );
 }
 
 function createIdElem (nameElem: React.ReactNode, color: 'green' | 'red' | 'gray', icon: IconName): React.ReactNode {
   return (
-    <div className='via-identity'>
+    <span className='via-identity'>
       <Badge
         color={color}
         icon={icon}
         isSmall
       />
       {nameElem}
-    </div>
+    </span>
   );
 }
 
@@ -134,7 +174,7 @@ function AccountName ({ children, className = '', defaultName, label, onClick, o
   const api = useSystemApi();
   const info = useDeriveAccountInfo(value);
   const [name, setName] = useState<React.ReactNode>(() => extractName((value || '').toString(), undefined, defaultName));
-  const toggleSidebar = useContext(AccountSidebarToggle);
+  const toggleSidebar = useContext(AccountSidebarCtx);
 
   // set the actual nickname, local name, accountIndex, accountId
   useEffect((): void => {
@@ -145,7 +185,7 @@ function AccountName ({ children, className = '', defaultName, label, onClick, o
       parentCache.set(cacheAddr, identity.parent.toString());
     }
 
-    if (isFunction(api.query.identity?.identityOf)) {
+    if (api && isFunction(api.query.identity?.identityOf)) {
       setName(() =>
         identity?.display
           ? extractIdentity(cacheAddr, identity)
@@ -169,7 +209,7 @@ function AccountName ({ children, className = '', defaultName, label, onClick, o
   );
 
   return (
-    <div
+    <span
       className={`ui--AccountName${withSidebar ? ' withSidebar' : ''} ${className}`}
       data-testid='account-name'
       onClick={
@@ -179,14 +219,13 @@ function AccountName ({ children, className = '', defaultName, label, onClick, o
       }
     >
       {label || ''}{override || name}{children}
-    </div>
+    </span>
   );
 }
 
 export default React.memo(styled(AccountName)`
-  align-items: center;
   border: 1px dotted transparent;
-  display: inline-flex;
+  line-height: 1;
   vertical-align: middle;
   white-space: nowrap;
 
@@ -196,17 +235,12 @@ export default React.memo(styled(AccountName)`
   }
 
   .via-identity {
-    align-items: center;
-    display: inline-flex;
-    width: 100%;
+    word-break: break-all;
 
     .name {
-      align-items: center;
-      display: inline-flex;
       font-weight: var(--font-weight-normal) !important;
       filter: grayscale(100%);
       line-height: 1;
-      opacity: 0.6;
       overflow: hidden;
       text-overflow: ellipsis;
 
@@ -216,12 +250,8 @@ export default React.memo(styled(AccountName)`
 
       &.isAddress {
         font: var(--font-mono);
+        opacity: 0.6;
         text-transform: none;
-      }
-
-      &.isGood,
-      &.isLocal {
-        opacity: 1;
       }
 
       .sub,

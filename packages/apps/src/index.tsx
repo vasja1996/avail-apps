@@ -1,4 +1,4 @@
-// Copyright 2017-2022 @polkadot/apps authors & contributors
+// Copyright 2017-2023 @polkadot/apps authors & contributors
 // SPDX-License-Identifier: Apache-2.0
 
 // setup these right at front
@@ -8,7 +8,7 @@ import '@polkadot/react-components/i18n';
 import '@polkadot/api-augment/substrate';
 
 import React from 'react';
-import ReactDOM from 'react-dom';
+import { createRoot } from 'react-dom/client';
 
 import Root from './Root';
 
@@ -19,7 +19,6 @@ if (!rootElement) {
   throw new Error(`Unable to find element with id '${rootId}'`);
 }
 
-ReactDOM.render(
-  <Root isElectron={false} />,
-  rootElement
+createRoot(rootElement).render(
+  <Root isElectron={false} />
 );

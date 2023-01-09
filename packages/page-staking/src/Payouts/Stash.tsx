@@ -1,4 +1,4 @@
-// Copyright 2017-2022 @polkadot/app-staking authors & contributors
+// Copyright 2017-2023 @polkadot/app-staking authors & contributors
 // SPDX-License-Identifier: Apache-2.0
 
 import type { BN } from '@polkadot/util';
@@ -14,6 +14,7 @@ import { createErasString } from './util';
 
 interface Props {
   className?: string;
+  historyDepth?: BN;
   payout: PayoutStash;
 }
 
@@ -22,9 +23,9 @@ interface EraInfo {
   oldestEra?: BN;
 }
 
-function Stash ({ className = '', payout: { available, rewards, stashId } }: Props): React.ReactElement<Props> {
+function Stash ({ className = '', historyDepth, payout: { available, rewards, stashId } }: Props): React.ReactElement<Props> {
   const [{ eraStr, oldestEra }, setEraInfo] = useState<EraInfo>({ eraStr: '' });
-  const eraBlocks = useEraBlocks(oldestEra);
+  const eraBlocks = useEraBlocks(historyDepth, oldestEra);
 
   useEffect((): void => {
     rewards && setEraInfo({

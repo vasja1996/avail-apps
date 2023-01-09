@@ -1,7 +1,7 @@
-// Copyright 2017-2022 @polkadot/react-components authors & contributors
+// Copyright 2017-2023 @polkadot/react-components authors & contributors
 // SPDX-License-Identifier: Apache-2.0
 
-import React, { useCallback, useState } from 'react';
+import React, { useCallback, useEffect, useState } from 'react';
 import { Input as SUIInput } from 'semantic-ui-react';
 
 import { isFunction, isUndefined } from '@polkadot/util';
@@ -94,6 +94,11 @@ let counter = 0;
 
 function Input ({ autoFocus = false, children, className, defaultValue, help, icon, inputClassName, isAction = false, isDisabled = false, isDisabledError = false, isEditable = false, isError = false, isFull = false, isHidden = false, isInPlaceEditor = false, isReadOnly = false, isWarning = false, label, labelExtra, max, maxLength, min, name, onBlur, onChange, onEnter, onEscape, onKeyDown, onKeyUp, onPaste, placeholder, tabIndex, type = 'text', value, withEllipsis, withLabel }: Props): React.ReactElement<Props> {
   const [stateName] = useState(() => `in_${counter++}_at_${Date.now()}`);
+  const [initialValue] = useState(() => defaultValue);
+
+  useEffect((): void => {
+    initialValue && onChange && onChange(initialValue);
+  }, [initialValue, onChange]);
 
   const _onBlur = useCallback(
     () => onBlur && onBlur(),
@@ -116,12 +121,14 @@ function Input ({ autoFocus = false, children, className, defaultValue, help, ic
     (event: React.KeyboardEvent<HTMLInputElement>): void => {
       onKeyUp && onKeyUp(event);
 
-      if (onEnter && event.keyCode === 13) {
+      // eslint-disable-next-line deprecation/deprecation
+      if (onEnter && (event.key === 'Enter' || event.keyCode === 13)) {
         (event.target as HTMLInputElement).blur();
         isFunction(onEnter) && onEnter();
       }
 
-      if (onEscape && event.keyCode === 27) {
+      // eslint-disable-next-line deprecation/deprecation
+      if (onEscape && (event.key === 'Escape' || event.keyCode === 27)) {
         (event.target as HTMLInputElement).blur();
         onEscape();
       }

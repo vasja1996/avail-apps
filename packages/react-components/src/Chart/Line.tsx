@@ -1,26 +1,31 @@
-// Copyright 2017-2022 @polkadot/react-components authors & contributors
+// Copyright 2017-2023 @polkadot/react-components authors & contributors
 // SPDX-License-Identifier: Apache-2.0
 
+import type { ChartData, ChartOptions } from 'chart.js';
 import type { BN } from '@polkadot/util';
 import type { LineProps } from './types';
 
-import ChartJs from 'chart.js';
 import React, { useMemo } from 'react';
 import * as Chart from 'react-chartjs-2';
 
-import { isBn } from '@polkadot/util';
+import { isBn, objectSpread } from '@polkadot/util';
+
+import ErrorBoundary from '../ErrorBoundary';
+import { alphaColor } from './utils';
 
 interface State {
-  chartData: ChartJs.ChartData;
-  chartOptions: ChartJs.ChartOptions;
+  chartData: ChartData;
+  chartOptions: ChartOptions;
 }
 
 interface Dataset {
   data: number[];
   fill: boolean;
   label: string;
+  lineTension: number;
   backgroundColor: string;
   borderColor: string;
+  cubicInterpolationMode: 'default' | 'linear';
   hoverBackgroundColor: string;
 }
 
@@ -31,25 +36,57 @@ interface Config {
 
 const COLORS = ['#ff8c00', '#008c8c', '#8c008c'];
 
-const alphaColor = (hexColor: string): string =>
-  // eslint-disable-next-line @typescript-eslint/no-unsafe-return,@typescript-eslint/no-unsafe-call,@typescript-eslint/no-unsafe-member-access
-  ChartJs.helpers.color(hexColor).alpha(0.65).rgbString();
-
-const chartOptions = {
-  // no need for the legend, expect the labels contain everything
-  legend: {
-    display: false
+const BASE_OPTS: ChartOptions = {
+  animation: {
+    duration: 0
+  },
+  elements: {
+    point: {
+      hoverRadius: 6,
+      radius: 0
+    }
+  },
+  hover: {
+    intersect: false
+  },
+  interaction: {
+    intersect: false,
+    mode: 'index'
+  },
+  plugins: {
+    crosshair: {
+      line: {
+        color: '#ff8c00',
+        dashPattern: [5, 5],
+        width: 2
+      },
+      snap: {
+        enabled: true
+      },
+      sync: {
+        enabled: true
+      },
+      // this would be nice, but atm just doesn't quite
+      // seem or feel intuitive...
+      zoom: {
+        enabled: false
+      }
+    },
+    legend: {
+      display: false
+    },
+    tooltip: {
+      intersect: false
+    }
   },
   scales: {
-    xAxes: [{
-      ticks: {
-        beginAtZero: true
-      }
-    }]
+    x: {
+      beginAtZero: true
+    }
   }
 };
 
-function calculateOptions (colors: (string | undefined)[] = [], legends: string[], labels: string[], values: (number | BN)[][]): State {
+function calculateOptions (colors: (string | undefined)[] = [], legends: string[], labels: string[], values: (number | BN)[][], options: ChartOptions = {}): State {
   const chartData = values.reduce((chartData, values, index): Config => {
     const color = colors[index] || alphaColor(COLORS[index]);
     const data = values.map((value): number => isBn(value) ? value.toNumber() : value);
@@ -57,10 +94,12 @@ function calculateOptions (colors: (string | undefined)[] = [], legends: string[
     chartData.datasets.push({
       backgroundColor: color,
       borderColor: color,
+      cubicInterpolationMode: 'default',
       data,
       fill: false,
       hoverBackgroundColor: color,
-      label: legends[index]
+      label: legends[index],
+      lineTension: 0.25
     });
 
     return chartData;
@@ -68,22 +107,34 @@ function calculateOptions (colors: (string | undefined)[] = [], legends: string[
 
   return {
     chartData,
-    chartOptions
+    chartOptions: objectSpread({}, BASE_OPTS, options, {
+      // Re-spread plugins for deep(er) copy
+      plugins: objectSpread({}, BASE_OPTS.plugins, options.plugins, {
+        // Same applied to plugins, we may want specific values
+        annotation: objectSpread({}, BASE_OPTS.plugins?.annotation, options.plugins?.annotation),
+        crosshair: objectSpread({}, BASE_OPTS.plugins?.crosshair, options.plugins?.crosshair),
+        tooltip: objectSpread({}, BASE_OPTS.plugins?.tooltip, options.plugins?.tooltip)
+      })
+    })
   };
 }
 
-function LineChart ({ className, colors, labels, legends, values }: LineProps): React.ReactElement<LineProps> | null {
+function LineChart ({ className, colors, labels, legends, options, values }: LineProps): React.ReactElement<LineProps> | null {
   const { chartData, chartOptions } = useMemo(
-    () => calculateOptions(colors, legends, labels, values),
-    [colors, labels, legends, values]
+    () => calculateOptions(colors, legends, labels, values, options),
+    [colors, labels, legends, options, values]
   );
 
   return (
     <div className={className}>
-      <Chart.Line
-        data={chartData}
-        options={chartOptions}
-      />
+      <ErrorBoundary>
+        <Chart.Line
+          // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
+          data={chartData as any}
+          // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
+          options={chartOptions as any}
+        />
+      </ErrorBoundary>
     </div>
   );
 }

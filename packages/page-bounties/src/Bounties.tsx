@@ -1,7 +1,7 @@
-// Copyright 2017-2022 @polkadot/app-bounties authors & contributors
+// Copyright 2017-2023 @polkadot/app-bounties authors & contributors
 // SPDX-License-Identifier: Apache-2.0
 
-import React, { useRef } from 'react';
+import React, { useMemo, useRef } from 'react';
 import styled from 'styled-components';
 
 import Summary from '@polkadot/app-bounties/Summary';
@@ -18,9 +18,14 @@ interface Props {
 
 function Bounties ({ className }: Props): React.ReactElement {
   const { t } = useTranslation();
-  const { bestNumber, bounties } = useBounties();
+  const info = useBounties();
 
-  const headerRef = useRef([
+  const sorted = useMemo(
+    () => info && info.bounties && [...info.bounties].sort((a, b) => b.index.cmp(a.index)),
+    [info]
+  );
+
+  const headerRef = useRef<([React.ReactNode?, string?, number?] | false)[]>([
     [t('bounties'), 'start', 3],
     [t('value'), 'start'],
     [t('curator'), 'start'],
@@ -29,30 +34,25 @@ function Bounties ({ className }: Props): React.ReactElement {
 
   return (
     <div className={className}>
-      <Summary activeBounties={bounties?.length} />
+      <Summary info={info} />
       <Button.Group>
         <BountyCreate />
       </Button.Group>
       <Table
         className='bounties-table-wrapper'
-        empty={bounties && t<string>('No open bounties')}
+        empty={sorted && t<string>('No open bounties')}
         header={headerRef.current}
-        withCollapsibleRows
       >
-        {bounties && bestNumber &&
-          bounties
-            .sort((a, b) => b.index.cmp(a.index))
-            .map(({ bounty, description, index, proposals }) => (
-              <Bounty
-                bestNumber={bestNumber}
-                bounty={bounty}
-                description={description}
-                index={index}
-                key={index.toNumber()}
-                proposals={proposals}
-              />
-            ))
-        }
+        {sorted && info.bestNumber && sorted.map(({ bounty, description, index, proposals }) => (
+          <Bounty
+            bestNumber={info.bestNumber}
+            bounty={bounty}
+            description={description}
+            index={index}
+            key={index.toNumber()}
+            proposals={proposals}
+          />
+        ))}
       </Table>
     </div>
   );
@@ -61,15 +61,15 @@ function Bounties ({ className }: Props): React.ReactElement {
 export default React.memo(styled(Bounties)`
   .bounties-table-wrapper table {
     tr {
-      td,
-      &:not(.filter) th {
+      td, &:not(.filter) th {
         &:last-child {
           padding-right: 1.14rem;
         }
       }
     }
   }
-.ui--IdentityIcon {
+
+  .ui--IdentityIcon {
     margin-right: 0.42rem;
   }
 

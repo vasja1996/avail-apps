@@ -1,4 +1,4 @@
-// Copyright 2017-2022 @polkadot/app-contracts authors & contributors
+// Copyright 2017-2023 @polkadot/app-contracts authors & contributors
 // SPDX-License-Identifier: Apache-2.0
 
 import type { SubmittableExtrinsic } from '@polkadot/api/types';
@@ -37,8 +37,6 @@ function Deploy ({ codeHash, constructorIndex = 0, onClose, setConstructorIndex 
   const [salt, setSalt] = useState<string>(() => randomAsHex());
   const [withSalt, setWithSalt] = useState(false);
   const weight = useWeight();
-
-  const hasStorageDeposit = api.tx.contracts.instantiate.meta.args.length === 6;
 
   useEffect((): void => {
     setParams([]);
@@ -86,7 +84,7 @@ function Deploy ({ codeHash, constructorIndex = 0, onClose, setConstructorIndex 
               ? salt
               : null,
             storageDepositLimit: null,
-            value
+            value: contractAbi?.constructors[constructorIndex].isPayable ? value : undefined
           }, ...params);
         } catch (error) {
           return null;
@@ -172,14 +170,16 @@ function Deploy ({ codeHash, constructorIndex = 0, onClose, setConstructorIndex 
             />
           </>
         )}
-        <InputBalance
-          help={t<string>('The balance to transfer from the `origin` to the newly created contract.')}
-          isError={!isValueValid}
-          isZeroable={hasStorageDeposit}
-          label={t<string>('value')}
-          onChange={setValue}
-          value={value}
-        />
+        {contractAbi?.constructors[constructorIndex].isPayable && (
+          <InputBalance
+            help={t<string>('The balance to transfer from the `origin` to the newly created contract.')}
+            isError={!isValueValid}
+            isZeroable
+            label={t<string>('value')}
+            onChange={setValue}
+            value={value}
+          />
+        )}
         <Input
           help={t<string>('A hex or string value that acts as a salt for this deployment.')}
           isDisabled={!withSalt}

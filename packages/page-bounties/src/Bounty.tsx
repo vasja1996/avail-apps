@@ -1,15 +1,15 @@
-// Copyright 2017-2022 @polkadot/app-bounties authors & contributors
+// Copyright 2017-2023 @polkadot/app-bounties authors & contributors
 // SPDX-License-Identifier: Apache-2.0
 
 import type { DeriveCollectiveProposal } from '@polkadot/api-derive/types';
 import type { BlockNumber, Bounty as BountyType, BountyIndex } from '@polkadot/types/interfaces';
 
-import React, { useCallback, useMemo, useState } from 'react';
+import React, { useMemo } from 'react';
 import styled from 'styled-components';
 
-import { AddressSmall, ExpandButton, LinkExternal } from '@polkadot/react-components';
+import { AddressSmall, Columar, ExpandButton, LinkExternal, Table } from '@polkadot/react-components';
+import { useToggle } from '@polkadot/react-hooks';
 import { FormatBalance } from '@polkadot/react-query';
-import { formatNumber } from '@polkadot/util';
 
 import BountyActionMessage from './BountyNextActionInfo/BountyActionMessage';
 import { getProposalToDisplay } from './helpers/extendedStatuses';
@@ -32,11 +32,9 @@ interface Props {
   proposals?: DeriveCollectiveProposal[];
 }
 
-const EMPTY_CELL = '-';
-
 function Bounty ({ bestNumber, bounty, className = '', description, index, proposals }: Props): React.ReactElement<Props> {
   const { t } = useTranslation();
-  const [isExpanded, setIsExpanded] = useState(false);
+  const [isExpanded, toggleExpanded] = useToggle(false);
 
   const { bond, curatorDeposit, fee, proposer, status, value } = bounty;
   const { beneficiary, bountyStatus, curator, unlockAt, updateDue } = useBountyStatus(status);
@@ -51,20 +49,15 @@ function Bounty ({ bestNumber, bounty, className = '', description, index, propo
 
     const proposalToDisplay = proposals && getProposalToDisplay(proposals, status);
 
-    return (proposalToDisplay?.proposal.method === 'proposeCurator')
+    return (proposalToDisplay?.proposal?.method === 'proposeCurator')
       ? { curator: proposalToDisplay.proposal.args[1], isFromProposal: true }
       : null;
   }, [curator, proposals, status]);
 
-  const handleOnIconClick = useCallback(
-    () => setIsExpanded((isExpanded) => !isExpanded),
-    []
-  );
-
   return (
     <>
-      <tr className={`${className}${isExpanded ? ' noBorder' : ''}`}>
-        <td className='number'><h1>{formatNumber(index)}</h1></td>
+      <tr className={`${className} isExpanded isFirst ${isExpanded ? '' : 'isLast'}`}>
+        <Table.Column.Id value={index} />
         <td
           className='description-column'
           data-testid='description'
@@ -105,34 +98,25 @@ function Bounty ({ bestNumber, bounty, className = '', description, index, propo
             blocksUntilUpdate={blocksUntilUpdate}
             status={status}
           />
+          <BountyActions
+            bestNumber={bestNumber}
+            description={description}
+            fee={fee}
+            index={index}
+            proposals={proposals}
+            status={status}
+            value={value}
+          />
         </td>
-        <td className='td-info-action-row'>
-          <div className='td-row'>
-            <BountyInfos
-              beneficiary={beneficiary}
-              proposals={proposals}
-              status={status}
-            />
-            <div className='bounty-action-row'>
-              <BountyActions
-                bestNumber={bestNumber}
-                description={description}
-                fee={fee}
-                index={index}
-                proposals={proposals}
-                status={status}
-                value={value}
-              />
-            </div>
-          </div>
+        <td>
+          <BountyInfos
+            beneficiary={beneficiary}
+            proposals={proposals}
+            status={status}
+          />
         </td>
-        <td className='fast-actions'>
-          <div className='fast-actions-row'>
-            <LinkExternal
-              data={index}
-              isLogo
-              type='bounty'
-            />
+        <td className='actions'>
+          <div>
             <BountyExtraActions
               bestNumber={bestNumber}
               description={description}
@@ -142,31 +126,52 @@ function Bounty ({ bestNumber, bounty, className = '', description, index, propo
             />
             <ExpandButton
               expanded={isExpanded}
-              onClick={handleOnIconClick}
+              onClick={toggleExpanded}
             />
           </div>
         </td>
       </tr>
-      <tr className={`${className} ${isExpanded ? 'isExpanded' : 'isCollapsed'}`}>
-        <td colSpan={2}>
-          <div className='label-column-left'>
-            <div className='label'>{t('Proposer')}</div>
-            <AddressSmall value={proposer} />
-          </div>
-        </td>
-        <td colSpan={2}>
-          <div className='label-column-right'>
-            <div className='label'>{t('Bond')}</div>
-            <div className='inline-balance'><FormatBalance value={bond} /></div>
-          </div>
-          <div className='label-column-right'>
-            <div className='label'>{t("Curator's fee")}</div>
-            <div className='inline-balance'>{curator ? <FormatBalance value={fee} /> : EMPTY_CELL}</div>
-          </div>
-          <div className='label-column-right'>
-            <div className='label'>{t("Curator's deposit")}</div>
-            <div className='inline-balance'>{curator ? <FormatBalance value={curatorDeposit} /> : EMPTY_CELL}</div>
-          </div>
+      <tr className={`${className} ${isExpanded ? 'isExpanded isLast' : 'isCollapsed'}`}>
+        <td />
+        <td
+          className='columar'
+          colSpan={3}
+        >
+          <Columar>
+            <Columar.Column>
+              <LinkExternal
+                data={index}
+                type='bounty'
+                withTitle
+              />
+            </Columar.Column>
+            <Columar.Column>
+              <div className='column'>
+                <h5>{t('Proposer')}</h5>
+                <AddressSmall value={proposer} />
+              </div>
+              <div className='column'>
+                <h5>{t('Bond')}</h5>
+                <div className='inline-balance'><FormatBalance value={bond} /></div>
+              </div>
+              {curator && (
+                <div className='column'>
+                  <h5>{t("Curator's fee")}</h5>
+                  <div className='inline-balance'>{<FormatBalance value={fee} />}</div>
+                </div>
+              )}
+              <div className='column'>
+                {curator && !curatorDeposit.isZero() && (
+                  <>
+                    <h5>{t("Curator's deposit")}</h5>
+                    <div className='inline-balance'>
+                      <FormatBalance value={curatorDeposit} />
+                    </div>
+                  </>
+                )}
+              </div>
+            </Columar.Column>
+          </Columar>
         </td>
         <td />
         <td />
@@ -193,14 +198,6 @@ function Bounty ({ bestNumber, bounty, className = '', description, index, propo
 }
 
 export default React.memo(styled(Bounty)`
-  &.isCollapsed {
-    visibility: collapse;
-  }
-
-  &.isExpanded {
-    visibility: visible;
-  }
-
   .description-column {
     max-width: 200px;
 
@@ -215,50 +212,22 @@ export default React.memo(styled(Bounty)`
     display: inline-flex;
   }
 
-  & td.fast-actions {
-    padding-left: 0.2rem;
-    width: 1%;
-
-    .fast-actions-row {
-      display: flex;
-      align-items: center;
-      justify-content: flex-end;
-
-      & > * + * {
-        margin-left: 0.285rem;
-      }
-    }
-  }
-
   & .inline-balance {
     width: 50%;
     font-size: 1rem;
     line-height: normal;
   }
 
-  .label {
-    text-align: right;
-    padding: 0 1.7rem 0 0;
-    line-height: normal;
-    color: var(--color-label);
-    text-transform: lowercase;
-  }
-
-  .label-column-right, .label-column-left{
-   display: flex;
+  .column {
     align-items: center;
+    display: flex;
+    padding: 0 0 0.5rem;
 
-    .label {
+    h5 {
+      text-align: right;
+      padding: 0 1.7rem 0 0;
       width: 50%;
     }
-  }
-
-  .label-column-right {
-    padding: 0 0 0.5rem;
-  }
-
-  .label-column-left {
-    padding: 0 0 0.5rem;
   }
 
   & .td-info-action-row {

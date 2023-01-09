@@ -1,4 +1,4 @@
-// Copyright 2017-2022 @polkadot/react-components authors & contributors
+// Copyright 2017-2023 @polkadot/react-components authors & contributors
 // SPDX-License-Identifier: Apache-2.0
 
 import type { GroupProps } from './types';
@@ -10,6 +10,7 @@ function ButtonGroup ({ children, className = '', isCentered }: GroupProps): Rea
   return (
     <div className={`ui--Button-Group${isCentered ? ' isCentered' : ''} ${className}`}>
       {children}
+      <div className='clear' />
     </div>
   );
 }
@@ -17,6 +18,10 @@ function ButtonGroup ({ children, className = '', isCentered }: GroupProps): Rea
 export default React.memo(styled(ButtonGroup)`
   margin: 1rem 0;
   text-align: right;
+
+  & .clear {
+    clear: both;
+  }
 
   &.isCentered {
     margin-bottom: 0.5rem;
@@ -35,7 +40,7 @@ export default React.memo(styled(ButtonGroup)`
     display: inline-block;
   }
 
-  .ui--ToggleGroup {
+  .ui--ToggleGroup, .ui--Dropdown {
     float: left;
   }
 `);

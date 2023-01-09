@@ -1,4 +1,4 @@
-// Copyright 2017-2022 @polkadot/react-components authors & contributors
+// Copyright 2017-2023 @polkadot/react-components authors & contributors
 // SPDX-License-Identifier: Apache-2.0
 
 import type { Location } from 'history';
@@ -12,7 +12,7 @@ import CurrentSection from './CurrentSection';
 import Tab from './Tab';
 import Delimiter from './TabsSectionDelimiter';
 
-export const TabsContext = React.createContext<SectionType>({});
+export const TabsCtx = React.createContext<SectionType>({});
 
 interface Props {
   className?: string;
@@ -40,7 +40,7 @@ function redirect (basePath: string, location: Location, items: TabItem[], hidde
 
 function Tabs ({ basePath, className = '', hidden, items }: Props): React.ReactElement<Props> {
   const location = useLocation();
-  const { icon, text } = React.useContext(TabsContext);
+  const { icon, text } = React.useContext(TabsCtx);
 
   useEffect(
     () => redirect(basePath, location, items, hidden),
@@ -63,7 +63,10 @@ function Tabs ({ basePath, className = '', hidden, items }: Props): React.ReactE
         <Delimiter />
         <ul className='ui--TabsList'>
           {filtered.map((tab, index) => (
-            <li key={index}>
+            <li
+              className={tab.isHidden ? '--hidden' : ''}
+              key={index}
+            >
               <Tab
                 {...tab}
                 basePath={basePath}
@@ -101,11 +104,11 @@ export default React.memo(styled(Tabs)`
 
   .ui--TabsList {
     display: flex;
-    list-style: none;
     height: 100%;
+    list-style: none;
     margin: 0 1.4rem;
-    white-space: nowrap;
     padding: 0;
+    white-space: nowrap;
 
     @media only screen and (max-width: 900px) {
       margin: 0 2.72rem 0 2.35rem;

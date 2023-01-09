@@ -1,4 +1,4 @@
-// Copyright 2017-2022 @polkadot/app-treasury authors & contributors
+// Copyright 2017-2023 @polkadot/app-treasury authors & contributors
 // SPDX-License-Identifier: Apache-2.0
 
 import type { DeriveCollectiveProposal } from '@polkadot/api-derive/types';
@@ -43,9 +43,17 @@ function ProposeCuratorAction ({ description, index, proposals, value }: Props):
     );
   }, [api, members]);
 
-  const proposeCuratorProposal = useMemo(() => curatorId && proposeCurator(index, curatorId, fee), [curatorId, fee, index, proposeCurator]);
+  const proposeCuratorProposal = useMemo(
+    () => curatorId && proposeCurator(index, curatorId, fee),
+    [curatorId, fee, index, proposeCurator]
+  );
 
-  const isVotingInitiated = useMemo(() => proposals?.filter(({ proposal }) => BOUNTY_METHODS.includes(proposal.method)).length !== 0, [proposals]);
+  const isVotingInitiated = useMemo(
+    () => proposals?.filter(({ proposal }) =>
+      proposal && BOUNTY_METHODS.includes(proposal.method)
+    ).length !== 0,
+    [proposals]
+  );
 
   useEffect(() => {
     setIsFeeValid(!!value?.gt(fee));

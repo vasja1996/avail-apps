@@ -1,22 +1,25 @@
-// Copyright 2017-2022 @polkadot/app-extrinsics authors & contributors
+// Copyright 2017-2023 @polkadot/app-extrinsics authors & contributors
 // SPDX-License-Identifier: Apache-2.0
 
 import type { SubmittableExtrinsic, SubmittableExtrinsicFunction } from '@polkadot/api/types';
-import type { RawParam } from '@polkadot/react-params/types';
+import type { ComponentMap, RawParam } from '@polkadot/react-params/types';
 import type { TypeDef } from '@polkadot/types/types';
 
-import React, { useCallback, useEffect, useState } from 'react';
+import React, { useCallback, useEffect, useMemo, useState } from 'react';
 
 import Params from '@polkadot/react-params';
 import { getTypeDef } from '@polkadot/types/create';
-import { isUndefined } from '@polkadot/util';
+import { isUndefined, objectSpread } from '@polkadot/util';
 
+import { balanceCalls, balanceCallsOverrides } from './constants';
 import InputExtrinsic from './InputExtrinsic';
 import paramComponents from './Params';
 
 interface Props {
   className?: string;
+  defaultArgs?: RawParam[];
   defaultValue: SubmittableExtrinsicFunction<'promise'>;
+  filter?: (section: string, method?: string) => boolean;
   isDisabled?: boolean;
   isError?: boolean;
   isPrivate?: boolean;
@@ -28,15 +31,31 @@ interface Props {
   withLabel?: boolean;
 }
 
-interface CallState {
-  fn: SubmittableExtrinsicFunction<'promise'>;
-  params: {
-    name: string;
-    type: TypeDef
-  }[];
+interface ParamDef {
+  name: string;
+  type: TypeDef;
 }
 
-function getParams ({ meta }: SubmittableExtrinsicFunction<'promise'>): { name: string; type: TypeDef }[] {
+interface CallState {
+  extrinsic: {
+    fn: SubmittableExtrinsicFunction<'promise'>;
+    params: ParamDef[];
+  },
+  values: RawParam[];
+}
+
+const allComponents = objectSpread<ComponentMap>({}, paramComponents, balanceCallsOverrides);
+
+function isValuesValid (params: ParamDef[], values: RawParam[]): boolean {
+  return values.reduce((isValid, value): boolean =>
+    isValid &&
+    !isUndefined(value) &&
+    !isUndefined(value.value) &&
+    value.isValid, params.length === values.length
+  );
+}
+
+function getParams ({ meta }: SubmittableExtrinsicFunction<'promise'>): ParamDef[] {
   return meta.args.map(({ name, type, typeName }): { name: string; type: TypeDef } => ({
     name: name.toString(),
     type: {
@@ -49,22 +68,21 @@ function getParams ({ meta }: SubmittableExtrinsicFunction<'promise'>): { name: 
   }));
 }
 
-function ExtrinsicDisplay ({ defaultValue, isDisabled, isError, isPrivate, label, onChange, onEnter, onError, onEscape, withLabel }: Props): React.ReactElement<Props> {
-  const [extrinsic, setCall] = useState<CallState>(() => ({ fn: defaultValue, params: getParams(defaultValue) }));
-  const [values, setValues] = useState<RawParam[]>([]);
+function getCallState (fn: SubmittableExtrinsicFunction<'promise'>, values: RawParam[] = []): CallState {
+  return {
+    extrinsic: {
+      fn,
+      params: getParams(fn)
+    },
+    values
+  };
+}
+
+function ExtrinsicDisplay ({ defaultArgs, defaultValue, filter, isDisabled, isError, isPrivate, label, onChange, onEnter, onError, onEscape, withLabel }: Props): React.ReactElement<Props> {
+  const [{ extrinsic, values }, setDisplay] = useState<CallState>(() => getCallState(defaultValue, defaultArgs));
 
   useEffect((): void => {
-    setValues([]);
-  }, [extrinsic]);
-
-  useEffect((): void => {
-    const isValid = values.reduce((isValid, value): boolean =>
-      isValid &&
-      !isUndefined(value) &&
-      !isUndefined(value.value) &&
-      value.isValid, extrinsic.params.length === values.length
-    );
-
+    const isValid = isValuesValid(extrinsic.params, values);
     let method;
 
     if (isValid) {
@@ -80,8 +98,26 @@ function ExtrinsicDisplay ({ defaultValue, isDisabled, isError, isPrivate, label
     onChange(method);
   }, [extrinsic, onChange, onError, values]);
 
+  const overrides = useMemo(
+    () => balanceCalls.includes(`${extrinsic.fn.section}.${extrinsic.fn.method}`)
+      ? allComponents
+      : paramComponents,
+    [extrinsic]
+  );
+
   const _onChangeMethod = useCallback(
-    (fn: SubmittableExtrinsicFunction<'promise'>): void => setCall({ fn, params: getParams(fn) }),
+    (fn: SubmittableExtrinsicFunction<'promise'>) =>
+      setDisplay((prev): CallState =>
+        fn.section === prev.extrinsic.fn.section && fn.method === prev.extrinsic.fn.method
+          ? prev
+          : getCallState(fn)
+      ),
+    []
+  );
+
+  const _setValues = useCallback(
+    (values: RawParam[]) =>
+      setDisplay(({ extrinsic }) => ({ extrinsic, values })),
     []
   );
 
@@ -91,6 +127,7 @@ function ExtrinsicDisplay ({ defaultValue, isDisabled, isError, isPrivate, label
     <div className='extrinsics--Extrinsic'>
       <InputExtrinsic
         defaultValue={defaultValue}
+        filter={filter}
         help={meta?.docs.join(' ')}
         isDisabled={isDisabled}
         isError={isError}
@@ -101,11 +138,12 @@ function ExtrinsicDisplay ({ defaultValue, isDisabled, isError, isPrivate, label
       />
       <Params
         key={`${section}.${method}:params` /* force re-render on change */}
-        onChange={setValues}
+        onChange={_setValues}
         onEnter={onEnter}
         onEscape={onEscape}
-        overrides={paramComponents}
+        overrides={overrides}
         params={params}
+        values={values}
       />
     </div>
   );

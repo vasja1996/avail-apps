@@ -1,7 +1,7 @@
-// Copyright 2017-2022 @polkadot/app-explorer authors & contributors
+// Copyright 2017-2023 @polkadot/app-explorer authors & contributors
 // SPDX-License-Identifier: Apache-2.0
 
-import type { KeyedEvent } from '@polkadot/react-query/types';
+import type { KeyedEvent } from '@polkadot/react-hooks/ctx/types';
 
 import React, { useMemo } from 'react';
 import { Link } from 'react-router-dom';
@@ -15,18 +15,22 @@ import { useTranslation } from './translate';
 
 interface Props {
   className?: string;
+  error?: Error;
   emptyLabel?: React.ReactNode;
-  events?: KeyedEvent[];
+  events?: KeyedEvent[] | null;
   eventClassName?: string;
   label?: React.ReactNode;
 }
 
-function Events ({ className = '', emptyLabel, eventClassName, events, label }: Props): React.ReactElement<Props> {
+function Events ({ className = '', emptyLabel, error, eventClassName, events, label }: Props): React.ReactElement<Props> {
   const { t } = useTranslation();
 
-  const header = useMemo(() => [
-    [label || t<string>('recent events'), 'start']
-  ], [label, t]);
+  const header = useMemo<[React.ReactNode?, string?, number?][]>(
+    () => [
+      [label || t<string>('recent events'), 'start']
+    ],
+    [label, t]
+  );
 
   return (
     <Table
@@ -34,22 +38,32 @@ function Events ({ className = '', emptyLabel, eventClassName, events, label }: 
       empty={emptyLabel || t<string>('No events available')}
       header={header}
     >
-      {events && events.map(({ blockHash, blockNumber, indexes, key, record }): React.ReactNode => (
-        <tr
-          className={eventClassName}
-          key={key}
-        >
-          <td className='overflow'>
-            <Event value={record} />
-            {blockNumber && (
-              <div className='event-link'>
-                {indexes.length !== 1 && <span>({formatNumber(indexes.length)}x)&nbsp;</span>}
-                <Link to={`/explorer/query/${blockHash || ''}`}>{formatNumber(blockNumber)}-{indexes[0]}</Link>
-              </div>
-            )}
-          </td>
-        </tr>
-      ))}
+      {error
+        ? (
+          <tr
+            className={eventClassName}
+            key='error'
+          >
+            <td>{error.message}</td>
+          </tr>
+        )
+        : events && events.map(({ blockHash, blockNumber, indexes, key, record }): React.ReactNode => (
+          <tr
+            className={eventClassName}
+            key={key}
+          >
+            <td className='overflow'>
+              <Event value={record} />
+              {blockNumber && (
+                <div className='event-link'>
+                  {indexes.length !== 1 && <span>({formatNumber(indexes.length)}x)&nbsp;</span>}
+                  <Link to={`/explorer/query/${blockHash || ''}`}>{formatNumber(blockNumber)}-{indexes[0]}</Link>
+                </div>
+              )}
+            </td>
+          </tr>
+        ))
+      }
     </Table>
   );
 }

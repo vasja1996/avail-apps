@@ -1,4 +1,4 @@
-// Copyright 2017-2022 @polkadot/app-council authors & contributors
+// Copyright 2017-2023 @polkadot/app-council authors & contributors
 // SPDX-License-Identifier: Apache-2.0
 
 import type { DeriveElectionsInfo } from '@polkadot/api-derive/types';
@@ -72,7 +72,7 @@ function Vote ({ electionsInfo }: Props): React.ReactElement<Props> | null {
   return (
     <>
       <Button
-        icon='check'
+        icon='check-to-slot'
         isDisabled={available.length === 0}
         label={t<string>('Vote')}
         onClick={toggleVisible}
@@ -95,7 +95,6 @@ function Vote ({ electionsInfo }: Props): React.ReactElement<Props> | null {
             <Modal.Columns hint={t<string>('The value associated with this vote. The amount will be locked (not available for transfer) and used in all subsequent elections.')}>
               <VoteValue
                 accountId={accountId}
-                isCouncil
                 onChange={setVoteValue}
               />
             </Modal.Columns>

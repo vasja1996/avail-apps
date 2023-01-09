@@ -1,4 +1,4 @@
-// Copyright 2017-2022 @polkadot/app-accounts authors & contributors
+// Copyright 2017-2023 @polkadot/app-accounts authors & contributors
 // SPDX-License-Identifier: Apache-2.0
 
 import React, { ReactNode, useEffect, useRef, useState } from 'react';
@@ -115,7 +115,6 @@ function CreateEthDerivationPath ({ className,
         : (
           <MarkWarning content={t<string>('The derivation path is only relevant when deriving keys from a mnemonic.')} />
         )}
-
       {deriveValidation?.error && (
         <MarkError content={errorIndex.current[deriveValidation.error] || deriveValidation.error} />
       )}
