@@ -8,12 +8,10 @@ const path = require('path');
 const CopyWebpackPlugin = require('copy-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const webpack = require('webpack');
-require('dotenv').config({
-  path: '../../.env',
-})
+
 const findPackages = require('../../scripts/findPackages.cjs');
 
-function mapChunks(name, regs, inc) {
+function mapChunks (name, regs, inc) {
   return regs.reduce((result, test, index) => ({
     ...result,
     [`${name}${index}`]: {
@@ -25,7 +23,7 @@ function mapChunks(name, regs, inc) {
   }), {});
 }
 
-function createWebpack(context, mode = 'production') {
+function createWebpack (context, mode = 'production') {
   const pkgJson = require(path.join(context, 'package.json'));
   const alias = findPackages().reduce((alias, { dir, name }) => {
     alias[name] = path.resolve(context, `../${dir}/src`);
@@ -153,7 +151,6 @@ function createWebpack(context, mode = 'production') {
         Buffer: ['buffer', 'Buffer'],
         process: 'process/browser.js'
       }),
-
       new webpack.IgnorePlugin({
         contextRegExp: /moment$/,
         resourceRegExp: /^\.\/locale$/

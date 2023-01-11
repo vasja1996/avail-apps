@@ -15,7 +15,6 @@ module.exports = merge(
       open: false,
       port: 3000,
       static: path.resolve(__dirname, 'build')
-      // public: 'devnet-avail.polygon.technology',
     },
     plugins: [
       new HtmlWebpackPlugin({

@@ -65331,6 +65331,31 @@ export const typesBundle = {
         }
       ]
     },
+    "node-template": {
+      "types": [
+        {
+          "minmax": [
+            0,
+            null
+          ],
+          "types": {
+            "ExtrinsicsRoot": {
+              "hash": "Hash",
+              "commitment": "Vec<u8>",
+              "rows": "u16",
+              "cols": "u16"
+            },
+            "Header": {
+              "parentHash": "Hash",
+              "number": "Compact<BlockNumber>",
+              "stateRoot": "Hash",
+              "extrinsicsRoot": "ExtrinsicsRoot",
+              "digest": "Digest"
+            }
+          }
+        }
+      ]
+    },
     "nodle-chain": {
       "types": [
         {

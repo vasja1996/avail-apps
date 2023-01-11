@@ -6,6 +6,7 @@ const HtmlWebpackPlugin = require('html-webpack-plugin');
 const path = require('path');
 const { merge } = require('webpack-merge');
 const { SubresourceIntegrityPlugin } = require('webpack-subresource-integrity');
+
 const baseConfig = require('./webpack.base.cjs');
 
 const context = __dirname;
