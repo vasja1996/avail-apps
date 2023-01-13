@@ -1,4 +1,4 @@
-// Copyright 2017-2022 @polkadot/react-components authors & contributors
+// Copyright 2017-2023 @polkadot/react-components authors & contributors
 // SPDX-License-Identifier: Apache-2.0
 
 import type { UInt } from '@polkadot/types';
@@ -111,9 +111,8 @@ export default React.memo(styled(Progress)`
     top: 0.375rem;
 
     div {
+      font-size: var(--font-size-small);
       line-height: 1;
-      font-size: 1.1rem;
-      text-shadow: 0 0 2px #f5f3f1;
     }
   }
 

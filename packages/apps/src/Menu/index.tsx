@@ -1,4 +1,4 @@
-// Copyright 2017-2022 @polkadot/apps authors & contributors
+// Copyright 2017-2023 @polkadot/apps authors & contributors
 // SPDX-License-Identifier: Apache-2.0
 
 import type { TFunction } from 'i18next';
@@ -28,13 +28,13 @@ interface Props {
 function createExternals (t: TFunction): ItemRoute[] {
   return [
     {
-      href: 'https://github.com/polkadot-js/apps',
+      href: 'https://github.com/maticnetwork/avail-apps',
       icon: 'code-branch',
       name: 'github',
       text: t<string>('nav.github', 'GitHub', { ns: 'apps-routing' })
     },
     {
-      href: 'https://wiki.polkadot.network',
+      href: 'https://wiki.polygon.technology/docs/avail/introduction/what-is-avail/',
       icon: 'book',
       name: 'wiki',
       text: t<string>('nav.wiki', 'Wiki', { ns: 'apps-routing' })
@@ -164,6 +164,10 @@ export default React.memo(styled(Menu)`
   z-index: 220;
   position: relative;
 
+  .smallShow {
+    display: none;
+  }
+
   & .menuContainer {
     flex-direction: row;
     align-items: center;
@@ -229,4 +233,25 @@ export default React.memo(styled(Menu)`
     align-self: center;
   }
 
+  @media only screen and (max-width: 800px) {
+    .groupHdr {
+      padding: 0.857rem 0.75rem;
+    }
+
+    .smallShow {
+      display: initial;
+    }
+
+    .smallHide {
+      display: none;
+    }
+
+    .menuItems {
+      margin-right: 0;
+
+      > li + li {
+        margin-left: 0.25rem;
+      }
+    }
+  }
 `);

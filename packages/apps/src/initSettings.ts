@@ -1,4 +1,4 @@
-// Copyright 2017-2022 @polkadot/apps authors & contributors
+// Copyright 2017-2023 @polkadot/apps authors & contributors
 // SPDX-License-Identifier: Apache-2.0
 
 import queryString from 'query-string';
@@ -9,12 +9,16 @@ import { extractIpfsDetails } from '@polkadot/react-hooks/useIpfs';
 import { settings } from '@polkadot/ui-settings';
 import { assert } from '@polkadot/util';
 
-function networkOrUrl (apiUrl: string): void {
+import config from '../../apps-config/src/variables/config';
+
+function networkOrUrl (apiUrl: string, lcUrl: string): void {
   if (apiUrl.startsWith('light://')) {
     console.log('Light endpoint=', apiUrl.replace('light://', ''));
   } else {
     console.log('WS endpoint=', apiUrl);
   }
+
+  console.log('LC endpoint=', lcUrl);
 }
 
 function getApiUrl (): string {
@@ -58,10 +62,43 @@ function getApiUrl (): string {
       : 'ws://127.0.0.1:9944'; // nothing found, go local
 }
 
+function getLightClientUrl (): string {
+  // we split here so that both these forms are allowed
+  //  - http://localhost:3000/?light=https://testnet.polygonavail.net/#/explorer
+  //  - http://localhost:3000/#/explorer?light=https://testnet.polygonavail.net/light/v1
+  const urlOptions = queryString.parse(location.href.split('?')[1]);
+
+  // if specified, this takes priority
+  if (urlOptions.light) {
+    assert(!Array.isArray(urlOptions.light), 'Invalid LC endpoint specified');
+
+    // https://testnet.polygonavail.net?light=ws://127.0.0.1:7000/v1/json-rpc#/explorer;
+    const url = decodeURIComponent(urlOptions.light.split('#')[0]);
+
+    assert(url.startsWith('http://') || url.startsWith('https://'), 'Non-prefixed http/https url');
+
+    return url;
+  }
+
+  const stored = window.localStorage.getItem('lcUrl');
+  const fallUrl = config.LCURL + '/v1';
+
+  console.log('LC fallback=', fallUrl);
+  const fallbackUrl = fallUrl;
+  // const fallbackUrl = 'https://testnet.polygonavail.net/light/v1';
+
+  // via settings, or the default chain
+  return (stored !== null && stored !== undefined)
+    ? stored // keep as-is
+    : fallbackUrl;
+}
+
 // There cannot be a Substrate Connect light client default (expect only jrpc EndpointType)
 const apiUrl = getApiUrl();
+const lcUrl = getLightClientUrl();
 
 // set the default as retrieved here
 settings.set({ apiUrl });
+window.localStorage.setItem('lcUrl', lcUrl);
 
-networkOrUrl(apiUrl);
+networkOrUrl(apiUrl, lcUrl);

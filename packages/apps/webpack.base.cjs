@@ -1,4 +1,4 @@
-// Copyright 2017-2022 @polkadot/apps authors & contributors
+// Copyright 2017-2023 @polkadot/apps authors & contributors
 // SPDX-License-Identifier: Apache-2.0
 
 /* eslint-disable camelcase */
@@ -159,7 +159,9 @@ function createWebpack (context, mode = 'production') {
         'process.env': {
           NODE_ENV: JSON.stringify(mode),
           VERSION: JSON.stringify(pkgJson.version),
-          WS_URL: JSON.stringify(process.env.WS_URL)
+          WS_URL: JSON.stringify(process.env.WS_URL),
+          TESTNETURL: JSON.stringify(process.env.TESTNETURL),
+          LCURL: JSON.stringify(process.env.LCURL),
         }
       }),
       new webpack.optimize.SplitChunksPlugin(),

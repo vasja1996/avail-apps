@@ -1,16 +1,17 @@
-[![polkadotjs](https://img.shields.io/badge/polkadot-js-orange?style=flat-square)](https://polkadot.js.org)
-![license](https://img.shields.io/badge/License-Apache%202.0-blue?logo=apache&style=flat-square)
-[![maintainability](https://img.shields.io/codeclimate/maintainability-percentage/polkadot-js/apps?logo=code-climate&style=flat-square)](https://codeclimate.com/github/polkadot-js/apps)
+<div align="Center">
+<h1>avail-apps</h1>
+<h3>Block Explorer & Apps for the Polygon Avail blockchain</h3>
+</div>
 
-# @polkadot/apps
+<br>
 
-A Portal into the Polkadot and Substrate networks. Provides a view and interaction layer from a browser.
+# Introduction
 
-This can be accessed as a hosted application via https://polkadot.js.org/apps/ or you can access the IPFS hosted version via https://polkadot.js.org/apps/ipfs (via hash) or https://dotapps.io (via ipns) to explore any of the supported Polkadot and Substrate chains.
+`avail-apps` is a modified version of the [@polkadot/apps](https://github.com/polkadot-js/apps) repository for visualizing and interacting with the Avail network.
 
-If you run one or more IPFS node(s), pinning the UI (which only gets updated on releases) will make it faster for you and others. You can find details about that below in the IPFS chapter below.
+Learn more about Avail at the Avail [product page](https://polygon.technology/solutions/polygon-avail/) and [documentation](https://wiki.polygon.technology/docs/avail/introduction/what-is-avail/) websites.
 
-**Important** If you are a chain developer and would like to add support for your chain to the UI, all the local configuration (API types, settings, logos) can be customized in [the apps-config package](packages/apps-config#README.md), complete with instructions of what goes where.
+You can access a live version of the explorer for the Avail Testnet at https://testnet.polygonavail.net/
 
 ## overview
 
@@ -40,11 +41,11 @@ In addition the following libraries are also included in the repo. These are to 
 
 Contributions are welcome!
 
-To start off, this repo (along with others in the [@polkadot](https://github.com/polkadot-js/) family) uses yarn workspaces to organize the code. As such, after cloning dependencies _should_ be installed via `yarn`, not via npm, the latter will result in broken dependencies.
+To start off, this repo uses yarn workspaces to organize the code. As such, after cloning dependencies _should_ be installed via `yarn`, not via npm, the latter will result in broken dependencies.
 
 To get started -
 
-1. Clone the repo locally, via `git clone https://github.com/polkadot-js/apps <optional local path>`
+1. Clone the repo locally, via `git clone https://github.com/maticnetwork/avail-apps.git <optional local path>`
 2. Ensure that you have a recent LTS version of Node.js, for development purposes [Node >= 16](https://nodejs.org/en/) is recommended.
 3. Ensure that you have a recent version of Yarn, for development purposes [Yarn >= 1.22](https://yarnpkg.com/docs/install) is required.
 4. Install the dependencies by running `yarn`

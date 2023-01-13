@@ -1,4 +1,4 @@
-// Copyright 2017-2022 @polkadot/apps authors & contributors
+// Copyright 2017-2023 @polkadot/apps authors & contributors
 // SPDX-License-Identifier: Apache-2.0
 
 import type { LinkOption } from '@polkadot/apps-config/endpoints/types';
@@ -15,6 +15,7 @@ import { Button, Input, Sidebar } from '@polkadot/react-components';
 import { settings } from '@polkadot/ui-settings';
 import { isAscii } from '@polkadot/util';
 
+import config from '../../../apps-config/src/variables/config';
 import { useTranslation } from '../translate';
 import GroupDisplay from './Group';
 
@@ -31,6 +32,12 @@ interface UrlState {
   isUrlValid: boolean;
 }
 
+interface LcUrlState {
+  lcUrl: string;
+  hasLcUrlChanged: boolean;
+  isLcUrlValid: boolean;
+}
+
 const STORAGE_AFFINITIES = 'network:affinities';
 
 function isValidUrl (url: string): boolean {
@@ -39,6 +46,15 @@ function isValidUrl (url: string): boolean {
     (url.length >= 7) &&
     // check that it starts with a valid ws identifier
     (url.startsWith('ws://') || url.startsWith('wss://') || url.startsWith('light://'))
+  );
+}
+
+function isValidHttpUrl (url: string): boolean {
+  return (
+    // some random length... we probably want to parse via some lib
+    (url.length >= 7) &&
+    // check that it starts with a valid ws identifier
+    (url.startsWith('http://') || url.startsWith('https://'))
   );
 }
 
@@ -103,6 +119,32 @@ function extractUrlState (apiUrl: string, groups: Group[]): UrlState {
   };
 }
 
+function extractLcUrlState (lcUrl: string | null, groups: Group[]): LcUrlState {
+  let lcGroupIndex = groups.findIndex(({ networks }) =>
+    networks.some(({ providers }) =>
+      providers.some(({ url }) => url === lcUrl)
+    )
+  );
+
+  if (lcGroupIndex === -1) {
+    lcGroupIndex = groups.findIndex(({ isDevelopment }) => isDevelopment);
+  }
+
+  if (lcUrl === null) {
+    // eslint-disable-next-line @typescript-eslint/restrict-plus-operands
+    const lcU = config.LCURL + '/json-rpc';
+
+    // lcUrl = 'https://testnet.polygonavail.net/light/json-rpc';
+    lcUrl = lcU;
+  }
+
+  return {
+    hasLcUrlChanged: window.localStorage.getItem('lcUrl') !== lcUrl,
+    isLcUrlValid: isValidHttpUrl(lcUrl),
+    lcUrl
+  };
+}
+
 function loadAffinities (groups: Group[]): Record<string, string> {
   return Object
     .entries<string>(store.get(STORAGE_AFFINITIES) as Record<string, string> || {})
@@ -136,6 +178,7 @@ function Endpoints ({ className = '', offset, onClose }: Props): React.ReactElem
   const linkOptions = createWsEndpoints(t);
   const [groups, setGroups] = useState(() => combineEndpoints(linkOptions));
   const [{ apiUrl, groupIndex, hasUrlChanged, isUrlValid }, setApiUrl] = useState<UrlState>(() => extractUrlState(settings.get().apiUrl, groups));
+  const [{ hasLcUrlChanged, isLcUrlValid, lcUrl }, setLcUrl] = useState<LcUrlState>(() => extractLcUrlState(window.localStorage.getItem('lcUrl'), groups));
   const [storedCustomEndpoints, setStoredCustomEndpoints] = useState<string[]>(() => getCustomEndpoints());
   const [affinities, setAffinities] = useState(() => loadAffinities(groups));
 
@@ -249,15 +292,51 @@ function Endpoints ({ className = '', offset, onClose }: Props): React.ReactElem
     [hasUrlChanged, apiUrl, isUrlValid]
   );
 
+  const canLCSwitch = useMemo(
+    () => isSwitchDisabled(hasLcUrlChanged, lcUrl, isLcUrlValid),
+    [hasLcUrlChanged, lcUrl, isLcUrlValid]
+  );
+
+  const _onChangeCustomLC = useCallback(
+    (lcUrl: string): void => {
+      if (!isAscii(lcUrl)) {
+        lcUrl = punycode.toASCII(lcUrl);
+      }
+
+      setLcUrl(extractLcUrlState(lcUrl, groups));
+    },
+    [groups]
+  );
+
+  const _onLcApply = useCallback(
+    (): void => {
+      window.localStorage.setItem('lcUrl', lcUrl);
+
+      window.location.assign(`${window.location.origin}${window.location.pathname}?light=${encodeURIComponent(lcUrl)}${window.location.hash}`);
+      // window.location.reload();
+
+      onClose();
+    },
+    [lcUrl, onClose]
+  );
+
   return (
     <Sidebar
       button={
-        <Button
-          icon='sync'
-          isDisabled={canSwitch}
-          label={t<string>('Switch')}
-          onClick={_onApply}
-        />
+        <>
+          <Button
+            icon='sync'
+            isDisabled={canSwitch}
+            label={t<string>('Switch')}
+            onClick={_onApply}
+          />
+          <Button
+            icon='sync'
+            isDisabled={canLCSwitch}
+            label={t<string>('Switch LC')}
+            onClick={_onLcApply}
+          />
+        </>
       }
       className={className}
       offset={offset}
@@ -306,6 +385,16 @@ function Endpoints ({ className = '', offset, onClose }: Props): React.ReactElem
           )}
         </GroupDisplay>
       ))}
+      <div className='endpointCustomWrapper'>
+        <Input
+          className='endpointCustom'
+          isError={!isLcUrlValid}
+          isFull
+          label={t<string>('light client endpoint')}
+          onChange={_onChangeCustomLC}
+          value={lcUrl}
+        />
+      </div>
     </Sidebar>
   );
 }

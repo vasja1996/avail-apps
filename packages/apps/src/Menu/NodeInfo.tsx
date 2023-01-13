@@ -1,4 +1,4 @@
-// Copyright 2017-2022 @polkadot/apps authors & contributors
+// Copyright 2017-2023 @polkadot/apps authors & contributors
 // SPDX-License-Identifier: Apache-2.0
 
 import type { BareProps as Props } from '@polkadot/react-components/types';
@@ -12,7 +12,7 @@ import { NodeName, NodeVersion } from '@polkadot/react-query';
 // eslint-disable-next-line @typescript-eslint/no-var-requires
 const pkgJson = require('../../package.json') as { version: string };
 
-const uiInfo = `apps v${pkgJson.version}`;
+const uiInfo = `avail-apps v${pkgJson.version.replace('-x', '')}`;
 
 function NodeInfo ({ className = '' }: Props): React.ReactElement<Props> {
   const { api, isApiReady } = useApi();
@@ -33,7 +33,7 @@ function NodeInfo ({ className = '' }: Props): React.ReactElement<Props> {
 
 export default React.memo(styled(NodeInfo)`
   background: transparent;
-  font-size: 0.9rem;
+  font-size: var(--font-size-small);
   line-height: 1.2;
   padding: 0 0 0 1rem;
   text-align: right;
