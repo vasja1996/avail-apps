@@ -19,10 +19,9 @@ export * from './testingRelayWestend';
 export const testChains: EndpointOption[] = [
   {
       info: 'matic',
-      isDevelopment: false,
-      text: 'Avail-Testnet',
+      text: 'Avail-Devnet 06',
       providers: {
-        'POLYGON': config.testnet_url
+        'POLYGON': 'wss://devnet06.dataavailability.link:28546'
       }
   }
     /* {

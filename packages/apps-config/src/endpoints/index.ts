@@ -6,18 +6,20 @@ import type { LinkOption } from './types';
 
 import { defaultT } from '../util';
 import { createCustom, createDev, createOwn } from './development';
-// import { prodChains, prodRelayKusama, prodRelayPolkadot } from './production';
-// import { testChains, testRelayRococo, testRelayWestend } from './testing';
-// import { expandEndpoints } from './util';
+import { prodChains, prodRelayKusama, prodRelayPolkadot } from './production';
+import { testChains, /*testRelayRococo, testRelayWestend*/ } from './testing';
+import { expandEndpoints } from './util';
 
 export { CUSTOM_ENDPOINT_KEY } from './development';
-// export * from './production';
+export * from './production';
 export * from './testing';
 
 export function createWsEndpoints (t: TFunction = defaultT, firstOnly = false, withSort = true): LinkOption[] {
+  console.log(`Create Ws Endpoints: `+ JSON.stringify(t));
   return [
     ...createCustom(t),
-    /* {
+	/*
+    {
       isDisabled: false,
       isHeader: true,
       isSpaced: true,
@@ -60,6 +62,7 @@ export function createWsEndpoints (t: TFunction = defaultT, firstOnly = false, w
       value: ''
     },
     ...expandEndpoints(t, prodChains, firstOnly, withSort),
+	*/
     {
       isDisabled: false,
       isHeader: true,
@@ -77,7 +80,6 @@ export function createWsEndpoints (t: TFunction = defaultT, firstOnly = false, w
       textBy: '',
       value: ''
     },
-    */
     ...createDev(t),
     ...createOwn(t)
   ].filter(({ isDisabled }) => !isDisabled);
