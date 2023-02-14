@@ -1,7 +1,6 @@
 {
   "lightclient.experimental": "light client (experimental)",
   "lng.detect": "Default browser language (auto-detect)",
-  "rpc.dataavail": "Data Availability",
   "rpc.dev.custom": "Custom environment",
   "rpc.dev.custom.entry": "Custom {{WS_URL}}",
   "rpc.dev.custom.own": "Custom",
@@ -15,5 +14,4 @@
   "rpc.header.westend.relay": "Test Westend & parachains",
   "rpc.hosted.via": "via {{host}}",
   "ss58.default": "Default for the connected node"
-  "rpc.matic": "Matic",
 }
