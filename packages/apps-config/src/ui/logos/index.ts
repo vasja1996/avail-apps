@@ -109,6 +109,7 @@ import nodeAresMars from './nodes/ares-mars.png';
 import nodeAresOdyssey from './nodes/ares-odyssey.svg';
 import nodeAstar from './nodes/astar.png';
 import nodeAutomata from './nodes/automata.png';
+import nodeAvail from './nodes/avail.png';
 import nodeAventus from './nodes/aventus.svg';
 import nodeBajun from './nodes/bajun.png';
 import nodeBasilisk from './nodes/basilisk.png';
@@ -197,7 +198,6 @@ import nodePolkadot from './nodes/polkadot-circle.svg';
 import nodePolkadotJs from './nodes/polkadot-js.svg';
 import nodePolkaFoundry from './nodes/polkafoundry.svg';
 import nodePolkaSmith from './nodes/polkasmith.svg';
-import nodePolygon from './nodes/polygon.png';
 import nodePolymesh from './nodes/polymesh.svg';
 import nodePontem from './nodes/pontem.svg';
 import nodePrism from './nodes/prism.png';
@@ -261,6 +261,7 @@ export const chainLogos = Object.entries({
   Astar: chainAstar,
   Automata: nodeAutomata,
   'Automata ContextFree': nodeAutomata,
+  'Avail-DA-Testnet': nodeAvail,
   Aventus: chainAventus,
   'Bajun Testnet': nodeBajun,
   'Beast Developer': nodeBeast,
@@ -301,7 +302,7 @@ export const chainLogos = Object.entries({
   'Darwinia Crab PC2': nodeCrab,
   'Darwinia Parachain': nodeDarwinia,
   'Darwinia PC2': nodeDarwinia,
-  'data-avail': nodePolygon,
+  'data-avail': nodeAvail,
   DataHighway: nodeDataHighway,
   'DataHighway Spreehafen Rococo Parachain Testnet': chainRoccoDataHighway,
   'DataHighway Tanganika Kusama Parachain': chainKusamaDataHighway,
@@ -421,7 +422,7 @@ export const chainLogos = Object.entries({
   'Polkadex Mainnet': nodePolkadex,
   'Polkadex Testnet': nodePolkadex,
   'PolkaFoundry PC1': nodePolkaFoundry,
-  'Polygon-DA-Testnet': nodePolygon,
+  'Avail-Testnet': nodeAvail,
   'Pontem Testnet': nodePontem,
   'Prism PC1': nodePrism,
   'Prism Testnet': nodePrism,
@@ -511,6 +512,7 @@ export const nodeLogos = Object.entries({
   Astar: nodeAstar,
   'Automata ContextFree Node': nodeAutomata,
   'Automata Node': nodeAutomata,
+  'Avail DA Node': nodeAvail,
   Aventus: nodeAventus,
   'Bajun Node': nodeBajun,
   Basilisk: nodeBasilisk,
@@ -542,7 +544,7 @@ export const nodeLogos = Object.entries({
   'darwinia crab': nodeCrab,
   'darwinia parachain': nodeDarwinia,
   'Darwinia Runtime Module Library': nodeDarwinia,
-  'data-avail': nodePolygon,
+  'data-avail': nodeAvail,
   DataHighway: nodeDataHighway,
   'DataHighway Node': nodeDataHighway,
   'DataHighway Parachain Collator': nodeDataHighway,
@@ -645,7 +647,7 @@ export const nodeLogos = Object.entries({
   'PolkaFoundry Node': nodePolkaFoundry,
   'PolkaFoundry Parachain Collator': nodePolkaFoundry,
   'PolkaSmith Parachain Collator': nodePolkaSmith,
-  'Polygon DA Node': nodePolygon,
+  'Avail Node': nodeAvail,
   'Pontem Testnet': nodePontem,
   'Prism Collator': nodePrism,
   'Prism Node': nodePrism,
@@ -776,7 +778,7 @@ export const namedLogos: Record<string, unknown> = {
   'Dali Testnet (Rococo Relay)': chainRococoDali,
   DaliTestnet: nodeDaliTestnet,
   darwinia: nodeDarwinia,
-  'data-avail': nodePolygon,
+  'data-avail': nodeAvail,
   datahighway: nodeDataHighway,
   debio: chainDeBio,
   'debio-testnet': chainDeBio,
@@ -845,7 +847,7 @@ export const namedLogos: Record<string, unknown> = {
   manta: nodeManta,
   mars: nodeAresMars,
   mathchain: nodeMath,
-  matic: nodePolygon,
+  avail: nodeAvail,
   minix: nodeMinix,
   moonbaseAlpha: moonbase,
   moonbeam,
