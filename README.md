@@ -1,6 +1,6 @@
 <div align="Center">
 <h1>avail-apps</h1>
-<h3>Block Explorer & Apps for the Polygon Avail blockchain</h3>
+<h3>Block Explorer & Apps for the Avail blockchain</h3>
 </div>
 
 <br>
@@ -13,9 +13,9 @@
 
 `avail-apps` is a modified version of the [@polkadot/apps](https://github.com/polkadot-js/apps) repository for visualizing and interacting with the Avail network.
 
-Learn more about Avail at the Avail [product page](https://polygon.technology/solutions/polygon-avail/) and [documentation](https://wiki.polygon.technology/docs/avail/introduction/what-is-avail/) websites.
+Learn more about Avail at the [Avail homepage](https://www.availproject.org/) and [documentation](https://availproject.github.io/) websites.
 
-You can access a live version of the explorer for the Avail Testnet at https://testnet.polygonavail.net/
+You can access a live version of the explorer for the Avail Testnet at https://testnet.avail.tools/
 
 ## overview
 
