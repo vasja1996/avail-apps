@@ -20,4 +20,5 @@ yarn-debug.log*
 yarn-error.log*
 .idea/
 env-config.js
+*.code-workspace
 NOTES.md
