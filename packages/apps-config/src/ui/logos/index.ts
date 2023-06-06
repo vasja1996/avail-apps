@@ -715,6 +715,7 @@ export const nodeLogos = Object.entries({
 
 // Alphabetical overrides based on the actual specName
 export const specLogos = Object.entries({
+  'data-avail': nodeAvail,
   oak: chainOAK,
   shell: nodeShell,
   statemine: nodeStatemine,
