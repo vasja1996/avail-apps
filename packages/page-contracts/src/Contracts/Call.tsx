@@ -69,7 +69,7 @@ function Call ({ className = '', contract, messageIndex, onCallResult, onChangeM
       .query[message.method](accountId, { gasLimit: -1, storageDepositLimit: null, value: message.isPayable ? dbValue : 0 }, ...dbParams)
       .then(({ gasRequired, result }) => setEstimatedWeight(
         result.isOk
-          ? gasRequired
+          ? gasRequired.refTime.toBn()
           : null
       ))
       .catch(() => setEstimatedWeight(null));

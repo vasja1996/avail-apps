@@ -136,7 +136,7 @@ function getCachedComponent (registry: Registry, query: QueryTypes): CacheInstan
       defaultProps
     );
 
-    cache[query.id] = createComponent(type, Component, defaultProps, renderHelper);
+    cache[query.id] = createComponent(type, Component, defaultProps, renderHelper) as CacheInstance;
   }
 
   return cache[id];
