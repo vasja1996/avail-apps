@@ -5,10 +5,10 @@ import type { DeriveTreasuryProposals } from '@polkadot/api-derive/types';
 
 import React from 'react';
 
-// import { Button } from '@polkadot/react-components';
+import { Button } from '@polkadot/react-components';
 import { useApi, useCall } from '@polkadot/react-hooks';
 
-// import ProposalCreate from './ProposalCreate';
+import ProposalCreate from './ProposalCreate';
 import Proposals from './Proposals';
 import Summary from './Summary';
 
@@ -28,9 +28,9 @@ function Overview ({ className, isMember, members }: Props): React.ReactElement<
         approvalCount={info?.approvals.length}
         proposalCount={info?.proposals.length}
       />
-      {/* <Button.Group>
+      <Button.Group>
         <ProposalCreate />
-      </Button.Group> */}
+      </Button.Group>
       <Proposals
         isMember={isMember}
         members={members}

@@ -35,11 +35,11 @@ function TechCommApp ({ basePath, className, type }: Props): React.ReactElement<
       isRoot: true,
       name: 'overview',
       text: t<string>('Overview')
+    },
+    {
+      name: 'proposals',
+      text: t<string>('Proposals ({{count}})', { replace: { count: (proposalHashes && proposalHashes.length) || 0 } })
     }
-    // {
-    //   name: 'proposals',
-    //   text: t<string>('Proposals ({{count}})', { replace: { count: (proposalHashes && proposalHashes.length) || 0 } })
-    // }
   ], [t]);
 
   return (
