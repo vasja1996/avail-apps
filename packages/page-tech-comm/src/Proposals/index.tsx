@@ -7,11 +7,11 @@ import type { ComponentProps } from '../types';
 
 import React, { useRef } from 'react';
 
-import { Table } from '@polkadot/react-components';
+import { Button, Table } from '@polkadot/react-components';
 
 import { useTranslation } from '../translate';
 import Proposal from './Proposal';
-// import Propose from './Propose';
+import Propose from './Propose';
 
 interface Props extends ComponentProps {
   defaultProposal?: SubmittableExtrinsicFunction<'promise'>;
@@ -19,7 +19,7 @@ interface Props extends ComponentProps {
   filter?: (section: string, method?: string) => boolean;
 }
 
-function Proposals ({ className = '', isMember, members, prime, proposalHashes, type }: Props): React.ReactElement<Props> {
+function Proposals ({ className = '', defaultProposal, defaultThreshold, filter, isMember, members, prime, proposalHashes, type }: Props): React.ReactElement<Props> {
   const { t } = useTranslation();
 
   const headerRef = useRef<[React.ReactNode?, string?, number?][]>([
@@ -33,7 +33,7 @@ function Proposals ({ className = '', isMember, members, prime, proposalHashes, 
 
   return (
     <div className={className}>
-      {/* <Button.Group>
+      <Button.Group>
         <Propose
           defaultThreshold={defaultThreshold}
           defaultValue={defaultProposal}
@@ -42,7 +42,7 @@ function Proposals ({ className = '', isMember, members, prime, proposalHashes, 
           members={members}
           type={type}
         />
-      </Button.Group> */}
+      </Button.Group>
       <Table
         empty={proposalHashes && t<string>('No committee proposals')}
         header={headerRef.current}

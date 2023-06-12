@@ -242,7 +242,7 @@ function createBalanceItems (formatIndex: number, lookup: Record<string, string>
         className='result'
         formatIndex={formatIndex}
         labelPost={<IconVoid />}
-        value={balancesAll.freeBalance.add(balancesAll.reservedBalance)}
+        value={balancesAll && balancesAll.freeBalance.add(balancesAll.reservedBalance)}
       />
     </React.Fragment>
   );
@@ -280,7 +280,7 @@ function createBalanceItems (formatIndex: number, lookup: Record<string, string>
               <>
                 <div>
                   {formatBalance(deriveBalances.vestedClaimable, { forceUnit: '-' })}
-                  <div className='faded'>{t('available to be unlocked')}</div>
+                  <div className='faded'>{t<string>('available to be unlocked')}</div>
                 </div>
                 {allVesting.map(({ endBlock, locked, perBlock, vested }, index) => (
                   <div
@@ -289,15 +289,15 @@ function createBalanceItems (formatIndex: number, lookup: Record<string, string>
                   >
                     <div>
                       {formatBalance(vested, { forceUnit: '-' })}
-                      <div className='faded'>{t('of {{locked}} vested', { replace: { locked: formatBalance(locked, { forceUnit: '-' }) } })}</div>
+                      <div className='faded'>{t<string>('of {{locked}} vested', { replace: { locked: formatBalance(locked, { forceUnit: '-' }) } })}</div>
                     </div>
                     <div>
                       <BlockToTime value={endBlock.sub(bestNumber)} />
-                      <div className='faded'>{t('until block')} {formatNumber(endBlock)}</div>
+                      <div className='faded'>{t<string>('until block')} {formatNumber(endBlock)}</div>
                     </div>
                     <div>
                       {formatBalance(perBlock)}
-                      <div className='faded'>{t('per block')}</div>
+                      <div className='faded'>{t<string>('per block')}</div>
                     </div>
                   </div>
                 ))}
@@ -460,9 +460,9 @@ function createBalanceItems (formatIndex: number, lookup: Record<string, string>
                       <div className='nowrap'>#{refId.toString()} {formatBalance(total, { forceUnit: '-' })} {locked}</div>
                       <div className='faded nowrap'>{
                         endBlock.eq(BN_MAX_INTEGER)
-                          ? t('ongoing referendum')
+                          ? t<string>('ongoing referendum')
                           : bestNumber.gte(endBlock)
-                            ? t('lock expired')
+                            ? t<string>('lock expired')
                             : <>{formatNumber(endBlock.sub(bestNumber))} {t('blocks')},&nbsp;
                               <BlockToTime
                                 isInline
