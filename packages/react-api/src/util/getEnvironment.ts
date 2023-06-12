@@ -5,9 +5,10 @@ import type { Environment } from '../types.js';
 
 // https://github.com/electron/electron/issues/2288
 function isElectron () {
-  if (process?.versions?.electron) {
+  // eslint-disable-next-line @typescript-eslint/dot-notation
+  if (process?.versions?.['electron']) {
     return true;
-  } else if ((window?.process as unknown as (Record<string, string> | undefined))?.type === 'renderer') {
+  } else if ((window?.process as unknown as (Record<string, string> | undefined))?.['type'] === 'renderer') {
     return true;
   }
 

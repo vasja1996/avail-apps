@@ -3,8 +3,8 @@
 
 import type { TFunction } from '../types.js';
 import type { LinkOption } from './types.js';
-import { nodesAvailPNG } from '../ui/logos/nodes/index.js';
 
+import { nodesAvailPNG } from '../ui/logos/nodes/index.js';
 
 export const CUSTOM_ENDPOINT_KEY = 'polkadot-app-custom-endpoints';
 
@@ -17,7 +17,7 @@ interface EnvWindow {
 
 export function createCustom (t: TFunction): LinkOption[] {
   const WS_URL = (
-    (typeof process !== 'undefined' ? process.env?.WS_URL : undefined) ||
+    (typeof process !== 'undefined' ? process.env?.['WS_URL'] : undefined) ||
     (typeof window !== 'undefined' ? (window as EnvWindow).process_env?.WS_URL : undefined)
   );
 

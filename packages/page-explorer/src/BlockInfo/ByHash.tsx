@@ -14,7 +14,7 @@ import { useApi, useIsMountedRef } from '@polkadot/react-hooks';
 import { convertWeight } from '@polkadot/react-hooks/useWeight';
 import { formatNumber } from '@polkadot/util';
 
-import config from '../../../apps-config/src/variables/config';
+import config from '../../../apps-config/src/variables/config.js';
 import Events from '../Events.js';
 import { useTranslation } from '../translate.js';
 import Extrinsics from './Extrinsics.js';
@@ -102,7 +102,6 @@ function BlockByHash ({ className = '', error, value }: Props): React.ReactEleme
         const number = result[2];
         // let LightClientURI = 'https://testnet.avail.tools/light/v1';
         let LightClientURI = config.LCURL + '/v1';
-
         const url = new URL(window.location.href);
         const searchParams = new URLSearchParams(url.search);
         const getParam = searchParams.get('light');

@@ -34,7 +34,7 @@ import crust from './crust.js';
 import testPara from './cumulus-test-parachain.js';
 import curio from './curio.js';
 import darwinia from './darwinia.js';
-import dataavail from './dataavail';
+import dataavail from './dataavail.js';
 import datahighwayParachain from './datahighway.js';
 import dockMainnet from './dock-mainnet.js';
 import dockTestnet from './dock-testnet.js';
@@ -78,7 +78,6 @@ import logionParachain from './logion-parachain.js';
 import mangata from './mangata.js';
 import manta from './manta.js';
 import mathchain from './mathchain.js';
-import avail from './avail';
 import moonbeam from './moonbeam.js';
 import mybank from './mybank.js';
 import neatcoin from './neatcoin.js';
@@ -181,9 +180,9 @@ const spec: Record<string, OverrideBundleDefinition> = {
   crust,
   'crust-parachain': crust,
   'cumulus-test-parachain': testPara,
-  'data-avail': dataavail,
   'curio-devnet': curio,
   'curio-testnet': curio,
+  'data-avail': dataavail,
   datahighway: westlake,
   'datahighway-parachain': datahighwayParachain,
   dawn: eave,
@@ -247,7 +246,6 @@ const spec: Record<string, OverrideBundleDefinition> = {
   nftmart,
   'node-moonbeam': moonbeam,
   'node-polkadex': polkadex,
-  'node-template': avail,
   'nodle-chain': nodle,
   oak,
   opal,

@@ -11,7 +11,7 @@ const definitions: OverrideBundleDefinition = {
   rpc: {
     kate: {
       blockLength: {
-        description: "Get Block Length",
+        description: 'Get Block Length',
         params: [
           {
             name: 'at',
@@ -19,7 +19,7 @@ const definitions: OverrideBundleDefinition = {
             isOptional: true
           }
         ],
-        type: 'BlockLength' 
+        type: 'BlockLength'
       },
       queryProof: {
         description: 'Generate the kate proof for the given `cells`',
@@ -32,7 +32,7 @@ const definitions: OverrideBundleDefinition = {
             name: 'at',
             type: 'Hash',
             isOptional: true
-          },
+          }
         ],
         type: 'Vec<u8>'
       },
@@ -47,7 +47,7 @@ const definitions: OverrideBundleDefinition = {
             name: 'at',
             type: 'Hash',
             isOptional: true
-          },
+          }
         ],
         type: 'Vec<Option<Vec<u8>>>'
       },
@@ -75,7 +75,7 @@ const definitions: OverrideBundleDefinition = {
       minmax: [0, undefined],
       types: {
         AppId: 'Compact<u32>',
-        DataLookupIndexItem: { 
+        DataLookupIndexItem: {
           appId: 'AppId',
           start: 'Compact<u32>'
         },

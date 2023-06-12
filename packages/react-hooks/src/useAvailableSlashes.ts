@@ -20,13 +20,13 @@ type Unsub = () => void;
 function useAvailableSlashesImpl (): [BN, PalletStakingUnappliedSlash[]][] {
   const { api } = useApi();
   const indexes = useCall<DeriveSessionIndexes>(api.derive.session?.indexes);
-  const earliestSlash = useCall<Option<EraIndex>>(api.query.staking?.earliestUnappliedSlash);
+  const earliestSlash = useCall<Option<EraIndex>>(api.query.staking?.['earliestUnappliedSlash']);
   const mountedRef = useIsMountedRef();
   const [slashes, setSlashes] = useState<[BN, PalletStakingUnappliedSlash[]][]>([]);
 
   useEffect((): Unsub => {
     let unsub: Unsub | undefined;
-    const [from, offset] = api.query.staking?.earliestUnappliedSlash
+    const [from, offset] = api.query.staking?.['earliestUnappliedSlash']
       ? [earliestSlash && earliestSlash.unwrapOr(null), BN_ZERO]
       // future depth (one more than activeEra for delay)
       : [indexes?.activeEra, BN_ONE.add(api.consts.staking?.slashDeferDuration || BN_HUNDRED)];

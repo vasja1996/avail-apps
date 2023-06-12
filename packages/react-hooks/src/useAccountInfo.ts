@@ -137,7 +137,7 @@ function useAccountInfoImpl (value: string | null, isContract = false): UseAccou
         }));
         setMeta(accountOrAddress?.meta);
         setName(accountOrAddress?.meta.name || '');
-        setSortedTags(accountOrAddress?.meta.tags ? (accountOrAddress.meta.tags as string[]).sort() : []);
+        setSortedTags(accountOrAddress?.meta.tags ? (accountOrAddress.meta.tags).sort() : []);
       } catch {
         // ignore
       }

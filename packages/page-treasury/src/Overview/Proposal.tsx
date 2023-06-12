@@ -51,8 +51,8 @@ function ProposalDisplay ({ className = '', isMember, members, proposal: { counc
         </td>
         <td className={hasProposals ? 'middle' : 'button'}>
           {hasCouncil
-            ? hasProposals ?
-              <a href='#/council/motions'>{t<string>('Voting')}</a>
+            ? hasProposals
+              ? <a href='#/council/motions'>{t<string>('Voting')}</a>
               : withSend && (
                 <Council
                   id={id}

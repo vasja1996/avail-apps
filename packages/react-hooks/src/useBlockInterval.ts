@@ -21,14 +21,20 @@ function calcInterval (api: ApiPromise): BN {
     // Babe, e.g. Relay chains (Substrate defaults)
     api.consts.babe?.expectedBlockTime ||
     // POW, eg. Kulupu
-    api.consts.difficulty?.targetBlockTime ||
+    // POW, eg. Kulupu
+    // POW, eg. Kulupu
+    // POW, eg. Kulupu
+    api.consts['difficulty']?.['targetBlockTime'] ||
     // Subspace
-    api.consts.subspace?.expectedBlockTime || (
+    // Subspace
+    // Subspace
+    // Subspace
+    api.consts['subspace']?.['expectedBlockTime'] || (
       // Check against threshold to determine value validity
       api.consts.timestamp?.minimumPeriod.gte(THRESHOLD)
         // Default minimum period config
         ? api.consts.timestamp.minimumPeriod.mul(BN_TWO)
-        : api.query.parachainSystem
+        : api.query['parachainSystem']
           // default guess for a parachain
           ? DEFAULT_TIME.mul(BN_TWO)
           // default guess for others

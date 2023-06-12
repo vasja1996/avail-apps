@@ -67,8 +67,8 @@ const STYLE = `
     margin-right: 0.75rem;
     vertical-align: middle;
     width: 24px;
-  }`
-  
+  }`;
+
 const StyledIcon = styled(Icon)`${STYLE}`;
 const StyledImg = styled.img`${STYLE}`;
 

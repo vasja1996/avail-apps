@@ -3,12 +3,8 @@
 
 import type { EndpointOption } from './types.js';
 
-import config from '../variables/config';
-
 import { nodesAvailPNG } from '../ui/logos/nodes/index.js';
-
-export * from './testingRelayRococo.js';
-export * from './testingRelayWestend.js';
+import config from '../variables/config.js';
 
 // The available endpoints that will show in the dropdown. For the most part (with the exception of
 // Polkadot) we try to keep this to live chains only, with RPCs hosted by the community/chain vendor
@@ -20,10 +16,10 @@ export * from './testingRelayWestend.js';
 export const testChains: Omit<EndpointOption, 'teleport'>[] = [
   {
     info: 'data-avail',
-    text: 'Avail-Testnet',
     providers: {
       AVAIL: config.TESTNETURL
     },
+    text: 'Avail-Testnet',
     ui: {
       color: '#42A5F5',
       logo: nodesAvailPNG

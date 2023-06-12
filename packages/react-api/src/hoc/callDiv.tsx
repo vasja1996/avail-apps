@@ -16,7 +16,7 @@ interface Props<T> extends BaseProps<T> {
 export default function withCallDiv<T> (endpoint: string, options: Options = {}) {
   return (render: (value?: T) => React.ReactNode, defaultProps: DefaultProps = {}): React.ComponentType<any> => {
     // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
-    function Inner ({ callResult, callUpdated, children, className = defaultProps.className, label = '' }: any): React.ReactElement<Props<T>> {
+    function Inner ({ callResult, callUpdated, children, className = defaultProps['className'], label = '' }: any): React.ReactElement<Props<T>> {
       return (
         <div
           {...defaultProps}

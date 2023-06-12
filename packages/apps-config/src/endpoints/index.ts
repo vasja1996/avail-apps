@@ -5,8 +5,7 @@ import type { TFunction, TOptions } from '../types.js';
 import type { LinkOption } from './types.js';
 
 import { createCustom, createDev, createOwn } from './development.js';
-import { prodChains, prodRelayKusama, prodRelayPolkadot } from './production.js';
-import { testChains, testRelayRococo, testRelayWestend } from './testing.js';
+import { testChains } from './testing.js';
 import { expandEndpoints } from './util.js';
 
 export { CUSTOM_ENDPOINT_KEY } from './development.js';
@@ -18,7 +17,7 @@ function defaultT (keyOrText: string, text?: string, options?: TOptions): string
     (
       options &&
       options.replace &&
-      options.replace.host
+      options.replace['host']
     ) ||
     text ||
     keyOrText
@@ -26,10 +25,11 @@ function defaultT (keyOrText: string, text?: string, options?: TOptions): string
 }
 
 export function createWsEndpoints (t: TFunction = defaultT, firstOnly = false, withSort = true): LinkOption[] {
-  console.log(`Create Ws Endpoints: `+ JSON.stringify(t));
+  console.log('Create Ws Endpoints: ' + JSON.stringify(t));
+
   return [
     ...createCustom(t),
-	/*
+    /*
     {
       isDisabled: false,
       isHeader: true,
@@ -78,7 +78,7 @@ export function createWsEndpoints (t: TFunction = defaultT, firstOnly = false, w
       value: ''
     },
     ...expandEndpoints(t, prodChains, firstOnly, withSort),
-	*/
+*/
     {
       isDisabled: false,
       isHeader: true,

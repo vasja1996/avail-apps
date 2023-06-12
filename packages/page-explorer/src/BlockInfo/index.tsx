@@ -30,6 +30,7 @@ function Entry (): React.ReactElement | null {
     return null;
   }
 
+  // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
   const Component = isHex(stateValue)
     ? BlockByHash
     : BlockByNumber;

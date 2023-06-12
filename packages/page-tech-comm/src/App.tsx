@@ -40,7 +40,7 @@ function TechCommApp ({ basePath, className, type }: Props): React.ReactElement<
       name: 'proposals',
       text: t<string>('Proposals ({{count}})', { replace: { count: (proposalHashes && proposalHashes.length) || 0 } })
     }
-  ], [t]);
+  ], [proposalHashes, t]);
 
   return (
     <main className={className}>

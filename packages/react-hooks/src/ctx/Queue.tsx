@@ -33,7 +33,7 @@ let nextId = 0;
 
 const EVENT_MESSAGE = 'extrinsic event';
 const REMOVE_TIMEOUT = 7500;
-const SUBMIT_RPC = jsonrpc.author.submitAndWatchExtrinsic;
+const SUBMIT_RPC = jsonrpc['author']['submitAndWatchExtrinsic'];
 
 export const QueueCtx = React.createContext<QueueProps>(EMPTY_STATE as QueueProps);
 

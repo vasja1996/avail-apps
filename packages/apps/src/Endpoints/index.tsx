@@ -14,7 +14,7 @@ import { Button, Input, Sidebar, styled } from '@polkadot/react-components';
 import { settings } from '@polkadot/ui-settings';
 import { isAscii } from '@polkadot/util';
 
-import config from '../../../apps-config/src/variables/config';
+import config from '../../../apps-config/src/variables/config.js';
 import { useTranslation } from '../translate.js';
 import GroupDisplay from './Group.js';
 

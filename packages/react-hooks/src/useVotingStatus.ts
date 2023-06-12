@@ -49,7 +49,7 @@ function getStatus (api: ApiPromise, bestNumber: BlockNumber, votes: Votes, numM
   return {
     hasFailed,
     hasPassed,
-    isCloseable: api.tx[modLocation].close.meta.args.length === 4 // current-generation
+    isCloseable: api.tx[modLocation]['close'].meta.args.length === 4 // current-generation
       ? isEnd || hasPassed || hasFailed
       : isEnd,
     isVoteable: !isEnd,

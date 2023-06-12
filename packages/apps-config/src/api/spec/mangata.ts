@@ -49,7 +49,7 @@ export function getBalance (
   return memo(
     instanceId,
     (account: string): Observable<DeriveBalancesAll> =>
-      combineLatest<[any, any]>([api.query.tokens.accounts(account, 0), api.query.system.account(account)]).pipe(
+      combineLatest<[any, any]>([api.query['tokens']['accounts'](account, 0), api.query.system.account(account)]).pipe(
         map(([data, systemAccount]: [OrmlAccountData, FrameSystemAccountInfo]): DeriveBalancesAll => {
           return {
             ...defaultAccountBalance(),

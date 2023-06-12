@@ -4,7 +4,7 @@
 function flatten (_key: string | null, value?: unknown): unknown {
   return !value
     ? value
-    : (value as Record<string, unknown>).$$typeof
+    : (value as Record<string, unknown>)['$$typeof']
       ? ''
       : Array.isArray(value)
         ? value.map((item) => flatten(null, item))

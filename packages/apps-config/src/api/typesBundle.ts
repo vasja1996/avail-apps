@@ -49510,6 +49510,90 @@ export const typesBundle = {
         }
       ]
     },
+    "curio-devnet": {
+      "types": [
+        {
+          "minmax": [
+            0,
+            null
+          ],
+          "types": {
+            "StakingRates": {
+              "collatorStakingRate": "Perquintill",
+              "collatorRewardRate": "Perquintill",
+              "delegatorStakingRate": "Perquintill",
+              "delegatorRewardRate": "Perquintill"
+            }
+          }
+        }
+      ],
+      "runtime": {
+        "Staking": [
+          {
+            "methods": {
+              "get_staking_rates": {
+                "description": "Calculate the current staking and reward rates for collators and delegators",
+                "params": [],
+                "type": "StakingRates"
+              },
+              "get_unclaimed_staking_rewards": {
+                "description": "Calculate the claimable staking rewards for a given account address",
+                "params": [
+                  {
+                    "name": "account",
+                    "type": "AccountId32"
+                  }
+                ],
+                "type": "Balance"
+              }
+            },
+            "version": 1
+          }
+        ]
+      }
+    },
+    "curio-testnet": {
+      "types": [
+        {
+          "minmax": [
+            0,
+            null
+          ],
+          "types": {
+            "StakingRates": {
+              "collatorStakingRate": "Perquintill",
+              "collatorRewardRate": "Perquintill",
+              "delegatorStakingRate": "Perquintill",
+              "delegatorRewardRate": "Perquintill"
+            }
+          }
+        }
+      ],
+      "runtime": {
+        "Staking": [
+          {
+            "methods": {
+              "get_staking_rates": {
+                "description": "Calculate the current staking and reward rates for collators and delegators",
+                "params": [],
+                "type": "StakingRates"
+              },
+              "get_unclaimed_staking_rewards": {
+                "description": "Calculate the claimable staking rewards for a given account address",
+                "params": [
+                  {
+                    "name": "account",
+                    "type": "AccountId32"
+                  }
+                ],
+                "type": "Balance"
+              }
+            },
+            "version": 1
+          }
+        ]
+      }
+    },
     "data-avail": {
       "rpc": {
         "kate": {
@@ -49659,90 +49743,6 @@ export const typesBundle = {
           },
           "payload": {}
         }
-      }
-    },
-    "curio-devnet": {
-      "types": [
-        {
-          "minmax": [
-            0,
-            null
-          ],
-          "types": {
-            "StakingRates": {
-              "collatorStakingRate": "Perquintill",
-              "collatorRewardRate": "Perquintill",
-              "delegatorStakingRate": "Perquintill",
-              "delegatorRewardRate": "Perquintill"
-            }
-          }
-        }
-      ],
-      "runtime": {
-        "Staking": [
-          {
-            "methods": {
-              "get_staking_rates": {
-                "description": "Calculate the current staking and reward rates for collators and delegators",
-                "params": [],
-                "type": "StakingRates"
-              },
-              "get_unclaimed_staking_rewards": {
-                "description": "Calculate the claimable staking rewards for a given account address",
-                "params": [
-                  {
-                    "name": "account",
-                    "type": "AccountId32"
-                  }
-                ],
-                "type": "Balance"
-              }
-            },
-            "version": 1
-          }
-        ]
-      }
-    },
-    "curio-testnet": {
-      "types": [
-        {
-          "minmax": [
-            0,
-            null
-          ],
-          "types": {
-            "StakingRates": {
-              "collatorStakingRate": "Perquintill",
-              "collatorRewardRate": "Perquintill",
-              "delegatorStakingRate": "Perquintill",
-              "delegatorRewardRate": "Perquintill"
-            }
-          }
-        }
-      ],
-      "runtime": {
-        "Staking": [
-          {
-            "methods": {
-              "get_staking_rates": {
-                "description": "Calculate the current staking and reward rates for collators and delegators",
-                "params": [],
-                "type": "StakingRates"
-              },
-              "get_unclaimed_staking_rewards": {
-                "description": "Calculate the claimable staking rewards for a given account address",
-                "params": [
-                  {
-                    "name": "account",
-                    "type": "AccountId32"
-                  }
-                ],
-                "type": "Balance"
-              }
-            },
-            "version": 1
-          }
-        ]
       }
     },
     "datahighway": {
@@ -69327,31 +69327,6 @@ export const typesBundle = {
               "perPeriod": "Compact<Balance>"
             },
             "VestingScheduleOf": "OrmlVestingSchedule"
-          }
-        }
-      ]
-    },
-    "node-template": {
-      "types": [
-        {
-          "minmax": [
-            0,
-            null
-          ],
-          "types": {
-            "ExtrinsicsRoot": {
-              "hash": "Hash",
-              "commitment": "Vec<u8>",
-              "rows": "u16",
-              "cols": "u16"
-            },
-            "Header": {
-              "parentHash": "Hash",
-              "number": "Compact<BlockNumber>",
-              "stateRoot": "Hash",
-              "extrinsicsRoot": "ExtrinsicsRoot",
-              "digest": "Digest"
-            }
           }
         }
       ]
