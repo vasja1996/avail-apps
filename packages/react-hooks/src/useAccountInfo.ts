@@ -232,9 +232,13 @@ function useAccountInfoImpl (value: string | null, isContract = false): UseAccou
       if (value) {
         const account = keyring.getPair(value);
 
-        account && keyring.saveAccountMeta(account, { ...account.meta, genesisHash });
+        if (account) {
+          const formattedGenesisHash = genesisHash ? `0x${genesisHash}` : null;
 
-        setGenesisHash(genesisHash);
+          account.meta.genesisHash = formattedGenesisHash as `0x${string}` | null | undefined;
+
+          setGenesisHash(genesisHash);
+        }
       }
     },
     [value]

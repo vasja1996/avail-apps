@@ -50,7 +50,7 @@ function Editor ({ className = '', code, isValid, onEdit }: Props): React.ReactE
 
     editor.updateCode(code);
     (editor as any).editorRoot.addEventListener('keydown', (): void => {
-      (editor as unknown as Record<string, (value: unknown) => void>).onUpdate(onEdit);
+      (editor as unknown as Record<string, (value: unknown) => void>)['onUpdate'](onEdit);
     });
 
     editorRef.current = editor;

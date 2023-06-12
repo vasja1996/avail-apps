@@ -4,7 +4,11 @@
     // "jsx": "react",
     "baseUrl": "./packages",
     "composite": false,
-    // "esModuleInterop": true,
+    "noPropertyAccessFromIndexSignature": false,
+    "noImplicitReturns": true,
+    "noImplicitThis": true,
+    "noImplicitAny": true,
+    "esModuleInterop": true,
     /*
      * We have a couple of issues that forces us to disable this -
      *  1. apps-electron is still CJS

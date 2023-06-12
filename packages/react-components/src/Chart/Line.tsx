@@ -94,8 +94,8 @@ function getOptions (options: ChartOptions = {}): DatasetChartOptions<'line'> {
       tooltip: objectSpread({}, BASE_OPTS.plugins?.tooltip, options.plugins?.tooltip)
     }),
     scales: objectSpread({}, BASE_OPTS.scales, options.scales, {
-      x: objectSpread({}, BASE_OPTS.scales?.x, options.scales?.x),
-      y: objectSpread({}, BASE_OPTS.scales?.y, options.scales?.y)
+      x: objectSpread({}, BASE_OPTS.scales?.['x'], options.scales?.['x']),
+      y: objectSpread({}, BASE_OPTS.scales?.['y'], options.scales?.['y'])
     })
   });
 }

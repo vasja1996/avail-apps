@@ -108,13 +108,13 @@ function readOptions (): Record<string, Record<string, string>> {
 function getLastValue (type: KeyringOption$Type = DEFAULT_TYPE): string {
   const options = readOptions();
 
-  return options.defaults[type];
+  return options['defaults'][type];
 }
 
 function setLastValue (type: KeyringOption$Type = DEFAULT_TYPE, value: string): void {
   const options = readOptions();
 
-  options.defaults[type] = value;
+  options['defaults'][type] = value;
   store.set(STORAGE_KEY, options);
 }
 
