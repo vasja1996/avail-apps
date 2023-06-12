@@ -1,26 +1,26 @@
 // Copyright 2017-2023 @polkadot/app-staking authors & contributors
 // SPDX-License-Identifier: Apache-2.0
 
+import type { ApiPromise } from '@polkadot/api';
 import type { DeriveHeartbeatAuthor } from '@polkadot/api-derive/types';
 import type { Option } from '@polkadot/types';
 import type { SlashingSpans, ValidatorPrefs } from '@polkadot/types/interfaces';
 import type { BN } from '@polkadot/util';
-import type { NominatedBy as NominatedByType, ValidatorInfo } from '../../types';
-import type { NominatorValue } from './types';
+import type { NominatedBy as NominatedByType, ValidatorInfo } from '../../types.js';
+import type { NominatorValue } from './types.js';
 
 import React, { useMemo } from 'react';
 
-import { ApiPromise } from '@polkadot/api';
 import { AddressSmall, Columar, Icon, LinkExternal, Table, Tag } from '@polkadot/react-components';
 import { checkVisibility } from '@polkadot/react-components/util';
 import { useApi, useCall, useDeriveAccountInfo, useToggle } from '@polkadot/react-hooks';
 import { FormatBalance } from '@polkadot/react-query';
 import { BN_ZERO } from '@polkadot/util';
 
-import { useTranslation } from '../../translate';
-import NominatedBy from './NominatedBy';
-import StakeOther from './StakeOther';
-import Status from './Status';
+import { useTranslation } from '../../translate.js';
+import NominatedBy from './NominatedBy.js';
+import StakeOther from './StakeOther.js';
+import Status from './Status.js';
 
 interface Props {
   address: string;
@@ -44,14 +44,14 @@ interface Props {
 interface StakingState {
   isChilled?: boolean;
   commission?: string;
-  nominators: NominatorValue[];
+  nominators?: NominatorValue[];
   stakeTotal?: BN;
   stakeOther?: BN;
   stakeOwn?: BN;
 }
 
 function expandInfo ({ exposure, validatorPrefs }: ValidatorInfo, minCommission?: BN): StakingState {
-  let nominators: NominatorValue[] = [];
+  let nominators: NominatorValue[] | undefined;
   let stakeTotal: BN | undefined;
   let stakeOther: BN | undefined;
   let stakeOwn: BN | undefined;
@@ -99,7 +99,7 @@ function Address ({ address, className = '', filterName, hasQueries, isElected, 
   const { commission, isChilled, nominators, stakeOther, stakeOwn } = useMemo(
     () => validatorInfo
       ? expandInfo(validatorInfo, minCommission)
-      : { nominators: [] },
+      : {},
     [minCommission, validatorInfo]
   );
 
@@ -124,7 +124,7 @@ function Address ({ address, className = '', filterName, hasQueries, isElected, 
 
   return (
     <>
-      <tr className={`${className} isFirst ${isExpanded ? 'packedBottom' : 'isLast'}`}>
+      <tr className={`${className} isExpanded isFirst ${isExpanded ? 'packedBottom' : 'isLast'}`}>
         <Table.Column.Favorite
           address={address}
           isFavorite={isFavorite}
@@ -167,7 +167,7 @@ function Address ({ address, className = '', filterName, hasQueries, isElected, 
           )
         }
         <td className='number'>
-          {commission}
+          {commission || <span className='--tmp'>50.00%</span>}
         </td>
         {isMain && (
           <td className='number'>

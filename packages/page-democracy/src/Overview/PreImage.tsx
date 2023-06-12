@@ -6,15 +6,15 @@ import type { Hash } from '@polkadot/types/interfaces';
 import type { HexString } from '@polkadot/util/types';
 
 import React, { useEffect, useMemo, useState } from 'react';
-import styled from 'styled-components';
 
-import { Extrinsic, InputAddress, InputBalance, Modal, Static, TxButton } from '@polkadot/react-components';
+import { InputAddress, InputBalance, Modal, Static, styled, TxButton } from '@polkadot/react-components';
 import { useApi } from '@polkadot/react-hooks';
+import { Extrinsic } from '@polkadot/react-params';
 import { Available } from '@polkadot/react-query';
 import { BN, BN_ZERO, isString } from '@polkadot/util';
 import { blake2AsHex } from '@polkadot/util-crypto';
 
-import { useTranslation } from '../translate';
+import { useTranslation } from '../translate.js';
 
 interface Props {
   className?: string;
@@ -61,7 +61,7 @@ function PreImage ({ className = '', imageHash, isImminent = false, onClose }: P
   );
 
   return (
-    <Modal
+    <StyledModal
       className={className}
       header={t<string>('Submit preimage')}
       onClose={onClose}
@@ -70,7 +70,6 @@ function PreImage ({ className = '', imageHash, isImminent = false, onClose }: P
       <Modal.Content>
         <Modal.Columns hint={t<string>('This account will pay the fees for the preimage, based on the size thereof.')}>
           <InputAddress
-            help={t<string>('The account you want to register the preimage from')}
             label={t<string>('send from account')}
             labelExtra={
               <Available
@@ -95,7 +94,6 @@ function PreImage ({ className = '', imageHash, isImminent = false, onClose }: P
             onChange={setProposal}
           />
           <Static
-            help={t<string>('The hash of the selected proposal, use it for submitting the proposal')}
             label={t<string>('preimage hash')}
             value={encodedHash}
             withCopy
@@ -105,7 +103,6 @@ function PreImage ({ className = '', imageHash, isImminent = false, onClose }: P
           <Modal.Columns hint={t<string>('The calculated storage costs based on the size and the per-bytes fee.')}>
             <InputBalance
               defaultValue={storageFee}
-              help={t<string>('The amount reserved to store this image')}
               isDisabled
               label={t<string>('calculated storage fee')}
             />
@@ -127,13 +124,15 @@ function PreImage ({ className = '', imageHash, isImminent = false, onClose }: P
           }
         />
       </Modal.Actions>
-    </Modal>
+    </StyledModal>
   );
 }
 
-export default React.memo(styled(PreImage)`
+const StyledModal = styled(Modal)`
   .toggleImminent {
     margin: 0.5rem 0;
     text-align: right;
   }
-`);
+`;
+
+export default React.memo(PreImage);

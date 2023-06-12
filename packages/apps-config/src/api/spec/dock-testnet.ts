@@ -3,10 +3,10 @@
 
 import type { OverrideBundleDefinition } from '@polkadot/types/types';
 
-// eslint-disable-next-line @typescript-eslint/no-unsafe-assignment, @typescript-eslint/no-var-requires
-const types: any = require('@docknetwork/node-types');
+// @ts-expect-error No definitions provided in package
+import types from '@docknetwork/node-types';
 
 // eslint-disable-next-line @typescript-eslint/no-unsafe-member-access
-const definitions = types.spec['dock-test-runtime'] as OverrideBundleDefinition;
+const definitions = (types as { spec: { 'dock-test-runtime': OverrideBundleDefinition } }).spec['dock-test-runtime'];
 
 export default definitions;

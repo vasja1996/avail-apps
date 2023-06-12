@@ -5,16 +5,16 @@ import type { Route } from '@polkadot/apps-routing/types';
 
 import React, { Suspense, useMemo } from 'react';
 import { useLocation } from 'react-router-dom';
-import styled from 'styled-components';
 
 import createRoutes from '@polkadot/apps-routing';
-import { ErrorBoundary, Spinner, TabsCtx } from '@polkadot/react-components';
+import { ErrorBoundary, Spinner, styled } from '@polkadot/react-components';
 import { useApi, useQueue } from '@polkadot/react-hooks';
+import { TabsCtx } from '@polkadot/react-hooks/ctx/Tabs';
 
-import { findMissingApis } from '../endpoint';
-import { useTranslation } from '../translate';
-import NotFound from './NotFound';
-import Status from './Status';
+import { findMissingApis } from '../endpoint.js';
+import { useTranslation } from '../translate.js';
+import NotFound from './NotFound.js';
+import Status from './Status.js';
 
 interface Props {
   className?: string;
@@ -59,7 +59,7 @@ function Content ({ className }: Props): React.ReactElement<Props> {
   );
 
   return (
-    <div className={className}>
+    <StyledDiv className={className}>
       {!missingApis
         ? (
           <div className='connecting'>
@@ -95,11 +95,11 @@ function Content ({ className }: Props): React.ReactElement<Props> {
           </>
         )
       }
-    </div>
+    </StyledDiv>
   );
 }
 
-export default React.memo(styled(Content)`
+const StyledDiv = styled.div`
   flex-grow: 1;
   overflow: hidden auto;
   padding: 0 0 1rem 0;
@@ -125,4 +125,6 @@ export default React.memo(styled(Content)`
       padding: 0 0.75rem;
     }
   }
-`);
+`;
+
+export default React.memo(Content);

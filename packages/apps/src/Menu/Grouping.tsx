@@ -1,14 +1,13 @@
 // Copyright 2017-2023 @polkadot/apps authors & contributors
 // SPDX-License-Identifier: Apache-2.0
 
-import type { Group } from './types';
+import type { Group } from './types.js';
 
 import React from 'react';
-import styled from 'styled-components';
 
-import { Icon } from '@polkadot/react-components';
+import { Icon, styled } from '@polkadot/react-components';
 
-import Item from './Item';
+import Item from './Item.js';
 
 interface Props extends Group {
   className?: string;
@@ -31,7 +30,7 @@ function Grouping ({ className = '', isActive, name, routes }: Props): React.Rea
   }
 
   return (
-    <li className={`${className} ${isActive ? 'isActive' : ''}`}>
+    <StyledLi className={`${className} ${isActive ? 'isActive' : ''}`}>
       <div className={`groupHdr ${!isActive ? 'highlight--color-contrast' : ''}`}>
         <span className='smallHide'>{name}</span>
         <Icon
@@ -48,19 +47,18 @@ function Grouping ({ className = '', isActive, name, routes }: Props): React.Rea
           />
         ))}
       </ul>
-    </li>
+    </StyledLi>
   );
 }
 
-export default React.memo(styled(Grouping)`
+const StyledLi = styled.li`
   cursor: pointer;
   position: relative;
 
   .groupHdr {
     border-radius: 0.25rem;
     padding: 0.857rem 1.375rem;
-    font-size: var(--font-size-button);
-    font-weight: 400;
+    font-weight: var(--font-weight-normal);
     line-height: 1.214rem;
 
     > .ui--Icon {
@@ -70,7 +68,7 @@ export default React.memo(styled(Grouping)`
 
   &.isActive .groupHdr {
     background-color: var(--bg-tabs);
-    font-weight: 400;
+    font-weight: var(--font-weight-normal);
     margin-bottom: 0;
   }
 
@@ -119,4 +117,6 @@ export default React.memo(styled(Grouping)`
       }
     }
   }
-`);
+`;
+
+export default React.memo(Grouping);

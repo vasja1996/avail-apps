@@ -4,12 +4,11 @@
 import type { AccountId, Address } from '@polkadot/types/interfaces';
 
 import React from 'react';
-import styled from 'styled-components';
 
-import AccountName from './AccountName';
-import IdentityIcon from './IdentityIcon';
-import ParentAccount from './ParentAccount';
-import { toShortAddress } from './util';
+import IdentityIcon from './IdentityIcon/index.js';
+import AccountName from './AccountName.js';
+import ParentAccount from './ParentAccount.js';
+import { styled } from './styled.js';
 
 interface Props {
   children?: React.ReactNode;
@@ -21,12 +20,12 @@ interface Props {
   withSidebar?: boolean;
   withShortAddress?: boolean;
   toggle?: unknown;
-  value?: string | Address | AccountId | null | Uint8Array;
+  value?: string | Address | AccountId | null;
 }
 
 function AddressSmall ({ children, className = '', defaultName, onClickName, overrideName, parentAddress, toggle, value, withShortAddress = false, withSidebar = true }: Props): React.ReactElement<Props> {
   return (
-    <div className={`ui--AddressSmall ${className} ${(parentAddress || withShortAddress) ? 'withPadding' : ''}`}>
+    <StyledDiv className={`${className} ui--AddressSmall ${(parentAddress || withShortAddress) ? 'withPadding' : ''}`}>
       <span className='ui--AddressSmall-icon'>
         <IdentityIcon value={value as Uint8Array} />
       </span>
@@ -47,20 +46,20 @@ function AddressSmall ({ children, className = '', defaultName, onClickName, ove
         >
           {children}
         </AccountName>
-        {withShortAddress && (
+        {value && withShortAddress && (
           <div
             className='shortAddress'
             data-testid='short-address'
           >
-            {toShortAddress(value)}
+            {value.toString()}
           </div>
         )}
       </span>
-    </div>
+    </StyledDiv>
   );
 }
 
-export default React.memo(styled(AddressSmall)`
+const StyledDiv = styled.div`
   overflow-x: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
@@ -80,8 +79,11 @@ export default React.memo(styled(AddressSmall)`
     position: relative;
     vertical-align: middle;
 
+    .parentName, .shortAddress {
+      font-size: var(--font-size-tiny);
+    }
+
     .parentName {
-      font-size: 0.75rem;
       left: 0;
       position: absolute;
       top: -0.80rem;
@@ -90,9 +92,13 @@ export default React.memo(styled(AddressSmall)`
     .shortAddress {
       bottom: -0.95rem;
       color: #8B8B8B;
-      font-size: 0.75rem;
+      display: inline-block;
       left: 0;
+      min-width: var(--width-shortaddr);
+      max-width: var(--width-shortaddr);
+      overflow: hidden;
       position: absolute;
+      text-overflow: ellipsis;
     }
   }
 
@@ -105,4 +111,6 @@ export default React.memo(styled(AddressSmall)`
       cursor: help;
     }
   }
-`);
+`;
+
+export default React.memo(AddressSmall);

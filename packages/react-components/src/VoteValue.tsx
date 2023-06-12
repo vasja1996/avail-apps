@@ -10,8 +10,8 @@ import { useApi, useCall } from '@polkadot/react-hooks';
 import { BalanceVoting } from '@polkadot/react-query';
 import { BN_ZERO } from '@polkadot/util';
 
-import InputBalance from './InputBalance';
-import { useTranslation } from './translate';
+import InputBalance from './InputBalance.js';
+import { useTranslation } from './translate.js';
 
 interface Props {
   accountId?: string | null;
@@ -121,7 +121,6 @@ function VoteValue ({ accountId, autoFocus, label, noDefault, onChange }: Props)
           ? undefined
           : defaultValue
       }
-      help={t<string>('The amount that is associated with this vote. This value is locked for the duration of the vote.')}
       isDisabled={isDisabled}
       isZeroable
       label={label || t<string>('vote value')}

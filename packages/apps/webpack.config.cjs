@@ -23,7 +23,7 @@ module.exports = merge(
       new SubresourceIntegrityPlugin(),
       new HtmlWebpackPlugin({
         PAGE_TITLE: 'Avail Block Explorer',
-        inject: true,
+        minify: false,
         template: path.join(context, `${hasPublic ? 'public/' : ''}index.html`)
       })
     ]

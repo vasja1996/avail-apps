@@ -3,8 +3,11 @@
 
 import type { OverrideBundleDefinition } from '@polkadot/types/types';
 
-import { unique } from '@unique-nft/unique-mainnet-types/definitions';
+import pkg from '@unique-nft/unique-mainnet-types/definitions.js';
 
 export default {
-  rpc: { unique: unique.rpc }
+  rpc: {
+    appPromotion: pkg.appPromotion.rpc,
+    unique: pkg.unique.rpc
+  }
 } as OverrideBundleDefinition;
