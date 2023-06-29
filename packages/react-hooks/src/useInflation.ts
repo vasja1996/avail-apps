@@ -3,16 +3,16 @@
 
 import type { ApiPromise } from '@polkadot/api';
 import type { BN } from '@polkadot/util';
-import type { Inflation } from './types';
+import type { Inflation } from './types.js';
 
 import { useEffect, useState } from 'react';
 
 import { getInflationParams } from '@polkadot/apps-config';
 import { BN_MILLION, BN_ZERO } from '@polkadot/util';
 
-import { createNamedHook } from './createNamedHook';
-import { useApi } from './useApi';
-import { useCall } from './useCall';
+import { createNamedHook } from './createNamedHook.js';
+import { useApi } from './useApi.js';
+import { useCall } from './useCall.js';
 
 const EMPTY: Inflation = { idealInterest: 0, idealStake: 0, inflation: 0, stakedFraction: 0, stakedReturn: 0 };
 
@@ -47,11 +47,11 @@ function calcInflation (api: ApiPromise, totalStaked: BN, totalIssuance: BN, num
 function useInflationImpl (totalStaked?: BN): Inflation {
   const { api } = useApi();
   const totalIssuance = useCall<BN>(api.query.balances?.totalIssuance);
-  const auctionCounter = useCall<BN>(api.query.auctions?.auctionCounter);
+  const auctionCounter = useCall<BN>(api.query['auctions']?.['auctionCounter']);
   const [state, setState] = useState<Inflation>(EMPTY);
 
   useEffect((): void => {
-    const numAuctions = api.query.auctions
+    const numAuctions = api.query['auctions']
       ? auctionCounter
       : BN_ZERO;
 

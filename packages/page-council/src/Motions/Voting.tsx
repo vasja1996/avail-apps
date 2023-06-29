@@ -5,10 +5,11 @@ import type { AccountId, Hash, Proposal, ProposalIndex } from '@polkadot/types/i
 
 import React, { useState } from 'react';
 
-import { Button, MarkWarning, Modal, ProposedAction, TxButton, VoteAccount } from '@polkadot/react-components';
+import { Button, MarkWarning, Modal, TxButton, VoteAccount } from '@polkadot/react-components';
 import { useAccounts, useApi, useCollectiveInstance, useToggle } from '@polkadot/react-hooks';
+import { ProposedAction } from '@polkadot/react-params';
 
-import { useTranslation } from '../translate';
+import { useTranslation } from '../translate.js';
 
 interface Props {
   hash: Hash;

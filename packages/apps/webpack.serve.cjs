@@ -16,6 +16,7 @@ module.exports = merge(
       port: 3000,
       static: path.resolve(__dirname, 'build')
     },
+    devtool: 'cheap-module-source-map',
     plugins: [
       new HtmlWebpackPlugin({
         PAGE_TITLE: 'Avail Block Explorer',

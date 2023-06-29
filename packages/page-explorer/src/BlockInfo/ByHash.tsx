@@ -9,18 +9,18 @@ import axios from 'axios';
 import React, { useEffect, useMemo, useState } from 'react';
 import { Link } from 'react-router-dom';
 
-import { AddressSmall, Columar, LinkExternal, Table } from '@polkadot/react-components';
+import { AddressSmall, Columar, LinkExternal, MarkError, Table } from '@polkadot/react-components';
 import { useApi, useIsMountedRef } from '@polkadot/react-hooks';
 import { convertWeight } from '@polkadot/react-hooks/useWeight';
 import { formatNumber } from '@polkadot/util';
 
-import config from '../../../apps-config/src/variables/config';
-import Events from '../Events';
-import { useTranslation } from '../translate';
-import Extrinsics from './Extrinsics';
-import Justifications from './Justifications';
-import Logs from './Logs';
-import Summary from './Summary';
+import config from '../../../apps-config/src/variables/config.js';
+import Events from '../Events.js';
+import { useTranslation } from '../translate.js';
+import Extrinsics from './Extrinsics.js';
+import Justifications from './Justifications.js';
+import Logs from './Logs.js';
+import Summary from './Summary.js';
 
 interface Props {
   className?: string;
@@ -67,6 +67,10 @@ function BlockByHash ({ className = '', error, value }: Props): React.ReactEleme
     [api, runtimeVersion]
   );
 
+  useEffect((): void => {
+    error && setBlkError(error);
+  }, [error]);
+
   const systemEvents = useMemo(
     () => events && events.filter(({ record: { phase } }) => !phase.isApplyExtrinsic),
     [events]
@@ -95,10 +99,9 @@ function BlockByHash ({ className = '', error, value }: Props): React.ReactEleme
       .then((result): void => {
         mountedRef.current && setState(transformResult(result));
 
-        const number = result[2]?.number.unwrap().toNumber();
+        const number = result[2];
         // let LightClientURI = 'https://testnet.avail.tools/light/v1';
         let LightClientURI = config.LCURL + '/v1';
-
         const url = new URL(window.location.href);
         const searchParams = new URLSearchParams(url.search);
         const getParam = searchParams.get('light');
@@ -146,12 +149,12 @@ function BlockByHash ({ className = '', error, value }: Props): React.ReactEleme
   const header = useMemo<[React.ReactNode?, string?, number?][]>(
     () => getHeader
       ? [
-        [formatNumber(getHeader.number.unwrap()), 'start', 1],
-        [t('hash'), 'start'],
-        [t('parent'), 'start'],
-        [t('extrinsics'), 'start media--1300'],
-        [t('state'), 'start media--1200'],
-        [t('confidence'), 'start'],
+        [formatNumber(getHeader.number.unwrap()), 'start --digits', 1],
+        [t<string>('hash'), 'start'],
+        [t<string>('parent'), 'start'],
+        [t<string>('extrinsics'), 'start media--1300'],
+        [t<string>('state'), 'start media--1200'],
+        [t<string>('confidence'), 'start'],
         [runtimeVersion ? `${runtimeVersion.specName.toString()}/${runtimeVersion.specVersion.toString()}` : undefined, 'media--1000']
       ]
       : EMPTY_HEADER,
@@ -171,7 +174,13 @@ function BlockByHash ({ className = '', error, value }: Props): React.ReactEleme
       />
       <Table header={header}>
         {blkError
-          ? <tr><td colSpan={6}>{t('Unable to retrieve the specified block details. {{error}}', { replace: { error: blkError.message } })}</td></tr>
+          ? (
+            <tr>
+              <td colSpan={6}>
+                <MarkError content={t<string>('Unable to retrieve the specified block details. {{error}}', { replace: { error: blkError.message } }) } />
+              </td>
+            </tr>
+          )
           : getBlock && getHeader && !getBlock.isEmpty && !getHeader.isEmpty && (
             <tr>
               <td className='address'>
@@ -189,10 +198,12 @@ function BlockByHash ({ className = '', error, value }: Props): React.ReactEleme
               <td className='hash overflow media--1200'>{getHeader.stateRoot.toHex()}</td>
               <td className='hash overflow'>{confidence}</td>
               <td className='media--1000'>
-                <LinkExternal
-                  data={value}
-                  type='block'
-                />
+                {value && (
+                  <LinkExternal
+                    data={value}
+                    type='block'
+                  />
+                )}
               </td>
             </tr>
           )

@@ -9,7 +9,7 @@ import { extractIpfsDetails } from '@polkadot/react-hooks/useIpfs';
 import { settings } from '@polkadot/ui-settings';
 import { assert } from '@polkadot/util';
 
-import config from '../../apps-config/src/variables/config';
+import config from '../../apps-config/src/variables/config.js';
 
 function networkOrUrl (apiUrl: string, lcUrl: string): void {
   if (apiUrl.startsWith('light://')) {

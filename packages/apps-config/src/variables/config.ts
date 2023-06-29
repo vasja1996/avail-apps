@@ -10,6 +10,6 @@
 
 // eslint-disable-next-line header/header
 export default {
-  LCURL: process.env.LCURL as string || 'https://kate.avail.tools',
-  TESTNETURL: process.env.TESTNETURL as string || 'wss://kate.avail.tools/ws'
+  LCURL: process.env['LCURL'] as string || 'https://kate.avail.tools',
+  TESTNETURL: process.env['TESTNETURL'] as string || 'wss://kate.avail.tools/ws'
 };

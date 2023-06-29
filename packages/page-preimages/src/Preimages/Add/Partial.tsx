@@ -5,16 +5,17 @@ import type { ApiPromise } from '@polkadot/api';
 import type { SubmittableExtrinsic } from '@polkadot/api/types';
 import type { BN } from '@polkadot/util';
 import type { HexString } from '@polkadot/util/types';
-import type { HashState } from './types';
+import type { HashState } from './types.js';
 
 import React, { useCallback, useState } from 'react';
 
-import { Extrinsic, InputBalance, Modal, Static } from '@polkadot/react-components';
+import { InputBalance, Modal, Static } from '@polkadot/react-components';
 import { useApi } from '@polkadot/react-hooks';
+import { Extrinsic } from '@polkadot/react-params';
 import { BN_ZERO } from '@polkadot/util';
 import { blake2AsHex } from '@polkadot/util-crypto';
 
-import { useTranslation } from '../../translate';
+import { useTranslation } from '../../translate.js';
 
 interface Props {
   className?: string;
@@ -95,13 +96,11 @@ function Partial ({ className, onChange }: Props): React.ReactElement<Props> {
           onChange={setProposal}
         />
         <Static
-          help={t<string>('The hash of the selected proposal, use it for submitting the proposal')}
           label={t<string>('preimage hash')}
           value={encodedHash}
           withCopy
         />
         <Static
-          help={t<string>('The encoded length of the selected proposal, as available on-chain')}
           label={t<string>('preimage length')}
           value={encodedLength || '0'}
           withCopy
@@ -114,7 +113,6 @@ function Partial ({ className, onChange }: Props): React.ReactElement<Props> {
         >
           <InputBalance
             defaultValue={storageFee}
-            help={t<string>('The amount reserved to store this image')}
             isDisabled
             label={t<string>('calculated storage fee')}
           />

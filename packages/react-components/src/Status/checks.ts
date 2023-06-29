@@ -42,9 +42,9 @@ function xcmAttempted ({ data: [outcome] }: Event): string | null {
   if (!outcome) {
     return INCOMPLETE;
   } else if ((outcome as XcmV3TraitsOutcome).isIncomplete) {
-    const [index, error] = (outcome as XcmV3TraitsOutcome).asIncomplete;
+    const [, error] = (outcome as XcmV3TraitsOutcome).asIncomplete;
 
-    return `error: ${index.toString()}: ${error.type}`;
+    return `error: ${error.type}`;
   }
 
   return null;

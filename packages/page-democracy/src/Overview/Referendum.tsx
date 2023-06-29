@@ -5,19 +5,18 @@ import type { DeriveReferendumExt } from '@polkadot/api-derive/types';
 import type { Balance } from '@polkadot/types/interfaces';
 
 import React, { useMemo } from 'react';
-import styled from 'styled-components';
 
 import { Badge, Button, Columar, ExpandButton, Icon, LinkExternal, Progress, Table } from '@polkadot/react-components';
 import { useAccounts, useApi, useBestNumber, useCall, useToggle } from '@polkadot/react-hooks';
 import { BlockToTime } from '@polkadot/react-query';
 import { BN, BN_ONE, formatNumber, isBoolean } from '@polkadot/util';
 
-import { useTranslation } from '../translate';
-import useChangeCalc from '../useChangeCalc';
-import PreImageButton from './PreImageButton';
-import ProposalCell from './ProposalCell';
-import ReferendumVotes from './ReferendumVotes';
-import Voting from './Voting';
+import { useTranslation } from '../translate.js';
+import useChangeCalc from '../useChangeCalc.js';
+import PreImageButton from './PreImageButton.js';
+import ProposalCell from './ProposalCell.js';
+import ReferendumVotes from './ReferendumVotes.js';
+import Voting from './Voting.js';
 
 interface Props {
   className?: string;
@@ -181,7 +180,7 @@ function Referendum ({ className = '', value: { allAye, allNay, image, imageHash
             <Columar.Column>
               <LinkExternal
                 data={index}
-                type='referendum'
+                type='democracyReferendum'
                 withTitle
               />
             </Columar.Column>
@@ -192,12 +191,4 @@ function Referendum ({ className = '', value: { allAye, allNay, image, imageHash
   );
 }
 
-export default React.memo(styled(Referendum)`
-  td.chart {
-    padding: 0.5rem 0;
-
-    .ui--Progress {
-      display: inline-block;
-    }
-  }
-`);
+export default React.memo(Referendum);

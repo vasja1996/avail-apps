@@ -1,7 +1,7 @@
 // Copyright 2017-2023 @polkadot/apps authors & contributors
 // SPDX-License-Identifier: Apache-2.0
 
-import type { ThemeDef } from '@polkadot/react-hooks/ctx/types';
+import type { ThemeDef } from '@polkadot/react-components/types';
 import type { KeyringStore } from '@polkadot/ui-keyring/types';
 
 import React, { Suspense, useEffect, useState } from 'react';
@@ -9,11 +9,11 @@ import { HashRouter } from 'react-router-dom';
 import { ThemeProvider } from 'styled-components';
 
 import { ApiCtxRoot } from '@polkadot/react-api';
+import { darkTheme, lightTheme } from '@polkadot/react-components';
 import { ApiStatsCtxRoot, BlockAuthorsCtxRoot, BlockEventsCtxRoot, KeyringCtxRoot, QueueCtxRoot, WindowSizeCtxRoot } from '@polkadot/react-hooks';
 import { settings } from '@polkadot/ui-settings';
 
-import Apps from './Apps';
-import { darkTheme, lightTheme } from './themes';
+import Apps from './Apps.js';
 
 interface Props {
   isElectron: boolean;
@@ -43,13 +43,13 @@ function Root ({ isElectron, store }: Props): React.ReactElement<Props> {
   return (
     <Suspense fallback='...'>
       <ThemeProvider theme={theme}>
-        <KeyringCtxRoot>
-          <QueueCtxRoot>
-            <ApiCtxRoot
-              apiUrl={settings.apiUrl}
-              isElectron={isElectron}
-              store={store}
-            >
+        <QueueCtxRoot>
+          <ApiCtxRoot
+            apiUrl={settings.apiUrl}
+            isElectron={isElectron}
+            store={store}
+          >
+            <KeyringCtxRoot>
               <ApiStatsCtxRoot>
                 <BlockAuthorsCtxRoot>
                   <BlockEventsCtxRoot>
@@ -61,9 +61,9 @@ function Root ({ isElectron, store }: Props): React.ReactElement<Props> {
                   </BlockEventsCtxRoot>
                 </BlockAuthorsCtxRoot>
               </ApiStatsCtxRoot>
-            </ApiCtxRoot>
-          </QueueCtxRoot>
-        </KeyringCtxRoot>
+            </KeyringCtxRoot>
+          </ApiCtxRoot>
+        </QueueCtxRoot>
       </ThemeProvider>
     </Suspense>
   );

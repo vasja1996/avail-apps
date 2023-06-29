@@ -6,14 +6,13 @@ import type { KeyringItemType } from '@polkadot/ui-keyring/types';
 import type { BN } from '@polkadot/util';
 
 import React from 'react';
-import styled from 'styled-components';
 
-import AccountName from './AccountName';
-import BalanceDisplay from './Balance';
-import BondedDisplay from './Bonded';
-import IdentityIcon from './IdentityIcon';
-import LockedVote from './LockedVote';
-import { toShortAddress } from './util';
+import IdentityIcon from './IdentityIcon/index.js';
+import AccountName from './AccountName.js';
+import BalanceDisplay from './Balance.js';
+import BondedDisplay from './Bonded.js';
+import LockedVote from './LockedVote.js';
+import { styled } from './styled.js';
 
 interface Props {
   balance?: BN | BN[];
@@ -30,7 +29,7 @@ interface Props {
   onNameClick?: () => void;
   summary?: React.ReactNode;
   type?: KeyringItemType;
-  value?: AccountId | AccountIndex | Address | string | null | Uint8Array;
+  value?: AccountId | AccountIndex | Address | string | null;
   withAddress?: boolean;
   withBalance?: boolean;
   withBonded?: boolean;
@@ -46,7 +45,7 @@ function AddressMini ({ balance, bonded, children, className = '', iconInfo, isH
   }
 
   return (
-    <div className={`ui--AddressMini${isHighlight ? ' isHighlight' : ''}${isPadded ? ' padded' : ''}${withShrink ? ' withShrink' : ''} ${className}`}>
+    <StyledDiv className={`${className} ui--AddressMini ${isHighlight ? 'isHighlight' : ''} ${isPadded ? 'padded' : ''} ${withShrink ? 'withShrink' : ''}`}>
       {label && (
         <label className='ui--AddressMini-label'>{label}</label>
       )}
@@ -73,7 +72,7 @@ function AddressMini ({ balance, bonded, children, className = '', iconInfo, isH
                   {nameExtra}
                 </AccountName>
               )
-              : toShortAddress(value)
+              : <span className='shortAddress'>{value.toString()}</span>
             }
           </span>
         )}
@@ -101,11 +100,11 @@ function AddressMini ({ balance, bonded, children, className = '', iconInfo, isH
           <div className='ui--AddressMini-summary'>{summary}</div>
         )}
       </div>
-    </div>
+    </StyledDiv>
   );
 }
 
-export default React.memo(styled(AddressMini)`
+const StyledDiv = styled.div`
   overflow-x: hidden;
   padding: 0 0.25rem 0 1rem;
   text-align: left;
@@ -132,6 +131,12 @@ export default React.memo(styled(AddressMini)`
     > div {
       overflow: hidden;
       text-overflow: ellipsis;
+
+      &.shortAddress {
+        min-width: var(--width-shortaddr);
+        max-width: var(--width-shortaddr);
+        opacity: var(--opacity-light);
+      }
     }
   }
 
@@ -151,7 +156,7 @@ export default React.memo(styled(AddressMini)`
     .ui--Balance,
     .ui--Bonded,
     .ui--LockedVote {
-      font-size: 0.75rem;
+      font-size: var(--font-size-tiny);
       margin-left: 2.25rem;
       margin-top: -0.5rem;
       text-align: left;
@@ -179,10 +184,12 @@ export default React.memo(styled(AddressMini)`
   }
 
   .ui--AddressMini-summary {
-    font-size: 0.75rem;
+    font-size: var(--font-size-small);
     line-height: 1.2;
     margin-left: 2.25rem;
     margin-top: -0.2rem;
     text-align: left;
   }
-`);
+`;
+
+export default React.memo(AddressMini);

@@ -3,7 +3,7 @@
 
 import type { ApiPromise } from '@polkadot/api';
 
-import { KULUPU_GENESIS, KUSAMA_GENESIS, POLKADOT_GENESIS } from '../constants';
+import { KULUPU_GENESIS, KUSAMA_GENESIS, POLKADOT_GENESIS } from '../constants.js';
 
 // normal fast-track proposals
 const FAST_TRACK: Record<string, number> = {
@@ -37,18 +37,18 @@ const TREASURY: Record<string, number> = {
 
 export function getFastTrackThreshold (api: ApiPromise, isDefault: boolean): number {
   return isDefault
-    ? (FAST_TRACK[api.genesisHash.toHex()] || FAST_TRACK.default)
-    : (FAST_TRACK_NO_DELAY[api.genesisHash.toHex()] || FAST_TRACK_NO_DELAY.default);
+    ? (FAST_TRACK[api.genesisHash.toHex()] || FAST_TRACK['default'])
+    : (FAST_TRACK_NO_DELAY[api.genesisHash.toHex()] || FAST_TRACK_NO_DELAY['default']);
 }
 
 export function getProposalThreshold (api: ApiPromise): number {
-  return PROPOSE[api.genesisHash.toHex()] || PROPOSE.default;
+  return PROPOSE[api.genesisHash.toHex()] || PROPOSE['default'];
 }
 
 export function getSlashProposalThreshold (api: ApiPromise): number {
-  return SLASH[api.genesisHash.toHex()] || SLASH.default;
+  return SLASH[api.genesisHash.toHex()] || SLASH['default'];
 }
 
 export function getTreasuryProposalThreshold (api: ApiPromise): number {
-  return TREASURY[api.genesisHash.toHex()] || TREASURY.default;
+  return TREASURY[api.genesisHash.toHex()] || TREASURY['default'];
 }

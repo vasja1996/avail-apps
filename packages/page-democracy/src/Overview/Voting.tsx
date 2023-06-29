@@ -6,10 +6,11 @@ import type { BN } from '@polkadot/util';
 
 import React, { useMemo, useState } from 'react';
 
-import { Button, ConvictionDropdown, Modal, ProposedAction, TxButton, VoteAccount, VoteValue } from '@polkadot/react-components';
+import { Button, ConvictionDropdown, Modal, TxButton, VoteAccount, VoteValue } from '@polkadot/react-components';
 import { useAccounts, useApi, useToggle } from '@polkadot/react-hooks';
+import { ProposedAction } from '@polkadot/react-params';
 
-import { useTranslation } from '../translate';
+import { useTranslation } from '../translate.js';
 
 interface Props {
   proposal?: Proposal;
@@ -70,7 +71,6 @@ function Voting ({ proposal, referendumId }: Props): React.ReactElement<Props> |
                 />
               )}
               <ConvictionDropdown
-                help={t<string>('The conviction to use for this vote, with an appropriate lock period.')}
                 label={t<string>('conviction')}
                 onChange={setConviction}
                 value={conviction}

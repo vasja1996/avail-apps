@@ -2,7 +2,7 @@
 // SPDX-License-Identifier: Apache-2.0
 
 import type { StrictLabelProps } from 'semantic-ui-react';
-import type { Snippet } from '@polkadot/app-js/types';
+import type { Snippet } from '../types.js';
 
 const label: StrictLabelProps = {
   children: 'Storage',

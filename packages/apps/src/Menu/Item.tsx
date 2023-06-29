@@ -1,12 +1,11 @@
 // Copyright 2017-2023 @polkadot/apps authors & contributors
 // SPDX-License-Identifier: Apache-2.0
 
-import type { ItemRoute } from './types';
+import type { ItemRoute } from './types.js';
 
 import React from 'react';
-import styled from 'styled-components';
 
-import { Badge, Icon } from '@polkadot/react-components';
+import { Badge, Icon, styled } from '@polkadot/react-components';
 import { useToggle } from '@polkadot/react-hooks';
 
 interface Props {
@@ -24,7 +23,7 @@ function Item ({ className = '', classNameText, isLink, isToplevel, route: { Mod
   const count = useCounter();
 
   return (
-    <li className={`ui--MenuItem ${className}${count ? ' withCounter' : ''} ${isLink ? 'isLink' : ''} ${isToplevel ? 'topLevel  highlight--color-contrast' : ''}`}>
+    <StyledLi className={`${className} ui--MenuItem ${count ? 'withCounter' : ''} ${isLink ? 'isLink' : ''} ${isToplevel ? 'topLevel highlight--color-contrast' : ''}`}>
       <a
         href={Modal ? undefined : (href || `#/${name}`)}
         onClick={Modal ? toggleModal : undefined}
@@ -35,7 +34,7 @@ function Item ({ className = '', classNameText, isLink, isToplevel, route: { Mod
         <span className={classNameText}>{text}</span>
         {!!count && (
           <Badge
-            color={'white'}
+            color='white'
             info={count}
           />
         )}
@@ -43,17 +42,17 @@ function Item ({ className = '', classNameText, isLink, isToplevel, route: { Mod
       {Modal && isModalVisible && (
         <Modal onClose={toggleModal} />
       )}
-    </li>
+    </StyledLi>
   );
 }
 
-export default React.memo(styled(Item)`
+const StyledLi = styled.li`
   cursor: pointer;
   position: relative;
   white-space: nowrap;
 
   &.topLevel {
-    font-weight: 400;
+    font-weight: var(--font-weight-normal);
     line-height: 1.214rem;
     border-radius: 0.15rem;
 
@@ -64,8 +63,7 @@ export default React.memo(styled(Item)`
     }
 
     &.isActive.highlight--color-contrast {
-      font-size: 1.15rem;
-      font-weight: 400;
+      font-weight: var(--font-weight-normal);
       color: var(--color-text);
 
       a {
@@ -100,8 +98,6 @@ export default React.memo(styled(Item)`
     display: block;
     padding: 0.5rem 1.15rem 0.57rem;
     text-decoration: none;
-    font-weight: 400;
-    font-size: var(--font-size-button);
     line-height: 1.5rem;
   }
 
@@ -113,4 +109,6 @@ export default React.memo(styled(Item)`
   .ui--Icon {
     margin-right: 0.5rem;
   }
-`);
+`;
+
+export default React.memo(Item);
