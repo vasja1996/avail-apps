@@ -21,7 +21,7 @@ export const testChains: Omit<EndpointOption, 'teleport'>[] = [
     },
     text: 'Avail-Testnet',
     ui: {
-      color: '#42A5F5',
+      color: '#1B1E26',
       logo: nodesAvailPNG
     }
   }

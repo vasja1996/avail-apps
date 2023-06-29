@@ -74,7 +74,7 @@ export function createDev (t: TFunction): LinkOption[] {
       text: t('rpc.dev.local', 'Local Node', { ns: 'apps-config' }),
       textBy: '127.0.0.1:9944',
       ui: {
-        color: '#42A5F5',
+        color: '#1B1E26',
         logo: nodesAvailPNG
       },
       value: 'ws://127.0.0.1:9944'
