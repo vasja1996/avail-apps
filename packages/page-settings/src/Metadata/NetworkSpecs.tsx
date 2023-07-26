@@ -103,7 +103,7 @@ function NetworkSpecs({ chainInfo, className }: Props): React.ReactElement<Props
       store.clearAll();
       console.log('Store cleared');
     },
-    []
+    [store]
   );
 
   const headerRef = useRef<[React.ReactNode?, string?, number?][]>([
