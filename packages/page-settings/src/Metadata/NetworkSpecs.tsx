@@ -23,7 +23,7 @@ interface NetworkSpecsStructWithType extends NetworkSpecsStruct {
   chainType: ChainType
 }
 
-function getRandomColor(): string {
+function getRandomColor (): string {
   const letters = '0123456789ABCDEF';
   let color = '#';
 
@@ -44,7 +44,7 @@ const initialState = {
   unit: 'UNIT'
 };
 
-function NetworkSpecs({ chainInfo, className }: Props): React.ReactElement<Props> {
+function NetworkSpecs ({ chainInfo, className }: Props): React.ReactElement<Props> {
   const { t } = useTranslation();
   const { isApiReady, systemChain } = useApi();
   const [qrData, setQrData] = useState<NetworkSpecsStructWithType>(initialState);
@@ -103,7 +103,7 @@ function NetworkSpecs({ chainInfo, className }: Props): React.ReactElement<Props
       store.clearAll();
       console.log('Store cleared');
     },
-    [store]
+    []
   );
 
   const headerRef = useRef<[React.ReactNode?, string?, number?][]>([
