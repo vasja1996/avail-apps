@@ -55,7 +55,7 @@ function saveProperties (api: ApiPromise, { name, version }: InjectedExtension, 
     ss58Format: api.registry.chainSS58,
     tokenDecimals: api.registry.chainDecimals[0],
     tokenSymbol: api.registry.chainTokens[0],
-    userExtensionsLoaded: hasLoadedUserExtensions,
+    userExtensionsLoaded: hasLoadedUserExtensions
   };
 
   store.set(storeKey, allProperties);
@@ -77,7 +77,7 @@ function hasCurrentProperties (api: ApiPromise, { extension }: ExtensionKnown): 
   return ss58Format === api.registry.chainSS58 &&
     tokenDecimals === api.registry.chainDecimals[0] &&
     tokenSymbol === api.registry.chainTokens[0] &&
-    (tokenSymbol !== "AVL" || Boolean(userExtensionsLoaded));
+    (tokenSymbol !== 'AVL' || Boolean(userExtensionsLoaded));
 }
 
 // filter extensions based on the properties we have available
@@ -116,7 +116,7 @@ async function getExtensionInfo (api: ApiPromise, extension: InjectedExtension):
 
         try {
           isOk = await metadata.provide(def);
-          let hasLoadedUserExtensions = !!def.userExtensions
+          const hasLoadedUserExtensions = !!def.userExtensions;
 
           if (isOk) {
             saveProperties(api, extension, hasLoadedUserExtensions);

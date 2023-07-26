@@ -8,7 +8,7 @@ import { useMemo } from 'react';
 import { getSystemIcon } from '@polkadot/apps-config';
 import { DEFAULT_DECIMALS, DEFAULT_SS58 } from '@polkadot/react-api';
 import { createNamedHook, useApi } from '@polkadot/react-hooks';
-import { getSpecTypes, getSpecExtensions } from '@polkadot/types-known';
+import { getSpecExtensions, getSpecTypes } from '@polkadot/types-known';
 import { formatBalance, isNumber } from '@polkadot/util';
 import { base64Encode } from '@polkadot/util-crypto';
 

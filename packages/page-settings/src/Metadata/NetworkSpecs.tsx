@@ -1,11 +1,11 @@
 // Copyright 2017-2023 @polkadot/app-settings authors & contributors
 // SPDX-License-Identifier: Apache-2.0
 
-import store from 'store';
 import type { NetworkSpecsStruct } from '@polkadot/ui-settings/types';
 import type { ChainInfo, ChainType } from '../types.js';
 
 import React, { useCallback, useEffect, useReducer, useRef, useState } from 'react';
+import store from 'store';
 
 import { Button, ChainImg, Input, QrNetworkSpecs, Spinner, styled, Table } from '@polkadot/react-components';
 import { useApi, useDebounce } from '@polkadot/react-hooks';
@@ -73,11 +73,16 @@ function NetworkSpecs ({ chainInfo, className }: Props): React.ReactElement<Prop
         genesisHash: chainInfo.genesisHash,
         prefix: chainInfo.ss58Format,
         title: systemChain,
-        unit: chainInfo.tokenSymbol,
+        unit: chainInfo.tokenSymbol
       });
       setUserExtensions(chainInfo.userExtensions ? Object.keys(chainInfo.userExtensions) : undefined);
     }
   }, [chainInfo, systemChain]);
+
+  const _onClearStore = () => {
+    store.clearAll()
+    console.log('Store cleared')
+  }
 
   const _onChangeColor = useCallback(
     (color: string): void => setNetworkSpecs({ color }),
@@ -216,7 +221,7 @@ function NetworkSpecs ({ chainInfo, className }: Props): React.ReactElement<Prop
             className='full'
             isDisabled
             label={t<string>('User extensions')}
-            value={userExtensions && userExtensions.length > 0 ? userExtensions.join(", ") : "No signed / user extensions found"}
+            value={userExtensions && userExtensions.length > 0 ? userExtensions.join(', ') : 'No signed / user extensions found'}
           />
         </td>
       </tr>
@@ -226,7 +231,7 @@ function NetworkSpecs ({ chainInfo, className }: Props): React.ReactElement<Prop
             <Button
               icon='trash'
               label={t<string>('Reset extensions store')}
-              onClick={() => store.clearAll()}
+              onClick={_onClearStore}
             />
           </Button.Group>
         </td>
