@@ -19,11 +19,11 @@ interface Props {
 }
 
 // TODO-MOONBEAM: update NetworkSpecsStruct in @polkadot/ui-settings/types
-interface NetworkSpecsStructWithType extends NetworkSpecsStruct{
+interface NetworkSpecsStructWithType extends NetworkSpecsStruct {
   chainType: ChainType
 }
 
-function getRandomColor (): string {
+function getRandomColor(): string {
   const letters = '0123456789ABCDEF';
   let color = '#';
 
@@ -44,7 +44,7 @@ const initialState = {
   unit: 'UNIT'
 };
 
-function NetworkSpecs ({ chainInfo, className }: Props): React.ReactElement<Props> {
+function NetworkSpecs({ chainInfo, className }: Props): React.ReactElement<Props> {
   const { t } = useTranslation();
   const { isApiReady, systemChain } = useApi();
   const [qrData, setQrData] = useState<NetworkSpecsStructWithType>(initialState);
@@ -79,16 +79,10 @@ function NetworkSpecs ({ chainInfo, className }: Props): React.ReactElement<Prop
     }
   }, [chainInfo, systemChain]);
 
-  function _onClearStore(){
-    store.clearAll();
-    console.log('Store cleared');
-  };
-
   const _onChangeColor = useCallback(
     (color: string): void => setNetworkSpecs({ color }),
     []
   );
-
 
   const _onSetRandomColor = useCallback(
     (event: React.MouseEvent<unknown>): void => {
@@ -102,6 +96,14 @@ function NetworkSpecs ({ chainInfo, className }: Props): React.ReactElement<Prop
   const _checkColorValid = useCallback(
     (): boolean => /^#[\da-fA-F]{6}|#[\da-fA-F]{3}$/.test(networkSpecs.color),
     [networkSpecs]
+  );
+
+  const _onClearStore = useCallback(
+    (): void => {
+      store.clearAll();
+      console.log('Store cleared');
+    },
+    []
   );
 
   const headerRef = useRef<[React.ReactNode?, string?, number?][]>([
