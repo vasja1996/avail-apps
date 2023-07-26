@@ -84,7 +84,6 @@ function NetworkSpecs ({ chainInfo, className }: Props): React.ReactElement<Prop
     console.log('Store cleared');
   };
 
-
   const _onChangeColor = useCallback(
     (color: string): void => setNetworkSpecs({ color }),
     []
