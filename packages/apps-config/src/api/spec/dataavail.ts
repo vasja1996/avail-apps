@@ -88,9 +88,19 @@ const definitions: OverrideBundleDefinition = {
           dataRoot: 'H256',
           commitment: 'Vec<u8>'
         },
+        KateCommitmentV2: {
+          rows: 'Compact<u16>',
+          cols: 'Compact<u16>',
+          commitment: 'Vec<u8>',
+          dataRoot: 'H256'
+        },
         V1HeaderExtension: {
           commitment: 'KateCommitment',
           appLookup: 'DataLookup'
+        },
+        V2HeaderExtension: {
+          appLookup: 'DataLookup',
+          commitment: 'KateCommitmentV2'
         },
         VTHeaderExtension: {
           newField: 'Vec<u8>',
@@ -100,6 +110,7 @@ const definitions: OverrideBundleDefinition = {
         HeaderExtension: {
           _enum: {
             V1: 'V1HeaderExtension',
+            V2: 'V2HeaderExtension',
             VTest: 'VTHeaderExtension'
           }
         },
