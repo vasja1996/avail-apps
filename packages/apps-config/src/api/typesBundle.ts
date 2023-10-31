@@ -49675,11 +49675,11 @@ export const typesBundle = {
               "rows": "Compact<u16>",
               "cols": "Compact<u16>",
               "commitment": "Vec<u8>",
-              "dataRoot": "H256",
+              "dataRoot": "H256"
             },
             "V1HeaderExtension": {
               "appLookup": "DataLookup",
-              "commitment": "KateCommitment",
+              "commitment": "KateCommitment"
             },
             "VTHeaderExtension": {
               "newField": "Vec<u8>",
