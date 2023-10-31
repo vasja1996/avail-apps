@@ -49681,11 +49681,6 @@ export const typesBundle = {
               "appLookup": "DataLookup",
               "commitment": "KateCommitment"
             },
-            "VTHeaderExtension": {
-              "newField": "Vec<u8>",
-              "commitment": "KateCommitment",
-              "appLookup": "DataLookup"
-            },
             "HeaderExtension": {
               "_enum": {
                 "V1": "V1HeaderExtension",
