@@ -187,6 +187,7 @@ const spec: Record<string, OverrideBundleDefinition> = {
   'curio-mainnet': curio,
   'curio-testnet': curio,
   'data-avail': dataavail,
+  avail: dataavail,
   datahighway: westlake,
   'datahighway-parachain': datahighwayParachain,
   dawn: eave,

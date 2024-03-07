@@ -33,7 +33,7 @@ function createExternals (t: (key: string, optionsOrText?: string | { replace: R
       text: t('nav.github', 'GitHub', { ns: 'apps-routing' })
     },
     {
-      href: 'https://availproject.github.io/',
+      href: 'https://docs.availproject.org/',
       icon: 'book',
       name: 'wiki',
       text: t('nav.wiki', 'Wiki', { ns: 'apps-routing' })
