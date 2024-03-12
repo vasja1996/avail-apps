@@ -2,8 +2,7 @@
 // SPDX-License-Identifier: Apache-2.0
 
 import type { ApiPromise } from '@polkadot/api';
-import type { u32, Vec } from '@polkadot/types';
-import type { PalletStakingExposure, PalletStakingStakingLedger } from '@polkadot/types/lookup';
+import type { PalletStakingExposure } from '@polkadot/types/lookup';
 import type { Route, TFunction } from './types.js';
 
 import Component from '@polkadot/app-staking';
@@ -18,7 +17,8 @@ function needsApiCheck (api: ApiPromise): boolean {
       unwrapStorageType(api.registry, api.query.staking.erasStakers.creator.meta.type),
       { others: [{ value: BN_ONE, who: ZERO_ACCOUNT }], own: BN_ONE, total: BN_ONE }
     );
-    console.log("asserting")
+
+    console.log('asserting');
     assert(total && own && value && who && total.eq(BN_ONE) && own.eq(BN_ONE) && value.eq(BN_ONE), 'Needs a known Exposure type');
   } catch {
     console.warn('Unable to create known-shape Exposure type, disabling staking route');

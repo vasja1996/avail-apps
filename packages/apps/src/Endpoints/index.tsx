@@ -175,22 +175,6 @@ function isSwitchDisabled (hasUrlChanged: boolean, apiUrl: string, isUrlValid: b
   return true;
 }
 
-function isLocalForkDisabled (hasUrlChanged: boolean, apiUrl: string, isUrlValid: boolean, isLocalFork?: boolean): boolean {
-  if (!hasUrlChanged) {
-    if (isLocalFork) {
-      return true;
-    } else {
-      return false;
-    }
-  } else if (apiUrl.startsWith('light://')) {
-    return true;
-  } else if (isUrlValid) {
-    return false;
-  }
-
-  return true;
-}
-
 function Endpoints ({ className = '', offset, onClose }: Props): React.ReactElement<Props> {
   const { t } = useTranslation();
   const linkOptions = createWsEndpoints(t);
@@ -329,11 +313,6 @@ function Endpoints ({ className = '', offset, onClose }: Props): React.ReactElem
 
   const canSwitch = useMemo(
     () => isSwitchDisabled(hasUrlChanged, apiUrl, isUrlValid, isLocalFork),
-    [hasUrlChanged, apiUrl, isUrlValid, isLocalFork]
-  );
-
-  const canLocalFork = useMemo(
-    () => isLocalForkDisabled(hasUrlChanged, apiUrl, isUrlValid, isLocalFork),
     [hasUrlChanged, apiUrl, isUrlValid, isLocalFork]
   );
 
