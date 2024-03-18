@@ -65,20 +65,20 @@ const definitions: OverrideBundleDefinition = {
         ],
         type: 'ProofResponse'
       },
-      "queryRows": {
-        "description": "Query rows based on their indices",
-        "params": [
+      queryRows: {
+        description: 'Query rows based on their indices',
+        params: [
           {
-            "name": "rows",
-            "type": "Vec<u32>",
+            name: 'rows',
+            type: 'Vec<u32>',
           },
           {
-            "name": "at",
-            "type": "Hash",
-            "isOptional": true,
+            name: 'at',
+            type: 'Hash',
+            isOptional: true,
           },
         ],
-        "type": "Vec<Vec<u8>>",
+        type: 'Vec<Vec<u8>>',
       }
     }
   },

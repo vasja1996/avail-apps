@@ -48667,15 +48667,15 @@ export const typesBundle = {
             "params": [
               {
                 "name": "rows",
-                "type": "Vec<u32>",
+                "type": "Vec<u32>"
               },
               {
                 "name": "at",
                 "type": "Hash",
-                "isOptional": true,
-              },
+                "isOptional": true
+              }
             ],
-            "type": "Vec<Vec<u8>>",
+            "type": "Vec<Vec<u8>>"
           }
         }
       },
@@ -48850,15 +48850,15 @@ export const typesBundle = {
             "params": [
               {
                 "name": "rows",
-                "type": "Vec<u32>",
+                "type": "Vec<u32>"
               },
               {
                 "name": "at",
                 "type": "Hash",
-                "isOptional": true,
-              },
+                "isOptional": true
+              }
             ],
-            "type": "Vec<Vec<u8>>",
+            "type": "Vec<Vec<u8>>"
           }
         }
       },
