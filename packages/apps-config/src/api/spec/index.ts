@@ -34,7 +34,7 @@ import crust from './crust.js';
 import testPara from './cumulus-test-parachain.js';
 import curio from './curio.js';
 import darwinia from './darwinia.js';
-import dataavail from './dataavail.js';
+import avail from './avail.js';
 import datahighwayParachain from './datahighway.js';
 import dockMainnet from './dock-mainnet.js';
 import dockTestnet from './dock-testnet.js';
@@ -162,7 +162,7 @@ const spec: Record<string, OverrideBundleDefinition> = {
   asgard: bifrostAsgard,
   astar,
   automata,
-  avail: dataavail,
+  avail,
   bajun,
   basilisk,
   beresheet,
@@ -187,7 +187,6 @@ const spec: Record<string, OverrideBundleDefinition> = {
   'cumulus-test-parachain': testPara,
   'curio-mainnet': curio,
   'curio-testnet': curio,
-  'data-avail': dataavail,
   datahighway: westlake,
   'datahighway-parachain': datahighwayParachain,
   dawn: eave,
