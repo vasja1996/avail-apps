@@ -178,7 +178,7 @@ const definitions: OverrideBundleDefinition = {
         },
         FungibleToken: {
           asset_id: 'H256',
-          amount: 'String',
+          amount: 'String'
         },
         BoundedData: 'Vec<u8>',
         ArbitraryMessage: 'BoundedData',
