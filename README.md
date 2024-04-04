@@ -2,6 +2,7 @@
 <h1>avail-apps</h1>
 <h3>Block Explorer & Apps for the Avail blockchain</h3>
 </div>
+curl --version
 
 <br>
 
